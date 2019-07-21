@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <!--组件扫描-->
+    <!--dubbo的配置项，提供者，pinyougou-sellergoods提供者的唯一标识名-->
+    <dubbo:application name="pinyougou-seckill-service"></dubbo:application>
+
+    <!--注册中心-->
+    <dubbo:registry protocol="zookeeper" address="192.168.25.129" port="2181"></dubbo:registry>
+
+    <!--暴露端口-->
+    <dubbo:protocol name="dubbo" port="20888"></dubbo:protocol>
+
+    <!--dubbo的组件扫描，注解service的开发,包括service的注解扫描一并解决-->
+    <dubbo:annotation package="com.pinyougou.seckill.service"></dubbo:annotation>
+
+    <!--调用的时候会有超时,表示100秒-->
+    <dubbo:provider timeout="100000"></dubbo:provider>
+
+    <!--配置生产静态页面的模板bean对象-->
+    <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer" id="freeMarkerConfigurer">
+        <!--设置字符编码-->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!--视图解析模板文件-->
+        <property name="templateLoaderPath" value="/WEB-INF/ftl"></property>
+    </bean>
+
+
+    <!--任务驱动 使用任务执行管理器、注解驱动-->
+    <task:annotation-driven executor="taskExecutor"></task:annotation-driven>
+
+    <!--线程池-->
+    <bean class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor"
+          id="taskExecutor">
+        <!--初始线程数量-->
+        <property name="corePoolSize" value="10"></property>
+        <!--最大线程数量-->
+        <property name="maxPoolSize" value="100"></property>
+        <!--队列的最大容量-->
+        <property name="queueCapacity" value="200"></property>
+        <!--线程的最大空闲时间 秒-->
+        <property name="keepAliveSeconds" value="300"></property>
+
+        <!--设置拒绝策略-->
+        <property name="rejectedExecutionHandler">
+            <!--该策略指定如果线程不足，由创建线程池的系统来进行处理-->
+            <bean class="java.util.concurrent.ThreadPoolExecutor.CallerRunsPolicy"></bean>
+        </property>
+    </bean>
+
+    <!--配置多线程处理类，将多线程处理类交给spring容器管理-->
+    <bean class="com.pinyougou.seckill.thread.CreateOrderThread" id="createOrderThread"></bean>
+
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/security
+        http://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--安全框架的组件扫描-->
+    <context:component-scan base-package="com.pinyougou.shop.security.config"></context:component-scan>
+
+    <!--自定义认证类,从数据库进行认证查询-->
+    <beans:bean class="com.pinyougou.shop.service.UserDetailsServiceImpl" id="userDetailsService"></beans:bean>
+
+    <!--配置密码加密器-->
+    <beans:bean class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" id="passwordEncoder"></beans:bean>
+
+</beans:beans>

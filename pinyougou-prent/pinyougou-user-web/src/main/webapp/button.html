@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>person</title>
+</head>
+<body>
+<div id="app">
+
+    <form method="post" action="/person/add.shtml">
+        {{entity}}
+        <div>
+            邮箱： <input v-validate="'required|email|min:5|max:20'" v-model="entity.email" name="email" type="text">
+            <span>{{ errors.first('email') }}</span>
+        </div>
+        <div>
+            手机号： <input v-model="entity.mobile"
+                        v-validate="{ required: true, regex: '^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$' }"
+                        name="mobile" type="text">
+            <span>{{ errors.first('mobile') }}</span>
+        </div>
+        <div>
+            用户名： <input v-model="entity.username" v-validate="'required|alpha_num'" name="username" type="text">
+            <span>{{ errors.first('username') }}</span>
+        </div>
+        <div>
+            年龄： <input v-model="entity.age" v-validate="'required|between:1,160'" name="age" type="text">
+            <span>{{ errors.first('age') }}</span>
+        </div>
+        <div>
+            <button type="button" @click="formSubmit()">保存</button>
+        </div>
+    </form>
+</div>
+</body>
+<!--引入所需js-->
+<script type="text/javascript" src="plugins/vue/vue.js"></script>
+<script src="plugins/axios/axios.js"></script>
+<script type="text/javascript" src="js/veeValidate/vee-validate.js"></script>
+<script type="text/javascript" src="js/veeValidate/zh_CN.js"></script>
+
+<!--再引入所要实现的脚本-->
+<script>
+
+    //注册(使用这个VeeValidate)
+    Vue.use(VeeValidate, {locale: 'zh_CN'});
+
+    var app = new Vue({
+
+        el: "#app",
+
+        data: {
+            //定义一个变量
+            entity: {},
+        },
+
+        methods: {
+
+            //定义一个点击按钮提交触发的函数，判断校验是否成功，成功则提交表单,不成功则返回错误信息
+            formSubmit: function () {
+
+                this.$validator.validate().then(
+                    //使用箭头函数
+                    result => {
+                        //判断校验是否正确
+                        if (!result) {
+                            //有问题
+
+                        } else {
+
+                            //没问题，向后台发起表单提交请求
+                            axios.post('/person/add.shtml',app.entity).then(
+                                function (response) {
+
+
+                                    //判断如果有错
+                                    if (response.data.success==false){
+
+                                        console.log(response.data)
+                                        //显示后台响应的报错信息
+                                        var errors = response.data.errorList;
+                                        //追加错误信息
+                                        app.$validator.errors.add(errors);
+
+                                    }
+                                }
+                            )
+                        }
+                    }
+                )
+
+            }
+        }
+
+    })
+
+
+</script>
+</html>

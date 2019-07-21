@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="pinyougou-seckill-interface-1.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/pinyougou-seckill-interface/target/pinyougou-seckill-interface-1.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

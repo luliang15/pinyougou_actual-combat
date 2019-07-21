@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://code.alibabatech.com/schema/dubbo
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--组件扫描-->
+    <!--dubbo的配置项，提供者，pinyougou-sellergoods提供者的唯一标识名-->
+    <dubbo:application name="pinyougou-order-service"></dubbo:application>
+
+    <!--注册中心-->
+    <dubbo:registry protocol="zookeeper" address="192.168.25.129" port="2181"></dubbo:registry>
+
+    <!--暴露端口-->
+    <dubbo:protocol name="dubbo" port="20886"></dubbo:protocol>
+
+    <!--dubbo的组件扫描，注解service的开发,包括service的注解扫描一并解决-->
+    <dubbo:annotation package="com.pinyougou.order.service"></dubbo:annotation>
+
+    <!--调用的时候会有超时,表示100秒-->
+    <dubbo:provider timeout="100000"></dubbo:provider>
+
+    <bean id="idWorker" class="com.pinyougou.common.utils.IdWorker">
+        <!-- 进程ID -->
+        <constructor-arg index="0" value="0"></constructor-arg>
+        <!-- 数据中心ID -->
+        <constructor-arg index="1" value="0"></constructor-arg>
+    </bean>
+
+
+
+</beans>
