@@ -11,6 +11,9 @@
         contentList:[],
         //关键字变量
         keywords:'',
+        //定义一个广告列表展示的要传递的id参数 ,1表示首页轮播，5、6表示广告楼层的展示
+        categoryId:['1','5','6'],
+
     },
     methods: {
         searchList:function (curPage) {
@@ -98,15 +101,16 @@
         },
 
         //根据广告分类的id查询广告列表
-        findByCategoryId:function (categoryId) {
+        findByCategoryId:function () {
 
-            alert("id"+categoryId)
+           // alert("id"+categoryId)
             //向服务器发送请求
-            axios.post('/content/findByCategoryId/'+categoryId+'.shtml').then(function (response) {
+            axios.post('/content/findByCategoryId.shtml',this.categoryId).then(function (response) {
 
                 alert("根据广告分类id查询显示的广告列表")
 
                 //将查询到的数据绑定一个列表的变量
+                console.log(response.data)
                 app.contentList = response.data;
 
             }).catch(function (error) {
@@ -129,7 +133,7 @@
       
         this.searchList(1);
 
-        this.findByCategoryId('1');
+        this.findByCategoryId();
 
     }
 

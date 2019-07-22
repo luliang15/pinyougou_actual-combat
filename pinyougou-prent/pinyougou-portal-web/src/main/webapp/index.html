@@ -12,9 +12,9 @@
     <link rel="stylesheet" type="text/css" href="css/widget-jquery.autocomplete.css" />
     <link rel="stylesheet" type="text/css" href="css/widget-cartPanelView.css" />
 </head>
-
-<body>
 <div id="app">
+<body>
+
 	<!-- 头部栏位 -->
 	<!--页面顶部-->
 <div id="nav-bottom">
@@ -525,9 +525,11 @@
                             <li data-target="#myCarousel" data-slide-to="0" v-for="(content,index) in contentList" :class="{'active':index==0?true:false}"></li>
                         </ol>
                         <div class="carousel-inner">
-                            <div v-for="(content,index) in contentList" :class="{'active':index==0?true:false,'item':true}" >
-                                <a :href="content.url">
-                                    <img :src="content.pic"  />
+                            <!--广告列表的展示-->
+                            <div v-for="(content,index) in contentList"
+                                 :class="{'active':index==0?true:false,'item':true}" v-if="content.categoryId==1" >
+                                <a :href="content.url">                          <!--v-if的判断是首页轮播图-->
+                                    <img height="700px" width="570px" :src="content.pic"  />
                                 </a>
                             </div>
                         </div><a href="#myCarousel" data-slide="prev" class="carousel-control left">‹</a><a href="#myCarousel" data-slide="next" class="carousel-control right">›</a>
@@ -835,6 +837,7 @@
 			</div>
 		</div>
 	</div>
+
 	<!--楼层-->
 	<div id="floor-1" class="floor">
 		<div class="py-container">
@@ -869,62 +872,18 @@
 			<div class="clearfix  tab-content floor-content">
 				<div id="tab1" class="tab-pane active">
 					<div class="yui3-g Floor-1">
-						<div class="yui3-u Left blockgary">
-							<ul class="jd-list">
-								<li>节能补贴</li>
-								<li>4K电视</li>
-								<li>空气净化器</li>
-								<li>IH电饭煲</li>
-								<li>滚筒洗衣机</li>
-								<li>电热水器</li>
-							</ul>
-							<img src="img/floor-1-1.png" />
-						</div>
-						<div class="yui3-u row-330 floorBanner">
-							<div id="floorCarousel" data-ride="carousel" data-interval="4000" class="sui-carousel slide">
-								<ol class="carousel-indicators">
-									<li data-target="#floorCarousel" data-slide-to="0" class="active"></li>
-									<li data-target="#floorCarousel" data-slide-to="1"></li>
-									<li data-target="#floorCarousel" data-slide-to="2"></li>
-								</ol>
-								<div class="carousel-inner">
-									<div class="active item">
-										<img src="img/floor-1-b01.png">
-									</div>
-									<div class="item">
-										<img src="img/floor-1-b02.png">
-									</div>
-									<div class="item">
-										<img src="img/floor-1-b03.png">
-									</div>
-								</div>
-								<a href="#floorCarousel" data-slide="prev" class="carousel-control left">‹</a>
-								<a href="#floorCarousel" data-slide="next" class="carousel-control right">›</a>
-							</div>
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-2.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-3.png" />
-							</div>
-						</div>
-						<div class="yui3-u row-218 split">
-							<img src="img/floor-1-4.png" />
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-5.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-6.png" />
-							</div>
-						</div>
+
+                        <!--广告列表的展示-->                      <!--v-if的判断是家用电器广告的展示-->
+                        <div v-for="(content,index) in contentList" v-if="content.categoryId==5"  >
+                            <a :href="content.url">
+                                <img height="400px" width="400px" :src="content.pic" />
+                            </a>
+                        </div>
+
+
 					</div>
 				</div>
+
 				<div id="tab2" class="tab-pane">
 					<p>第二个</p>
 				</div>
@@ -946,6 +905,8 @@
 			</div>
 		</div>
 	</div>
+
+
 	<div id="floor-2" class="floor">
 		<div class="py-container">
 			<div class="title floors">
@@ -979,60 +940,17 @@
 			<div class="clearfix  tab-content floor-content">
 				<div id="tab8" class="tab-pane active">
 					<div class="yui3-g Floor-1">
-						<div class="yui3-u Left blockgary">
-							<ul class="jd-list">
-								<li>节能补贴</li>
-								<li>4K电视</li>
-								<li>空气净化器</li>
-								<li>IH电饭煲</li>
-								<li>滚筒洗衣机</li>
-								<li>电热水器</li>
-							</ul>
-							<img src="img/floor-1-1.png" />
-						</div>
-						<div class="yui3-u row-330 floorBanner">
-							<div id="floorCarousell" data-ride="carousel" data-interval="4000" class="sui-carousel slide">
-								<ol class="carousel-indicators">
-									<li data-target="#floorCarousell" data-slide-to="0" class="active"></li>
-									<li data-target="#floorCarousell" data-slide-to="1"></li>
-									<li data-target="#floorCarousell" data-slide-to="2"></li>
-								</ol>
-								<div class="carousel-inner">
-									<div class="active item">
-										<img src="img/floor-1-b01.png">
-									</div>
-									<div class="item">
-										<img src="img/floor-1-b02.png">
-									</div>
-									<div class="item">
-										<img src="img/floor-1-b03.png">
-									</div>
-								</div>
-								<a href="#floorCarousell" data-slide="prev" class="carousel-control left">‹</a>
-								<a href="#floorCarousell" data-slide="next" class="carousel-control right">›</a>
-							</div>
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-2.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-3.png" />
-							</div>
-						</div>
-						<div class="yui3-u row-218 split">
-							<img src="img/floor-1-4.png" />
-						</div>
-						<div class="yui3-u row-220 split">
-							<span class="floor-x-line"></span>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-5.png" />
-							</div>
-							<div class="floor-conver-pit">
-								<img src="img/floor-1-6.png" />
-							</div>
-						</div>
+
+
+                        <!--广告列表的展示-->                    <!--v-if的判断是手机通讯的广告展示-->
+                        <div v-for="(content,index) in contentList" v-if="content.categoryId==6" >
+                            <a :href="content.url">
+                                <img height="400px" width="400px" :src="content.pic"  />
+                            </a>
+                        </div>
+
+
+
 					</div>
 				</div>
 				<div id="tab2" class="tab-pane">
@@ -1372,23 +1290,13 @@
 </script>
 <!--侧栏面板结束-->
 <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript">
-$(function(){
-	$("#service").hover(function(){
-		$(".service").show();
-	},function(){
-		$(".service").hide();
-	});
-	$("#shopcar").hover(function(){
-		$("#shopcarlist").show();
-	},function(){
-		$("#shopcarlist").hide();
-	});
 
-})
-</script>
-</div>
+
 </body>
+</div>
+
+
+
 
 <script type="text/javascript" src="js/model/cartModel.js"></script>
 <script type="text/javascript" src="js/czFunction.js"></script>

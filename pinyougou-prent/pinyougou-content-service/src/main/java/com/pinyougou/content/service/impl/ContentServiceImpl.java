@@ -1,4 +1,5 @@
 package com.pinyougou.content.service.impl;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -108,7 +109,7 @@ public class ContentServiceImpl extends CoreServiceImpl<TbContent>  implements C
      * @return
      */
     @Override
-    public List<TbContent> findByCategoryId(Long categoryId) {
+    public List<TbContent> findByCategoryId(Long[] categoryId) {
 
         //1.查询redis的数据。如果有，返回
         List<TbContent> content_redis = (List<TbContent>) redisTemplate.boundHashOps("CONTENT_REDIS").get(categoryId);
@@ -124,10 +125,13 @@ public class ContentServiceImpl extends CoreServiceImpl<TbContent>  implements C
 
         //2.如果没有。查询数据库的数据
         //根据广告分类的id获取广告列表 select * from tb_content where category_id=1
-        TbContent tbContent = new TbContent();
-        tbContent.setCategoryId(categoryId);
+       /* TbContent tbContent = new TbContent();
+        tbContent.setCategoryId(categoryId);*/
+        Example example = new Example(TbContent.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("categoryId", Arrays.asList(categoryId));
 
-        List<TbContent> select = contentMapper.select(tbContent);
+        List<TbContent> select = contentMapper.selectByExample(example);
 
 
         //3.将查询到的数据库的数据 写入redis中
