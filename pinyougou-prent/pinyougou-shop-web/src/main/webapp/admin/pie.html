@@ -12,14 +12,14 @@
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="../css/style.css">
-	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
- 
+
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
-  <!-- .box-body -->
-  <div id="chart" style="width: 900px;height:600px;"></div>
+<body class="hold-transition skin-red sidebar-mini">
+<!-- .box-body -->
+<div id="chart" style="width: 900px;height:600px;"></div>
 </body>
 
 <script src="../plugins/vue/vue.js"></script>
@@ -29,20 +29,62 @@
 <script src="../plugins/echarts/echarts.js"></script>
 <script>
     var myChart = echarts.init(document.getElementById('chart'));
-    var option = {
-        xAxis: {
-            type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: 'pie'
-        }]
-    };
-    myChart.setOption(option)
+
+    axios.get("/seller/findSellInOneTime.shtml", {
+        params: {
+            startTime: '1993-08-08',
+            endTime: '2019-08-08'
+        }
+    }).then((res) => {
+        var datas= []
+        for (let i = 0; i < res.data.days.length; i++) {
+
+            var obj = {value:'',name:''}
+
+
+            obj.name= res.data.days[i]
+            obj.value= res.data.money[i]
+
+            datas.push(obj)
+        }
+
+
+        myChart.setOption({
+                title: {
+                    text: '每天销量占比',
+                    subtext: '',
+                    left: 'center'
+                },
+                tooltip: {//提示框组件
+                    trigger: 'item',//触发类型，在饼形图中为item
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"//提示内容格式
+                },
+                legend: {
+                    orient: 'vertical',
+                    // top: 'middle',
+                    // bottom: 10,
+                    left: 'left',
+                    data: res.data.days
+                },
+                series: [{
+                    name: '每天销量占比',
+                    // radius : '55%',
+                    // center: ['50%', '60%'],
+                    selectedMode: 'single',
+                    data: datas,
+                    type: 'pie',
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }]
+            }
+        )
+    })
+
 
 </script>
 

@@ -12,15 +12,15 @@
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="../css/style.css">
-	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 
 
 </head>
 
-<body class="hold-transition skin-red sidebar-mini" >
-  <!-- .box-body -->
-  <div id="chart" style="width: 900px;height:600px;"></div>
+<body class="hold-transition skin-red sidebar-mini">
+<!-- .box-body -->
+<div id="chart" style="width: 900px;height:600px;"></div>
 </body>
 
 <script src="../plugins/vue/vue.js"></script>
@@ -30,32 +30,37 @@
 <script src="../plugins/echarts/echarts.js"></script>
 
 
-
 <script>
     var myChart = echarts.init(document.getElementById('chart'));
 
-    axios.get("/seller/findSellInOneTime.shtml",{
-        param:{
-            startTime:'1993-08-08',
-            endTime:'2019-08-08'
+    axios.get("/seller/findSellInOneTime.shtml", {
+        params: {
+            startTime: '1993-08-08',
+            endTime: '2019-08-08'
         }
-    }).then((res)=>{
+    }).then((res) => {
         myChart.setOption({
-            xAxis:{
-            type: 'category',
-                data:res.data.days
-        },
-        yAxis: {
-            type: 'value'
-        },
-        series: [{
-            data: res.data.money,
-            type: 'line'
-        }]
-    }
+                title: {
+                    text: '销量'
+                },
+                legend: {
+                    data: ['销量（单位：元）']
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.data.days
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name:'销量（单位：元）',
+                    data: res.data.money,
+                    type: 'line'
+                }]
+            }
         )
     })
-
 
 
 </script>
