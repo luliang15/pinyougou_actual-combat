@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+ 
+</head>
+
+<body class="hold-transition skin-red sidebar-mini" >
+  <!-- .box-body -->
+  <div id="chart" style="width: 900px;height:600px;"></div>
+</body>
+
+<script src="../plugins/vue/vue.js"></script>
+<!--引入插件-->
+<script src="../js/controller/base.js"></script>
+<script src="../plugins/axios/axios.js"></script>
+<script src="../plugins/echarts/echarts.js"></script>
+<script>
+    var myChart = echarts.init(document.getElementById('chart'));
+    var option = {
+        xAxis: {
+            type: 'category',
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [{
+            data: [820, 932, 901, 934, 1290, 1330, 1320],
+            type: 'pie'
+        }]
+    };
+    myChart.setOption(option)
+
+</script>
+
+</html>

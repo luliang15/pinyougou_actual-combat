@@ -7,11 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="lib1" level="project" />
-    <orderEntry type="library" name="pinyougou-dao-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="pinyougou-pojo-1.0-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="module" module-name="main23" />
-    <orderEntry type="module" module-name="main7" />
+    <orderEntry type="module" module-name="main31" />
+    <orderEntry type="module" module-name="main10" />
   </component>
 </module>
