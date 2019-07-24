@@ -14,13 +14,53 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/birthday.js"></script>
 
+    <script>
+        $(function() {
+            $.ms_DatePicker({
+                YearSelector: "#select_year2",
+                MonthSelector: "#select_month2",
+                DaySelector: "#select_day2"
+
+
+            });
+            $.ms_DatePicker({
+                YearSelector: "#select_year1",
+                MonthSelector: "#select_month1",
+                DaySelector: "#select_day1"
+            });
+
+
+        });
+    </script>
 
 </head>
 
 <body class="hold-transition skin-red sidebar-mini">
+<div id="app">
+
+
 <!-- .box-body -->
-<div id="chart" style="width: 900px;height:600px;"></div>
+<div class="control-group">
+    <label for="inputPassword" class="control-label">开始时间：</label>
+    <div class="controls">
+        <select id="select_year2" rel=""  v-model="startTime_year"></select>年
+        <select id="select_month2" rel="" v-model="startTime_month"></select>月
+        <select id="select_day2" rel=""   v-model="startTime_day"></select>日
+    </div>
+</div>
+<div class="control-group">
+    <label for="inputPassword" class="control-label">结束时间：</label>
+    <div class="controls">
+        <select id="select_year1" rel="" v-model="startTime_year"></select>年
+        <select id="select_month1" rel=""v-model="startTime_month"></select>月
+        <select id="select_day1" rel=""  v-model="startTime_day"></select>日
+    </div>
+</div>
+
+<div id="chart" style="width: 720px;height:480px;"></div>
+</div>
 </body>
 
 <script src="../plugins/vue/vue.js"></script>
@@ -28,10 +68,13 @@
 <script src="../js/controller/base.js"></script>
 <script src="../plugins/axios/axios.js"></script>
 <script src="../plugins/echarts/echarts.js"></script>
+<script src="../js/controller/pictureController.js"></script>
+
 
 
 <script>
     var myChart = echarts.init(document.getElementById('chart'));
+
 
     axios.get("/seller/findSellInOneTime.shtml", {
         params: {
