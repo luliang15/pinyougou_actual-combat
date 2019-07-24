@@ -7,7 +7,6 @@
         specList:[],   //此变量的格式：[{id:1,'text':"网络",options:[{},{}]}]
         list: [],
         //goods表示商品SPU,goodsDesc表示商品描述，itemList表示商品列表SKU
-        //goods表示商品SPU,goodsDesc表示商品描述，itemList表示商品列表SKU
         //specificationItems表示规格列表的数据变量，是否勾选复选框
         //customAttributeItems表示扩展属性的变量
         //再定义一个模块Id的可扩展属性
@@ -25,6 +24,7 @@
         brandTextList:[],
 
         ids: [],
+
         searchEntity: {}
     },
     methods: {
@@ -410,6 +410,7 @@
                 )
             }
         },
+
         //newval参数为开始选中的列表信息，oldval为原本选中的列表信息
         'entity.goods.typeTemplateId': function (newval, oldval) {
             //此时监听模块ID的变化，根据模块ID去查询模块对象，展示模块对象的brand的text

@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="pinyougou-portal-web:war exploded">
     <output-path>$PROJECT_DIR$/pinyougou-prent/pinyougou-portal-web/target/pinyougou-manager-web</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>pinyougou-portal-web</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -83,6 +90,9 @@
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.2.0.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.2.1.Final" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.1.0" />
+          <element id="archive" name="pinyougou-sellergoods-interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-sellergoods-interface" />
+          </element>
           <element id="archive" name="pinyougou-common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="pinyougou-common" />
           </element>

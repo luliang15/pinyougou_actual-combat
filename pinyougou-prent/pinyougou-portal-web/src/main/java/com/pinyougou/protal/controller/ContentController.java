@@ -106,10 +106,11 @@ public class ContentController {
     }
 
     //根据id查询对应的广告列表
-    @RequestMapping("/findByCategoryId/{categoryId}")
-    public List<TbContent> findByCategoryId(@PathVariable(name = "categoryId") Long categoryId){
+    @RequestMapping("/findByCategoryId")
+    public List<TbContent> findByCategoryId(@RequestBody Long[] categoryId){
 
         return contentService.findByCategoryId(categoryId);
     }
-	
+
+
 }

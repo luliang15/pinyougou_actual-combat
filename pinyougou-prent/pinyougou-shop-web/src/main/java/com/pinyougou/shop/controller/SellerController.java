@@ -1,7 +1,10 @@
 package com.pinyougou.shop.controller;
 import java.util.List;
+import java.util.Map;
 
+import com.pinyougou.order.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -112,5 +115,23 @@ public class SellerController {
                                       @RequestBody TbSeller seller) {
         return sellerService.findPage(pageNo, pageSize, seller);
     }
-	
+
+
+    @Reference
+    private OrderService orderService;
+	/**
+	 * 根据日期查询 此日期间隔的每一天的销售额
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	@RequestMapping("/findSellInOneTime")
+	public Map<String,Object> findSellInOneTime(String startTime,String endTime){
+        String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        Map<String,Object> map = orderService.findSellInOneTime(startTime,endTime,sellerId);
+
+        return map;
+    }
+
 }

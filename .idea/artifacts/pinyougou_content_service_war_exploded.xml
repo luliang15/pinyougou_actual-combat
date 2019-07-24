@@ -1,6 +1,13 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="pinyougou-content-service:war exploded">
     <output-path>$PROJECT_DIR$/pinyougou-prent/pinyougou-content-service/target/pinyougou-manager-web</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <exploded>true</exploded>
+        <module>pinyougou-content-service</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">

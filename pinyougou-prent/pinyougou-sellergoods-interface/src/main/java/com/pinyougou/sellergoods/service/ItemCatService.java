@@ -1,5 +1,7 @@
 package com.pinyougou.sellergoods.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbItemCat;
 
 import com.github.pagehelper.PageInfo;
@@ -36,4 +38,19 @@ public interface ItemCatService extends CoreService<TbItemCat> {
      */
 
     List<TbItemCat> findByParentId(Long parentId);
+
+    /**
+     * 使用查询item商品分类的所有数据信息，使用redis存取
+     * @return
+     */
+    List<TbItemCat> findShow();
+
+    /**
+     * //根据id查询出item商品列表的数据list
+     * //list中再包含一个map，map中有多个键值对，第一个键值是二级类目的key与value
+     * //第二个键值对中是三级类目的可以与value
+     * @param parentId
+     * @return
+     */
+    List<Map> findById(Long parentId);
 }
