@@ -9,7 +9,7 @@
 
     <!--组件扫描-->
     <!--dubbo的配置项，提供者，pinyougou-sellergoods提供者的唯一标识名-->
-    <dubbo:application name="pinyougou-sellergoods"></dubbo:application>
+    <dubbo:application name="pinyougou-sellergoods-service"></dubbo:application>
 
     <!--注册中心-->
     <dubbo:registry protocol="zookeeper" address="192.168.25.129" port="2181"></dubbo:registry>

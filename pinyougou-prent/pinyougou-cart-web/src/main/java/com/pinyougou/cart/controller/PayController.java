@@ -85,7 +85,12 @@ public class PayController {
                 //但是用户如果一直不支付，请求一直发送也不行，设置超时时间，如果超时5分钟就退出
                 if(count>=100){
 
+                    //关闭微信订单
+                    Map<String, String> map = payService.closePay(out_trade_no);
+
                     result =  new Result(false,"Payment overTime");
+
+
                     //结束循环
                     break;
                 }

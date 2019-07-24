@@ -202,6 +202,11 @@ public class CartServiceImpl implements CartService {
         return cartListFromRedis;
     }
 
+    @Override
+    public void saveCartListToRedis(String username, List<Cart> cartList) {
+        redisTemplate.boundHashOps("cartList").put(username,cartList);
+    }
+
     /**
      * 此方法用来判断此购物车的明细列表集合中是否包含此商品
      * 在明细列表中，要添加的商品是否存在
