@@ -1,6 +1,14 @@
 package com.pinyougou.manager.controller;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.pinyougou.common.utils.ExcleImport;
+import com.pinyougou.common.utils.POIUtils;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbItemCat;
@@ -8,6 +16,10 @@ import com.pinyougou.sellergoods.service.ItemCatService;
 
 import com.github.pagehelper.PageInfo;
 import entity.Result;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * controller  商品分类表
  * @author Administrator
@@ -25,12 +37,16 @@ public class ItemCatController {
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbItemCat> findAll(){			
+	public List<TbItemCat> findAll(HttpServletRequest request) throws FileNotFoundException {
+
+
+
+
 		return itemCatService.findAll();
 	}
 	
 	
-	
+
 	@RequestMapping("/findPage")
     public PageInfo<TbItemCat> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
                                       @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize) {
@@ -113,5 +129,31 @@ public class ItemCatController {
         return itemCatService.findByParentId(parentId);
 
     }
+
+
+
+	@RequestMapping("/upload")
+	public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
+		try {
+			Map<String, Object> param = new HashMap<String, Object>();
+			List<String[]> rowList = POIUtils.readExcel(file);
+			for (int i = 0; i < rowList.size(); i++) {
+				String[] row = rowList.get(i);
+				TbItemCat itemCat = new TbItemCat();
+				itemCat.setParentId(Long.valueOf(row[0]));
+				itemCat.setName(row[1]);
+				itemCat.setTypeId(Long.valueOf(row[2]));
+				itemCatService.add(itemCat);
+			}
+			return new Result(true, "导入数据成功");
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return new Result(false, "导入数据有误！");
+		}
+
+
+	}
+
 
 }

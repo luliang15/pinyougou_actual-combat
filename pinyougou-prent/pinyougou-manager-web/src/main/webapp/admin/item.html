@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品管理</title>
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    
+</head>
+
+
+<body class="hold-transition skin-red sidebar-mini">
+  <!-- .box-body -->
+  <div id="app">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">商品管理</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <!-- 数据表格 -->
+                        <div class="table-box">
+
+                            <!--工具栏-->
+                            <div class="pull-left">
+                                <div class="form-group form-inline">
+                                    <div class="btn-group">    <!--点击刷新页面的时候，添加新增的输入框为空-->
+                                                            <!--绑定删除的点击事件-->
+                                        <button type="button" class="btn btn-default" title="删除" @click="dele()" ><i class="fa fa-trash-o"></i> 删除</button>
+                                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+                                        <button type="button" class="btn btn-default" title="分页商品导出" @click="upload(1)"><i class="fa fa-refresh"></i> 分页商品导出</button>
+                                        <button type="button" class="btn btn-default" title="所有商品导出" @click="upload(2)"><i class="fa fa-refresh"></i> 所有商品导出</button>
+                                    </div>
+                                </div>
+                            </div>
+                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+			                      <thead>
+			                          <tr>
+			                              <th class="" style="padding-right:0px">
+			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
+			                              </th> 
+										  <th class="sorting_asc">商品编号</th>
+									      <th class="sorting">商品标题</th>
+									      <th class="sorting">商品价格</th>
+									      <th class="sorting">库存数量</th>
+									      <th class="sorting">规格</th>
+					                      <th class="text-center">操作</th>
+			                          </tr>
+			                      </thead>
+			                      <tbody>
+                                  <tr v-for="entity in list">
+                                      <!--这里是一个复选框，当点击勾选框时选中此id-->
+                                      <!--v-model="ids"为绑定复选框的id数组列表参数，:value="entity.id"为id赋值，可写为v-bind-->
+                                      <td><input  type="checkbox" :value="entity.id" v-model="ids"></td>
+                                      <td>{{entity.id}}</td>
+                                      <td>{{entity.title}}</td>
+                                      <td>{{entity.price}}</td>
+                                      <td>{{entity.num}}</td>
+                                      <td>{{entity.spec}}</td>
+                                      <td class="text-center">
+                                          <button type="button" class="btn bg-olive btn-xs" data-toggle="modal" data-target="#editModal" @click="findOne(entity.id)" >修改</button>
+                                      </td>
+                                  </tr>
+
+
+			                      </tbody>
+			                  </table>
+
+			                  <!--数据列表/-->
+                            <!--传递：pages:指定总页数  pageNo:当前页码 searchList:定义的函数 用于在点击下一页的调用-->
+                            <navigation :pages="pages" :current.sync="pageNo"  @navpage="searchList"></navigation>
+							 
+                        </div>
+                        <!-- 数据表格 /-->
+
+                     </div>
+                    <!-- /.box-body -->
+
+  </div>
+</body>
+
+<!--引入js-->
+<script src="../plugins/vue/vue.js"></script>
+<!--引入js-->
+<script src="../plugins/axios/axios.js"></script>
+<!--引入分页插件js-->
+<script src="../js/pagination.js"></script>
+<!--引入vue请求-->
+<script src="../js/controller/itemController.js"></script>
+
+<script>
+
+</script>
+</html>

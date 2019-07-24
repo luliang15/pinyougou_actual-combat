@@ -64,4 +64,16 @@
     <!--引入rocketmq的配置文件-->
     <import resource="spring-producer.xml"></import>
 
+
+    <!--poi配置文件上传下载-->
+
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize">
+            <value>100000</value>
+        </property>
+        <property name="defaultEncoding">
+            <value>UTF-8</value>
+        </property>
+    </bean>
+
 </beans>

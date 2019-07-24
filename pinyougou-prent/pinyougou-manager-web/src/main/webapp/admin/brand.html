@@ -36,6 +36,12 @@
                                                             <!--绑定删除的点击事件-->
                                         <button type="button" class="btn btn-default" title="删除" @click="dele()" ><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
+
+                                        <button type="button" class="btn btn-default" title="模板下载" @click="uploadTemplate()"><i class="fa fa-refresh"></i>模板下载</button>
+                                        <input type="file" id="file" />
+                                        <button class="btn btn-primary" type="button" @click="uploadFile()">
+                                            上传品牌excle
+                                        </button>
                                     </div>
                                 </div>
                             </div>

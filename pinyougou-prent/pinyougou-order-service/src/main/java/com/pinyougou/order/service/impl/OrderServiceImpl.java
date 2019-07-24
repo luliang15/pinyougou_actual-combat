@@ -266,4 +266,11 @@ public class OrderServiceImpl implements OrderService {
         map.put("money", moneyList);
         return map;
     }
+
+    @Override
+    public List<TbOrder> findAll() {
+        List<TbOrder> tbOrders = orderMapper.select(null);
+        return tbOrders;
+
+    }
 }

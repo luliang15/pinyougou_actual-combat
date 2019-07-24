@@ -161,7 +161,9 @@
     <!--插件的端口号要特别注意-->
     <build>
         <finalName>pinyougou-sellergoods-service</finalName>
+
         <plugins>
+
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>

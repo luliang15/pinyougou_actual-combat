@@ -3,6 +3,7 @@ package com.pinyougou.order.service;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,4 +40,7 @@ public interface OrderService {
     void updateOrderStatus(String transaction_id, String out_trade_no);
 
     Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId);
+
+    List<TbOrder> findAll();
+
 }

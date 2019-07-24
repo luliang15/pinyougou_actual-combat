@@ -30,6 +30,13 @@
             <scope>test</scope>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.pinyougou</groupId>
+            <artifactId>pinyougou-order-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--依赖接口 sellergoods商品的接口依赖-->
         <dependency>
             <groupId>com.pinyougou</groupId>

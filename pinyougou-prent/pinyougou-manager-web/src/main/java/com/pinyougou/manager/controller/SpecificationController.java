@@ -1,14 +1,19 @@
 package com.pinyougou.manager.controller;
-import java.util.List;
 
-import entity.Specification;
-import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.PageInfo;
+import com.pinyougou.common.utils.POIUtils;
 import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.sellergoods.service.SpecificationService;
-
-import com.github.pagehelper.PageInfo;
 import entity.Result;
+import entity.Specification;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * controller
  * @author Administrator
@@ -107,5 +112,28 @@ public class SpecificationController {
                                       @RequestBody TbSpecification specification) {
         return specificationService.findPage(pageNo, pageSize, specification);
     }
+
+	//文件上传的后台方法
+	@RequestMapping("/upload")
+	public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
+		try {
+			Map<String, Object> param = new HashMap<String, Object>();
+			List<String[]> rowList = POIUtils.readExcel(file);
+			for (int i = 0; i < rowList.size(); i++) {
+				String[] row = rowList.get(i);
+				TbSpecification specification = new TbSpecification();
+				specification.setSpecName(row[0]);
+				specificationService.add(specification);
+
+			}
+			return new Result(true, "导入数据成功");
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			return new Result(false, "导入数据有误！");
+		}
+
+
+	}
 	
 }

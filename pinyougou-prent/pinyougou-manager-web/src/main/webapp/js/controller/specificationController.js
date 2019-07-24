@@ -109,7 +109,47 @@
             //第一个参数表示索引号(下标)
             //第二个参数表示要删除的个数
             this.entity.optionList.splice(index,1);
-        }
+        },
+
+
+        //规格模板下载
+        uploadTemplate:function(){
+            location.href="../../download/specification.xls"
+
+        },
+
+        //excle文件上传
+        uploadFile:function(){
+            //创建一个表单对象，html中的
+            var formData = new FormData();
+
+            //添加字段 类似：<input type="text" name="username">
+            //file ===> <input type="file" name="file">
+            //file.files[0]
+            formData.append('file', file.files[0]);
+
+            axios({
+                url:'http://localhost:9101/specification/upload.shtml',
+                //表示模拟一个表单上传，表单数据
+                data: formData,
+                method: 'post',
+                //设置表单提交的数据类型
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+
+
+            }).then(function (response) {
+                if (response.data.success) {
+                    //上传成功，会打印出上传的路径
+                    alert("上传成功")
+                } else {
+                    //上传失败
+                    alert(response.data.message);
+                }
+            })
+        },
+
 
 
 
