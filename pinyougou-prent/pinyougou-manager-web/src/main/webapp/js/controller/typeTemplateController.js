@@ -166,11 +166,11 @@
 
            //1.将json字符串 转成 json对象
 
-            let jsonObjArray = JSON.parse(strList);
+            var jsonObjArray = JSON.parse(strList);
 
-            for(let i=0;i<jsonObjArray.length;i++){
+            for(var i=0;i<jsonObjArray.length;i++){
 
-                let obj = jsonObjArray[i];
+                var obj = jsonObjArray[i];
 
                 str+=obj[key]+",";
                 // str+=obj.key+",";

@@ -38,12 +38,21 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--依赖sellergoods的接口依赖-->
+        <dependency>
+            <groupId>com.pinyougou</groupId>
+            <artifactId>pinyougou-sellergoods-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--因为也算属于一种消费者形式，有dubbo,也有spring,需要依赖common-->
         <dependency>
             <groupId>com.pinyougou</groupId>
             <artifactId>pinyougou-common</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -116,6 +125,12 @@
             <artifactId>servlet-api</artifactId>
             <version>${servlet-api.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.pinyougou</groupId>
+            <artifactId>pinyougou-sellergoods-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
 
 
