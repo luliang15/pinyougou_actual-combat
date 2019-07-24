@@ -238,17 +238,6 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <dependency>
-                <groupId>com.github.sgroschupf</groupId>
-                <artifactId>zkclient</artifactId>
-                <version>${zkclient.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <artifactId>log4j</artifactId>
-                        <groupId>log4j</groupId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
             <!--jsp相关-->
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -403,6 +392,7 @@
     </dependencyManagement>
 
 
+
     <build>
         <plugins>
             <!--打包跳过测试-->
@@ -415,59 +405,6 @@
                 </configuration>
             </plugin>
             <!--maven清理target插件-->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.6.1</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-common/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-pojo/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-dao/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-sellergoods-interface/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-sellergoods-service/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-manager-web/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-core-service/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-                        <fileset>
-                            <directory>${basedir}/pinyougou-shop-web/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-
-                        <fileset>
-                            <directory>${basedir}/pinyougou-upload-web/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-
-                        <fileset>
-                            <directory>${basedir}/itheima-springsecurity/target</directory>
-                            <followSymlinks>false</followSymlinks>
-                        </fileset>
-
-                    </filesets>
-
-                </configuration>
-            </plugin>
         </plugins>
 
         <!--插件的版本管理-->
