@@ -7,7 +7,7 @@
     <bean class="org.apache.rocketmq.client.producer.DefaultMQProducer" id="defaultMQProducer"
           init-method="start" destroy-method="shutdown">
         <!--端口号位置-->
-        <property name="namesrvAddr" value="127.0.0.1:9876"></property>
+        <property name="namesrvAddr" value="192.168.25.129:9876"></property>
         <!--生产组-->
         <property name="producerGroup" value="producer_manager_web_group"></property>
     </bean>

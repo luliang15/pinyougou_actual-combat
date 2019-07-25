@@ -37,7 +37,6 @@
       <module fileurl="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/pinyougou-user-interface.iml" filepath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/pinyougou-user-interface.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/pinyougou-user-service.iml" filepath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/pinyougou-user-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/pinyougou-user-web.iml" filepath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/pinyougou-user-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/pinyougou_actual-combat.iml" filepath="$PROJECT_DIR$/.idea/pinyougou_actual-combat.iml" />
     </modules>
   </component>
 </project>

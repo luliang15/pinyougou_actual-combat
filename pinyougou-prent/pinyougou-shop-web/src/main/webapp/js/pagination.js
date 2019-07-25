@@ -24,6 +24,7 @@ var pageComponent = Vue.extend({
         showPageBtn() {
             let pageNum = this.pages;
             let index = this.curPage;
+            console.log(this.curPage);
             let arr = [];
             if (pageNum <= 5) {
                 for (let i = 1; i <= pageNum; i++) {
@@ -46,10 +47,6 @@ var pageComponent = Vue.extend({
             } else {
                 console.log('Already in the current page');
             }
-        }
-    },watch:{
-        'current':function (newvalue,oldvalue) {
-            this.curPage=newvalue;
         }
     }
 });

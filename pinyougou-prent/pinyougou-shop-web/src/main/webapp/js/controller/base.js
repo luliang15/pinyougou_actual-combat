@@ -1,9 +1,9 @@
+
 //定义一个插件
 let URLComponent={};
 
 URLComponent.install=function (Vue, options) {
-    //定义一个全局的方法 方法名就叫：getUrlParam
-    //获取URL中的参数的名和值封装成一个JSON对象返回
+    //定义一个全局的方法
     Vue.prototype.getUrlParam = function () {
         var obj={};
         var name,value;
@@ -23,4 +23,5 @@ URLComponent.install=function (Vue, options) {
         return obj;
     }
 }
+
 Vue.use(URLComponent);
