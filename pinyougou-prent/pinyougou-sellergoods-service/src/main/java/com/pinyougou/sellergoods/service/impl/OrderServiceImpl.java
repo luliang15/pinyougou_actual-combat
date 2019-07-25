@@ -151,14 +151,15 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 	private TbGoodsMapper tbGoodsMapper;
 
 	@Override
-	public List<Order> findOrderBySellerId(String sellerId) {
+	public List<Order> findOrderBySellerId(String sellerId,Integer pageNo,Integer pageSize) {
 		ArrayList<Order> orders = new ArrayList<>();
-
+		PageHelper.startPage(pageNo,pageSize);
 
 		Example example = new Example(TbOrder.class);
 		Example.Criteria criteria = example.createCriteria();
 		//根据传sellerId 获取到所有的订单
 		criteria.andEqualTo("sellerId",sellerId);
+		example.orderBy("createTime");
 		List<TbOrder> tbOrders = orderMapper.selectByExample(example);
 
 		List<TbOrderItem> tbOrderItems = new ArrayList<>();
@@ -171,6 +172,7 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 			Long orderId = tbOrder.getOrderId();
 			Example example1= new Example(TbOrderItem.class);
 			Example.Criteria criteria1 = example1.createCriteria();
+
 			criteria1.andEqualTo("orderId", orderId);
 			List<TbOrderItem> tbOrderItems1 = tbOrderItemMapper.selectByExample(example1);
 
@@ -189,6 +191,9 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 
 		}
 
+		PageInfo<Order> info = new PageInfo<Order>(orders);
+		String s = JSON.toJSONString(info);
+		PageInfo<TbOrder> pageInfo = JSON.parseObject(s, PageInfo.class);
 
 		return orders;
 	}

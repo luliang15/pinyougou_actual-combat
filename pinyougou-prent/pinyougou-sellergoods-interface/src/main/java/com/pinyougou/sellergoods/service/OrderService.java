@@ -31,5 +31,5 @@ public interface OrderService extends CoreService<TbOrder> {
 	 */
 	PageInfo<TbOrder> findPage(Integer pageNo, Integer pageSize, TbOrder Order);
 
-	List<Order> findOrderBySellerId(String sellerId);
+	List<Order> findOrderBySellerId(String sellerId,Integer pageNo, Integer pageSize);
 }

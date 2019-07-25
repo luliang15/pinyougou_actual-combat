@@ -252,13 +252,13 @@ $(function(){
                                             </td>
                                             <td width="10%" class="center">
                                                 <ul class="unstyled">
-                                                    <li>等待卖家付款</li>
+                                                    <li>{{status[order.tbOrder.status]}}</li>
                                                     <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
                                                 </ul>
                                             </td>
                                             <td width="10%" class="center">
                                                 <ul class="unstyled">
-													<li><a href="#" class="sui-btn btn-info">立即付款</a></li>
+													<li v-if="order.tbOrder.status==2"><a href="#" class="sui-btn btn-info">立即发货</span></a></li>
                                                     <li>取消订单</li>
 
                                                 </ul>
