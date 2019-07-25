@@ -3,14 +3,25 @@ var app = new Vue({
     el: "#app",
     data: {
         list:[],
-        status:['','等待买家付款','等待发货']
+        status:['','等待买家付款','等待发货'],
+        pages: 10,
+        pageNo: 1,
     },
     methods: {
-        findAllOrderBySellerId: function () {
-            axios.post('order/findOrderBySellerId.shtml').then(function (response) {
+        findAllOrderBySellerId: function (pageNo) {
 
-                  app.list = response.data;
+            axios.post('order/findOrderBySellerId.shtml?pageNo='+pageNo).then(function (response) {
+                  app.list = response.data.order;
+                               //Map{"pageInfo":pageInfo,"order":order}
 
+                console.log(response.data.pageInfo.pageNum)
+
+
+                app.pageNo = response.data.pageInfo.pageNum;
+
+
+                //总页数
+                app.pages = response.data.pageInfo.pages;
 
                 }
             )
@@ -18,7 +29,7 @@ var app = new Vue({
 
     },
     created: function () {
-          this.findAllOrderBySellerId();
+          this.findAllOrderBySellerId(1);
     }
 
 

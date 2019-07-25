@@ -1,5 +1,6 @@
 package com.pinyougou.shop.controller;
 import java.util.List;
+import java.util.Map;
 
 import entity.Order;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -107,8 +108,8 @@ public class OrderController {
     }
 
     @RequestMapping("/findOrderBySellerId")
-	public List<Order> findOrderBySellerId(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
-										   @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize){
+	public Map<String,Object> findOrderBySellerId(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+										  @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize){
 
 		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
 		return orderService.findOrderBySellerId(sellerId,pageNo,pageSize);

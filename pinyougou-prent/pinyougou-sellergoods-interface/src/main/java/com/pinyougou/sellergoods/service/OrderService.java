@@ -1,10 +1,10 @@
 package com.pinyougou.sellergoods.service;
-import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbOrder;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreService;
-import entity.Order;
 
 /**
  * 服务层接口
@@ -31,5 +31,5 @@ public interface OrderService extends CoreService<TbOrder> {
 	 */
 	PageInfo<TbOrder> findPage(Integer pageNo, Integer pageSize, TbOrder Order);
 
-	List<Order> findOrderBySellerId(String sellerId,Integer pageNo, Integer pageSize);
+	Map<String, Object> findOrderBySellerId(String sellerId, Integer pageNo, Integer pageSize);
 }

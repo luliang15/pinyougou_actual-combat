@@ -1,8 +1,5 @@
 package com.pinyougou.sellergoods.service.impl;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import com.pinyougou.mapper.TbGoodsMapper;
 import com.pinyougou.mapper.TbOrderItemMapper;
@@ -151,7 +148,8 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 	private TbGoodsMapper tbGoodsMapper;
 
 	@Override
-	public List<Order> findOrderBySellerId(String sellerId,Integer pageNo,Integer pageSize) {
+	public Map<String, Object> findOrderBySellerId(String sellerId, Integer pageNo, Integer pageSize) {
+		Map<String,Object> map = new HashMap<>();
 		ArrayList<Order> orders = new ArrayList<>();
 		PageHelper.startPage(pageNo,pageSize);
 
@@ -161,6 +159,11 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 		criteria.andEqualTo("sellerId",sellerId);
 		example.orderBy("createTime");
 		List<TbOrder> tbOrders = orderMapper.selectByExample(example);
+		PageInfo<TbOrder> info = new PageInfo<TbOrder>(tbOrders);
+		String s = JSON.toJSONString(info);
+		PageInfo<TbOrder> pageInfo = JSON.parseObject(s, PageInfo.class);
+
+
 
 		List<TbOrderItem> tbOrderItems = new ArrayList<>();
 		for (TbOrder tbOrder : tbOrders) {
@@ -191,11 +194,11 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 
 		}
 
-		PageInfo<Order> info = new PageInfo<Order>(orders);
-		String s = JSON.toJSONString(info);
-		PageInfo<TbOrder> pageInfo = JSON.parseObject(s, PageInfo.class);
 
-		return orders;
+		map.put("pageInfo", pageInfo);
+		map.put("order", orders);
+
+		return map;
 	}
 
 }
