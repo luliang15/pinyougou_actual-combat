@@ -3,6 +3,8 @@ import java.util.Date;
 import java.util.List;
 
 
+import com.pinyougou.pojo.TbAddress;
+import com.pinyougou.user.service.AddressService;
 import com.pinyougou.user.service.UserService;
 import entity.Error;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -183,5 +185,14 @@ public class UserController {
         }
 
     }
-	
+
+    @Reference
+	private AddressService service;
+	@RequestMapping("/test")
+	public TbAddress AA(){
+
+		return service.findOne(59L);
+	}
+
+
 }

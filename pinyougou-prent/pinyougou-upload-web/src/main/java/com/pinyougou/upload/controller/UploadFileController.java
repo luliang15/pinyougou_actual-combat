@@ -42,7 +42,7 @@ public class UploadFileController {
             //4.核心的代码，文件的上传，使用文件上传工具类,文件上传的配置类路径，不要写死
             FastDFSClient fastDFSClient = new FastDFSClient("classpath:config/fastdfs_client.conf");
 
-            //文件上传接收文件的路径，文件要进行显示，还需拼接上http://192.168.25.133
+            //文件上传接收文件的路径，文件要进行显示，还需拼接上http://192.168.25.129
             String file_id = fastDFSClient.uploadFile(bytes, extName);
 
             //拼接URL

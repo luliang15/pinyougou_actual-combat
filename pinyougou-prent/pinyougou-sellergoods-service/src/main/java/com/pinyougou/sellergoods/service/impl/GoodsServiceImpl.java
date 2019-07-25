@@ -198,7 +198,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
                 tbItem.setTitle(title);
 
                 //设置图片地址
-                //[{"color":"红色","url":"http://192.168.25.133/group1/M00/00/01/wKgZhVmHINKADo__AAjlKdWCzvg874.jpg"}
+                //[{"color":"红色","url":"http://192.168.25.129/group1/M00/00/01/wKgZhVmHINKADo__AAjlKdWCzvg874.jpg"}
                 //数据库中存储图片得地址形式是list<map>得形式
                 List<Map> maps = JSON.parseArray(goodsDesc.getItemImages(), Map.class);
                 //取出的：
