@@ -43,4 +43,10 @@ public interface OrderService {
 
     List<TbOrder> findAll();
 
+    /**
+     * 根据用户名查询用户的订单列表
+     * @param userId
+     * @return
+     */
+    List<Map> findUserIdOrder(String userId);
 }

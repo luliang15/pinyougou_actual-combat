@@ -10,7 +10,10 @@
         searchEntity:{},
         loginName:'',  //获取到的用户名
         num: 1,
-        sku:skuList[0],
+        // sku:skuList[0],
+        //定义一个变量来接受根据用户名查询到的订单列表的数据
+        orderList:[],
+
     },
     methods: {
 
@@ -59,6 +62,7 @@
         },
         //获取登录名
         getName:function () {
+
             axios.get('/login/name.shtml').then(function (response) {
 
                 alert("999")
@@ -93,7 +97,25 @@
                     }
                 }
             )
-        }
+        },
+
+        //创建一个点击我的订单触发查询用户中心订单的函数方法http://localhost:9106/user/findUserIdOrder.shtml
+        findByUserOrder:function () {
+
+            axios.get('/user/findUserIdOrder.shtml').then(
+
+                function (response) { //后台响应的list<List<Map>>的封装好的数据
+
+                    alert("66")
+                    //将数据赋予变量  获取到的List<ListMap>
+                     app.orderList = response.data;
+
+
+
+                }
+            )
+
+        },
 
     },
 
@@ -102,6 +124,9 @@
 
         //初始化的时候就显示用户名称
         this.getName();
+
+        //页面加载的时候就显示
+        this.findByUserOrder();
 
     }
 

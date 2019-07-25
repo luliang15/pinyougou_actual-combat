@@ -38,6 +38,13 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
 
+        <!--order订单接口-->
+        <dependency>
+            <groupId>com.pinyougou</groupId>
+            <artifactId>pinyougou-order-interface</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
         <!--因为也算属于一种消费者形式，有dubbo,也有spring,需要依赖common-->
         <dependency>
             <groupId>com.pinyougou</groupId>

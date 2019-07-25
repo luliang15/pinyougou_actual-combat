@@ -158,7 +158,7 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
      * //list中再包含一个map，map中有多个键值对，第一个键值是二级类目的key与value
      * //第二个键值对中是三级类目的可以与value
      *
-     * @param parentId
+     * @param parentId 一级类目的id  就是二级类目的parentId
      * @return
      */
     @Override
@@ -172,8 +172,8 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         //根据传递的parentId查询到二级类目的数据
         itemCat.setParentId(parentId);
 
-        //2.判断，当第一次从redis中没有获取到item商品列表的数据时
-        if(redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2") == null){
+        //2.判断，当第一次从redis中没有获取到item商品列表的数据时   加上一级的id去做大key
+        if(redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2"+parentId) == null){
 
             //从数据库中查询获取数据,二级类目的数据
             List<TbItemCat> tbItemCats2 = itemCatMapper.select(itemCat);
@@ -183,8 +183,9 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 
                 HashMap<String, Object> map = new HashMap<>();
 
-                //创建根据二级类目的parentId的条件
-                itemCat.setParentId(tbItemCat.getParentId());
+                //创建根据二级类目的id作为条件。二级的id就是三级的parentId
+                itemCat.setParentId(tbItemCat.getId());
+
                 //查询出三级类目的数据
                 List<TbItemCat> tbItemCats3 = itemCatMapper.select(itemCat);
 
@@ -200,12 +201,12 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 
         }else {
             //否则则redis中有数据，不从数据库中查找，从redis中查询数据
-            mapList = (List<Map>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2");
+            mapList = (List<Map>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2"+parentId);
         }
 
 
         //将封装好数据存进redis中
-        redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).put("itemCatAll2",mapList);
+        redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).put("itemCatAll2"+parentId,mapList);
 
         //最后返回封装好数据的mapList集合
         return mapList;

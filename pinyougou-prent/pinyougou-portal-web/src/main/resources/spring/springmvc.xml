@@ -21,6 +21,7 @@
             <!--json转换器 使用FastJsonHttpMessageConverter 并支持json转成字符串-->
             <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
                 <property name="defaultCharset" value="utf-8"></property>
+
                 <property name="supportedMediaTypes" >
                     <list>
                         <value>text/html;charset=utf-8</value>
@@ -37,9 +38,20 @@
                         </property>
                     </bean>
                 </property>
+
+                <property name="features">
+                    <array>
+                        <value>DisableCircularReferenceDetect</value>
+                    </array>
+                </property>
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <bean id="DisableCircularReferenceDetect" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.alibaba.fastjson.serializer.SerializerFeature.DisableCircularReferenceDetect"></property>
+    </bean>
+
 
     <!--配置dubbo的配置项-->
     <dubbo:application name="pinyougou-protal-web"></dubbo:application>
@@ -51,6 +63,8 @@
 
     <!--延时调用-->
     <dubbo:consumer timeout="100000"></dubbo:consumer>
+
+
 
 
 

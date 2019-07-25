@@ -227,6 +227,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId) {
+
         Example example = new Example(TbOrder.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("sellerId",sellerId );
@@ -273,4 +274,81 @@ public class OrderServiceImpl implements OrderService {
         return tbOrders;
 
     }
+
+    /**
+     * 根据用户名查询用户的订单列表
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Map> findUserIdOrder(String userId) {
+
+        List<Map> list = new ArrayList<>();
+
+
+        //.1查出用户的订单列表
+        TbOrder tbOrder = new TbOrder();
+        tbOrder.setUserId(userId);
+
+        //获取到第一级的订单列表
+        List<TbOrder> tbOrders = orderMapper.select(tbOrder);
+
+       // 遍历大的订单列表
+        for (TbOrder order : tbOrders) {
+
+            //第二级的订单集合
+            List<Map> orderList =  new ArrayList<>();
+
+            HashMap map = new HashMap<>();
+
+            //直接封装order对象，order对象中包括有：订单创建时间、订单编号、店铺的名称、订单的支付状态、订单价格
+            map.put("order",order);
+
+
+            TbOrderItem tbOrderItem = new TbOrderItem();
+            //将orderId设置为查询条件
+            tbOrderItem.setOrderId(order.getOrderId());
+
+            //根据订单id获取到订单item的对象
+            List<TbOrderItem> tbOrderItems = orderItemMapper.select(tbOrderItem);
+
+
+            for (TbOrderItem orderItem : tbOrderItems) {
+
+                //获取商品的图片地址
+                String picPath = orderItem.getPicPath();
+                map.put("picPath",picPath);
+
+                //获取商品的标题
+                String title = orderItem.getTitle();
+                map.put("title",title);
+
+                //获取商品的id
+                Long itemId = orderItem.getItemId();
+                map.put("itemId",itemId);
+
+                //商品个数
+                Integer num = orderItem.getNum();
+                map.put("num",num);
+
+                //根据itemId获取到sku
+                TbItem tbItem = itemMapper.selectByPrimaryKey(itemId);
+
+                //获取商品的规格信息
+                String spec = tbItem.getSpec();
+                map.put("spec",spec);
+
+                orderList.add(map);
+            }
+
+            //最后将封装好的map返回出去
+           list.add(map);
+        }
+
+
+        return list;
+    }
+
+
 }

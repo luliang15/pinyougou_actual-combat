@@ -12,7 +12,7 @@
         contentList:[],
         //关键字变量
         keywords:'',
-        categoryId:['1','5','6'],
+        categoryId:['1','5','6','7','8','9'],
         //商品分类的变量
         itemList1:[],
 
