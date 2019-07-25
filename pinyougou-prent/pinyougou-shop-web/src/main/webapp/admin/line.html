@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/birthday.js"></script>
+
+    <script>
+        $(function() {
+            $.ms_DatePicker({
+                YearSelector: "#select_year2",
+                MonthSelector: "#select_month2",
+                DaySelector: "#select_day2"
+
+
+            });
+            $.ms_DatePicker({
+                YearSelector: "#select_year1",
+                MonthSelector: "#select_month1",
+                DaySelector: "#select_day1"
+            });
+
+
+        });
+    </script>
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini">
+<div id="app">
+
+
+<!-- .box-body -->
+<div class="control-group">
+    <label for="inputPassword" class="control-label">开始时间：</label>
+    <div class="controls">
+        <select id="select_year2" rel=""  v-model="startTime_year"></select>年
+        <select id="select_month2" rel="" v-model="startTime_month"></select>月
+        <select id="select_day2" rel=""   v-model="startTime_day"></select>日
+    </div>
+</div>
+<div class="control-group">
+    <label for="inputPassword" class="control-label">结束时间：</label>
+    <div class="controls">
+        <select id="select_year1" rel="" v-model="startTime_year"></select>年
+        <select id="select_month1" rel=""v-model="startTime_month"></select>月
+        <select id="select_day1" rel=""  v-model="startTime_day"></select>日
+    </div>
+</div>
+
+<div id="chart" style="width: 720px;height:480px;"></div>
+</div>
+</body>
+
+<script src="../plugins/vue/vue.js"></script>
+<!--引入插件-->
+<script src="../js/controller/base.js"></script>
+<script src="../plugins/axios/axios.js"></script>
+<script src="../plugins/echarts/echarts.js"></script>
+<script src="../js/controller/pictureController.js"></script>
+
+
+
+<script>
+    var myChart = echarts.init(document.getElementById('chart'));
+
+
+    axios.get("/seller/findSellInOneTime.shtml", {
+        params: {
+            startTime: '1993-08-08',
+            endTime: '2019-08-08'
+        }
+    }).then((res) => {
+        myChart.setOption({
+                title: {
+                    text: '销量'
+                },
+                legend: {
+                    data: ['销量（单位：元）']
+                },
+                xAxis: {
+                    type: 'category',
+                    data: res.data.days
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [{
+                    name:'销量（单位：元）',
+                    data: res.data.money,
+                    type: 'line'
+                }]
+            }
+        )
+    })
+
+
+</script>
+
+
+</html>

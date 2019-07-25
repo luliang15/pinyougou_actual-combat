@@ -14,11 +14,11 @@ import com.pinyougou.pojo.TbPayLog;
 import entity.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import tk.mybatis.mapper.entity.Example;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * @ClassName:OrderServiceImpl
@@ -208,13 +208,69 @@ public class OrderServiceImpl implements OrderService {
             tbOrder.setStatus("2");//已付款的状态是2
 
             tbOrder.setUpdateTime(new Date());
-            tbOrder.setPaymentTime(new Date());
+            tbOrder.setPaymentTime(tbOrder.getUpdateTime());
 
             orderMapper.updateByPrimaryKey(tbOrder);
         }
 
         //3.删除该用户redis中的支付日志
         redisTemplate.boundHashOps(TbPayLog.class.getSimpleName()).delete(payLog.getUserId());
+
+    }
+
+    /**
+     * 根据商家名 查询某一段时间内 每天的销售额
+     * @param startTime
+     * @param endTime
+     * @param sellerId
+     * @return
+     */
+    @Override
+    public Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId) {
+        Example example = new Example(TbOrder.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("sellerId",sellerId );
+        criteria.andEqualTo("status", "2");
+        criteria.andGreaterThanOrEqualTo("paymentTime", startTime);
+        criteria.andLessThanOrEqualTo("paymentTime", endTime);
+        example.orderBy("paymentTime").asc();
+        List<TbOrder> tbOrderList = orderMapper.selectByExample(example);
+
+        HashMap<String, Object> map = new HashMap<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        ArrayList<String> dateList = new ArrayList<>();
+        ArrayList<Double> moneyList = new ArrayList<>();
+        if (tbOrderList != null && tbOrderList.size()>0) {
+            for (TbOrder order : tbOrderList) {
+                Date paymentTime = order.getPaymentTime();
+                String dateStr = dateFormat.format(paymentTime);
+
+                Double aDouble = (Double) map.get(dateStr);
+                if (aDouble == null){
+                    aDouble = 0D;
+                    dateList.add(dateStr);
+                }
+
+                map.put(dateStr, aDouble + order.getPayment().doubleValue());
+
+
+            }
+        }
+
+        for (String s : dateList) {
+            moneyList.add((Double) map.get(s));
+        }
+
+        map.clear();
+        map.put("days", dateList);
+        map.put("money", moneyList);
+        return map;
+    }
+
+    @Override
+    public List<TbOrder> findAll() {
+        List<TbOrder> tbOrders = orderMapper.select(null);
+        return tbOrders;
 
     }
 }

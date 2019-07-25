@@ -44,4 +44,11 @@ public interface CartService {
      */
     List<Cart> merge(List<Cart> cartList, List<Cart> cartListFromRedis);
 
+    /**
+     * 将购物车保存到redis
+     * @param username
+     * @param cartList
+     */
+    public void saveCartListToRedis(String username,List<Cart> cartList);
+
 }

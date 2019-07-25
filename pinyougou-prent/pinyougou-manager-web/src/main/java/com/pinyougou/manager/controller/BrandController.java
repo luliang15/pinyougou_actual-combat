@@ -2,14 +2,16 @@ package com.pinyougou.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
+import com.pinyougou.common.utils.POIUtils;
 import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.sellergoods.service.BrandService;
-
-
 import entity.Result;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName:BrandController
@@ -24,6 +26,7 @@ public class BrandController {
 
     @Reference  //远程注入的注解，使用dubbo框架得来的
     private BrandService brandService;
+
 
     //查询TbBrand表的全部内容信息
     @RequestMapping("/findAll")
@@ -111,4 +114,30 @@ public class BrandController {
 
         return pageInfo;
     }
+
+    @RequestMapping("/upload")
+    public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
+
+			try {
+				Map<String, Object> param = new HashMap<String, Object>();
+				List<String[]> rowList = POIUtils.readExcel(file);
+				for (int i = 0; i < rowList.size(); i++) {
+					String[] row = rowList.get(i);
+					TbBrand tbBrand = new TbBrand();
+					tbBrand.setName(row[0]);
+					tbBrand.setFirstChar(row[1]);
+
+					brandService.add(tbBrand);
+
+				}
+				return new Result(true, "导入数据成功");
+			} catch (Exception e) {
+
+				e.printStackTrace();
+				return new Result(false, "导入数据成功");
+			}
+
+
+		}
+
 }

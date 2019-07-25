@@ -3,6 +3,9 @@ package com.pinyougou.order.service;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName:OrderService
  * @Author：Mr.lee
@@ -35,4 +38,9 @@ public interface OrderService {
      * @param out_trade_no    商户订单号
      */
     void updateOrderStatus(String transaction_id, String out_trade_no);
+
+    Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId);
+
+    List<TbOrder> findAll();
+
 }

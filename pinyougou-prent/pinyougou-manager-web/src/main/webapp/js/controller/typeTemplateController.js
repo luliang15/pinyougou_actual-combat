@@ -166,11 +166,11 @@
 
            //1.将json字符串 转成 json对象
 
-            let jsonObjArray = JSON.parse(strList);
+            var jsonObjArray = JSON.parse(strList);
 
-            for(let i=0;i<jsonObjArray.length;i++){
+            for(var i=0;i<jsonObjArray.length;i++){
 
-                let obj = jsonObjArray[i];
+                var obj = jsonObjArray[i];
 
                 str+=obj[key]+",";
                 // str+=obj.key+",";
@@ -182,6 +182,46 @@
 
             return str;
         },
+
+        //poi文件上传
+        //模板模板下载
+        uploadTemplate:function(){
+            location.href="../../download/typeTemplate.xls"
+
+        },
+
+        //excle文件上传
+        uploadFile:function(){
+            //创建一个表单对象，html中的
+            var formData = new FormData();
+
+            //添加字段 类似：<input type="text" name="username">
+            //file ===> <input type="file" name="file">
+            //file.files[0]
+            formData.append('file', file.files[0]);
+
+            axios({
+                url:'http://localhost:9101/typeTemplate/upload.shtml',
+                //表示模拟一个表单上传，表单数据
+                data: formData,
+                method: 'post',
+                //设置表单提交的数据类型
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                },
+
+
+            }).then(function (response) {
+                if (response.data.success) {
+                    //上传成功，会打印出上传的路径
+                    alert("上传成功")
+                } else {
+                    //上传失败
+                    alert(response.data.message);
+                }
+            })
+        },
+
 
 
     },

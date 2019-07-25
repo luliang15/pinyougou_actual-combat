@@ -19,8 +19,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="main28" />
-    <orderEntry type="module" module-name="main5" />
-    <orderEntry type="module" module-name="main6" />
+    <orderEntry type="module" module-name="main22" />
+    <orderEntry type="module" module-name="main27" />
+    <orderEntry type="module" module-name="main12" />
   </component>
 </module>

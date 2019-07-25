@@ -34,5 +34,5 @@ public interface ContentService extends CoreService<TbContent> {
      * @param categoryId
      * @return
      */
-    List<TbContent> findByCategoryId(Long categoryId);
+    List<TbContent> findByCategoryId(Long[] categoryId);
 }

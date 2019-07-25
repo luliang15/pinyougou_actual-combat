@@ -207,6 +207,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
                 //设置第三级类目判断id
                 tbItem.setCategoryid(tbGoods.getCategory3Id());//这里是设置
+                //获取到3级类目的数据对象
                 TbItemCat cat = tbItemCatMapper.selectByPrimaryKey(tbGoods.getCategory3Id());
                 tbItem.setCategory(cat.getName());
 
