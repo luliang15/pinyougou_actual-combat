@@ -13,13 +13,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo; 									  
 import org.apache.commons.lang3.StringUtils;
-import com.pinyougou.core.service.CoreServiceImpl;
 
-import org.springframework.data.redis.core.RedisTemplate;
-import tk.mybatis.mapper.entity.Example;
-
-import com.pinyougou.mapper.TbSeckillGoodsMapper;
-import com.pinyougou.pojo.TbSeckillGoods;  
 
 
 
