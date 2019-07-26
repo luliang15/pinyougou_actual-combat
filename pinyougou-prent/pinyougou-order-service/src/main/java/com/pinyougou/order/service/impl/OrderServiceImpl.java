@@ -2,16 +2,11 @@ package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.pinyougou.common.utils.IdWorker;
-import com.pinyougou.mapper.TbItemMapper;
-import com.pinyougou.mapper.TbOrderItemMapper;
-import com.pinyougou.mapper.TbOrderMapper;
-import com.pinyougou.mapper.TbPayLogMapper;
+import com.pinyougou.mapper.*;
 import com.pinyougou.order.service.OrderService;
-import com.pinyougou.pojo.TbItem;
-import com.pinyougou.pojo.TbOrder;
-import com.pinyougou.pojo.TbOrderItem;
-import com.pinyougou.pojo.TbPayLog;
+import com.pinyougou.pojo.*;
 import entity.Cart;
+import entity.OrderList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
@@ -272,5 +267,35 @@ public class OrderServiceImpl implements OrderService {
         List<TbOrder> tbOrders = orderMapper.select(null);
         return tbOrders;
 
+    }
+
+    @Autowired
+    private TbGoodsMapper goodsMapper;
+
+    @Override
+    public List<OrderList> findAllOrder() {
+        //创建list集合进行封装查询到的所有的自定义订单对象
+        List<OrderList> orderList = new ArrayList<>();
+        //创建自定义订单对象
+        OrderList orderList1 = new OrderList();
+        //查询出所有的订单
+        List<TbOrder> orders = orderMapper.selectAll();
+        if(orders==null){
+            return null;
+        }
+        //遍历
+        for (TbOrder order : orders) {
+            orderList1.setOrder(order);
+            //根据订单id查找订单选项
+            Example example=new Example(TbOrderItem.class);
+            example.createCriteria().andEqualTo("orderId",order.getOrderId());
+            List<TbOrderItem> orderItems = orderItemMapper.selectByExample(example);
+            orderList1.setOrderItems(orderItems);
+            //根据订单选项中的商品id获取商品名称
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getItemId());
+            orderList1.setGoods(tbGoods);
+            orderList.add(orderList1);
+        }
+        return orderList;
     }
 }

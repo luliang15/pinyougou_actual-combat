@@ -17,6 +17,9 @@ import com.github.pagehelper.PageInfo;
 import entity.Result;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * controller
@@ -29,7 +32,10 @@ public class UserController {
 
 	@Reference
 	private UserService userService;
-	
+
+	@Reference
+	private AddressService addressService;
+
 	/**
 	 * 返回全部列表
 	 * @return
@@ -183,5 +189,71 @@ public class UserController {
         }
 
     }
-	
+    @RequestMapping("/addUser")
+	public Result addUser(@RequestBody TbUser user,String birthday){
+		try {
+
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+			Date parse = format.parse(birthday);
+			user.setBirthday(parse);
+			userService.updateByKey(user);
+			return new Result(true,"信息添加成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"信息添加失败");
+		}
+	}
+	//查找全部
+	@RequestMapping("/findAllAddress")
+	public List<TbAddress> findAllAddress(){
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		List<TbAddress> address = null;
+		try {
+			address = addressService.findAllByUserName(username);
+			return address;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//修改
+	@RequestMapping("/updateAddress")
+	public Result updateAddress(@RequestBody TbAddress address){
+		try {
+			addressService.update(address);
+			return new Result(true,"修改成功!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true,"修改失败!");
+		}
+	}
+	//删除
+	@RequestMapping("/deleteAddress")
+	public Result deleteAddress(Long id){
+		try {
+			addressService.deleteByPrimaryKey(id);
+			return new Result(true,"删除成功!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"删除失败!");
+		}
+	}
+	@RequestMapping("/addAddress")
+	public Result addAddress(@RequestBody TbAddress address){
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		address.setUserId(username);
+		address.setCreateDate(new Date());
+		try {
+			addressService.add(address);
+			return new Result(true,"添加地址成功!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true,"添加地址失败!");
+		}
+	}
+	@RequestMapping("/findOneAddress/{id}")
+	public TbAddress findOneAddress(@PathVariable(value = "id") Long id){
+		TbAddress address = addressService.findOne(id);
+		return address;
+	}
 }

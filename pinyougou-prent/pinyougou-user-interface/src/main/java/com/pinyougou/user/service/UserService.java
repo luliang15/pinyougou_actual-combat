@@ -43,4 +43,6 @@ public interface UserService extends CoreService<TbUser> {
      * @return
      */
     boolean checkSmsCode(String phone, String smsCode);
+
+    void updateByKey(TbUser user);
 }

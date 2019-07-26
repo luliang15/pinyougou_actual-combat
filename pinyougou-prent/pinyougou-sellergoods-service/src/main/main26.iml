@@ -19,9 +19,27 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="main28" />
+    <orderEntry type="library" name="lib10" level="project" />
+    <orderEntry type="library" name="lib11" level="project" />
+    <orderEntry type="library" name="pinyougou-dao-1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="lib1" level="project" />
+    <orderEntry type="library" name="pinyougou-common-1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="lib7" level="project" />
+    <orderEntry type="library" name="pinyougou-core-service-1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="lib8" level="project" />
+    <orderEntry type="library" name="lib3" level="project" />
+    <orderEntry type="library" name="pinyougou-pojo-1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="lib4" level="project" />
+    <orderEntry type="library" name="lib6" level="project" />
+    <orderEntry type="library" name="lib9" level="project" />
+    <orderEntry type="library" name="lib2" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="pinyougou-sellergoods-interface-1.0-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="lib5" level="project" />
+    <orderEntry type="module" module-name="main22" />
     <orderEntry type="module" module-name="main19" />
-    <orderEntry type="module" module-name="main5" />
-    <orderEntry type="module" module-name="main27" />
+    <orderEntry type="module" module-name="main" />
+    <orderEntry type="module" module-name="main14" />
+    <orderEntry type="module" module-name="main32" />
   </component>
 </module>

@@ -1,25 +1,22 @@
 package com.pinyougou.sellergoods.service.impl;
-import java.util.Arrays;
-import java.util.List;
 
-import com.pinyougou.mapper.TbSpecificationOptionMapper;
-import com.pinyougou.pojo.TbSpecificationOption;
-import entity.Specification;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo; 									  
-import org.apache.commons.lang3.StringUtils;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreServiceImpl;
-
+import com.pinyougou.mapper.TbSpecificationMapper;
+import com.pinyougou.mapper.TbSpecificationOptionMapper;
+import com.pinyougou.pojo.TbSpecification;
+import com.pinyougou.pojo.TbSpecificationOption;
+import com.pinyougou.sellergoods.service.SpecificationService;
+import entity.Specification;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
-import com.pinyougou.mapper.TbSpecificationMapper;
-import com.pinyougou.pojo.TbSpecification;  
-
-import com.pinyougou.sellergoods.service.SpecificationService;
-
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
