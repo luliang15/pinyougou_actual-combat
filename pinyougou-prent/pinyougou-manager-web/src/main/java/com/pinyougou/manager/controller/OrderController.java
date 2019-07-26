@@ -5,6 +5,7 @@ import com.pinyougou.common.utils.ExcleImport;
 import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.sellergoods.service.GoodsService;
+import entity.OrderList;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -54,13 +55,12 @@ public class OrderController<T> {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-
-
         return orders;
 	}
+	@RequestMapping("/findAllOrder")
+	public List<OrderList> findAllOrder(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+		List<OrderList> orders= orderService.findAllOrder();
+		return orders;
 
-
-
-
-
+	}
 }

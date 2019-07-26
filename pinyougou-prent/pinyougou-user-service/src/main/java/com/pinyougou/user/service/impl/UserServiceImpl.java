@@ -1,5 +1,6 @@
 package com.pinyougou.user.service.impl;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +34,8 @@ import com.pinyougou.pojo.TbUser;
  */
 @Service
 public class UserServiceImpl extends CoreServiceImpl<TbUser> implements UserService {
-
+    @Autowired
+    private UserService userService;
 
     private TbUserMapper userMapper;
 
@@ -222,5 +224,18 @@ public class UserServiceImpl extends CoreServiceImpl<TbUser> implements UserServ
         return true;
     }
 
-
+    @Override
+    public void updateByKey(TbUser user) {
+        Example example1 = new Example(TbUser.class);
+        Example.Criteria criteria1 = example1.createCriteria();
+        criteria1.andEqualTo("username",user.getUsername());
+        List<TbUser> tbUsers = userMapper.selectByExample(example1);
+        TbUser tbUser = tbUsers.get(0);
+        user.setPassword(tbUser.getPassword());
+        user.setId(tbUser.getId());
+        user.setPhone(tbUser.getPhone());
+        user.setCreated(tbUser.getCreated());
+        user.setUpdated(tbUser.getUpdated());
+        userMapper.updateByPrimaryKey(user);
+    }
 }

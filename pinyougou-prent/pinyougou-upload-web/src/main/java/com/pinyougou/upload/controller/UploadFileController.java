@@ -24,7 +24,7 @@ public class UploadFileController {
     //文件上传的后台方法
     @RequestMapping("/uploadFile")
     //支持跨域 只有这个两个的跨域请求上传图片才可以被允许
-    @CrossOrigin(origins = {"http://localhost:9101","http://localhost:9102"},allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:9101","http://localhost:9102","http://localhost:9106"},allowCredentials = "true")
     public Result uploadFile(@RequestParam MultipartFile file){
 
         try {

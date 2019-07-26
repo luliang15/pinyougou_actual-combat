@@ -2,6 +2,7 @@ package com.pinyougou.order.service;
 
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
+import entity.OrderList;
 
 import java.util.List;
 import java.util.Map;
@@ -43,4 +44,5 @@ public interface OrderService {
 
     List<TbOrder> findAll();
 
+    List<OrderList> findAllOrder();
 }

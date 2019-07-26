@@ -115,6 +115,10 @@ public class BrandController {
         return pageInfo;
     }
 
+
+
+
+    //poi导入数据
     @RequestMapping("/upload")
     public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
 
@@ -134,7 +138,7 @@ public class BrandController {
 			} catch (Exception e) {
 
 				e.printStackTrace();
-				return new Result(false, "导入数据成功");
+				return new Result(false, "导入数据异常");
 			}
 
 
