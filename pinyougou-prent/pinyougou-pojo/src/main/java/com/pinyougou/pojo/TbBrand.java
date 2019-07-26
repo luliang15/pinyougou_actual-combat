@@ -22,6 +22,9 @@ public class TbBrand implements Serializable {
     @Column(name = "first_char")
     private String firstChar;
 
+    @Column(name = "brand_status")
+    private String brandStatus ;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -29,6 +32,14 @@ public class TbBrand implements Serializable {
      */
     public Long getId() {
         return id;
+    }
+
+    public String getBrandStatus() {
+        return brandStatus;
+    }
+
+    public void setBrandStatus(String brandStatus) {
+        this.brandStatus = brandStatus;
     }
 
     /**

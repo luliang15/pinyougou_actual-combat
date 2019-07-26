@@ -9,11 +9,14 @@
         ids:[],
         searchEntity:{},
         loginName:'',  //获取到的用户名
+<<<<<<< HEAD
         num: 1,
         // sku:skuList[0],
         //定义一个变量来接受根据用户名查询到的订单列表的数据
         orderList:[],
 
+=======
+>>>>>>> 815ef515ae210cf603c1cbc95c6c7c8bac0b89bf
     },
     methods: {
 
@@ -64,26 +67,13 @@
         getName:function () {
 
             axios.get('/login/name.shtml').then(function (response) {
-
-                alert("999")
                 app.loginName=response.data;
 
             }).catch(function (error) {
                 console.log(error);
             });
-        },//循环遍历SKU的列表数组
-        // 判断 当前的变量的值是否在数组中存在,如果存在,将对应的数组的元素赋值给变量sku
-
-        search:function () {
-            for(var i=0;i<skuList.length;i++){
-                //{"id":14383881,"title":"iphonex60 移动3G 16G","price":0.01,spec:{"网络":"移动3G","机身内存":"16G"}}
-                var obj = skuList[i];//
-                if(JSON.stringify(this.specificationItems)==JSON.stringify(obj.spec)){
-                    this.sku=obj;
-                    break;
-                }
-            }
         },
+<<<<<<< HEAD
         //添加购物车
         addGoodsToCart:function () {
             alert("addGoodsToCart")
@@ -122,17 +112,24 @@
 
         },
 
+=======
+        getGoodsHref:function () {
+            window.location.href='home-setting-info.html';
+        }
+>>>>>>> 815ef515ae210cf603c1cbc95c6c7c8bac0b89bf
     },
-
     //钩子函数 初始化了事件和
     created: function () {
 
         //初始化的时候就显示用户名称
         this.getName();
+<<<<<<< HEAD
 
         //页面加载的时候就显示
         this.findByUserOrder('1');
 
+=======
+>>>>>>> 815ef515ae210cf603c1cbc95c6c7c8bac0b89bf
     }
 
 })

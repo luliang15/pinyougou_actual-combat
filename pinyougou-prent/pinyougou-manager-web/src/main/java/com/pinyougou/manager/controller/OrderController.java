@@ -55,13 +55,12 @@ public class OrderController<T> {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-
-
         return orders;
 	}
+	@RequestMapping("/findAllOrder")
+	public List<OrderList> findAllOrder(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
+		List<OrderList> orders= orderService.findAllOrder();
+		return orders;
 
-
-
-
-
+	}
 }

@@ -3,6 +3,7 @@ package com.pinyougou.order.service;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
+import entity.OrderList;
 
 import java.util.List;
 import java.util.Map;
@@ -15,7 +16,7 @@ import java.util.Map;
  * @Description: TODO
  */
 
-//因为是订单提交，需要拆弹，这里不继承通用Mapper
+//因为是订单提交，需要拆弹，  这里不继承通用Mapper
 public interface OrderService {
 
     /**
@@ -44,10 +45,14 @@ public interface OrderService {
 
     List<TbOrder> findAll();
 
+
     /**
      * 根据用户名查询用户的订单列表
      * @param userId
      * @return
      */
     Map<String,Object> findUserIdOrder(String userId, Integer pageNo, Integer pageSize);
+
+    List<OrderList> findAllOrder();
+
 }

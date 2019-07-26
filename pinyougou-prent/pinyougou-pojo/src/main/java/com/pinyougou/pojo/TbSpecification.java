@@ -19,6 +19,19 @@ public class TbSpecification implements Serializable {
     @Column(name = "spec_name")
     private String specName;
 
+
+
+    @Column(name = "spec_status")
+    private String specStatus;
+
+    public String getSpecStatus() {
+        return specStatus;
+    }
+
+    public void setSpecStatus(String specStatus) {
+        this.specStatus = specStatus;
+    }
+
     private static final long serialVersionUID = 1L;
 
     /**

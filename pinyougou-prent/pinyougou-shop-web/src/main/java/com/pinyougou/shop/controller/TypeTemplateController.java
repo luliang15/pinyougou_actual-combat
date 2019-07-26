@@ -47,11 +47,13 @@ public class TypeTemplateController {
 	@RequestMapping("/add")
 	public Result add(@RequestBody TbTypeTemplate typeTemplate){
 		try {
+			//设置状态0 未审核
+			typeTemplate.setTemplateStatus("0");
 			typeTemplateService.add(typeTemplate);
-			return new Result(true, "增加成功");
+			return new Result(true, "增加成功，进行审核");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result(false, "增加失败");
+			return new Result(false, "请查看网络。。。");
 		}
 	}
 	

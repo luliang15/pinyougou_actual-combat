@@ -1,25 +1,22 @@
 package com.pinyougou.sellergoods.service.impl;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-
-import com.alibaba.fastjson.JSONArray;
-import com.pinyougou.mapper.*;
-import com.pinyougou.pojo.*;
-import entity.Goods;
-import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import com.pinyougou.core.service.CoreServiceImpl;
-
+import com.pinyougou.mapper.*;
+import com.pinyougou.pojo.*;
+import com.pinyougou.sellergoods.service.GoodsService;
+import entity.Goods;
+import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
-import com.pinyougou.sellergoods.service.GoodsService;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -198,7 +195,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
                 tbItem.setTitle(title);
 
                 //设置图片地址
-                //[{"color":"红色","url":"http://192.168.25.133/group1/M00/00/01/wKgZhVmHINKADo__AAjlKdWCzvg874.jpg"}
+                //[{"color":"红色","url":"http://192.168.25.129/group1/M00/00/01/wKgZhVmHINKADo__AAjlKdWCzvg874.jpg"}
                 //数据库中存储图片得地址形式是list<map>得形式
                 List<Map> maps = JSON.parseArray(goodsDesc.getItemImages(), Map.class);
                 //取出的：

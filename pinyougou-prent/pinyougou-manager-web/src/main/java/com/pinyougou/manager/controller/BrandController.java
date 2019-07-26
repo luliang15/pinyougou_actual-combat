@@ -115,11 +115,14 @@ public class BrandController {
         return pageInfo;
     }
 
+
+
+
+    //poi导入数据
     @RequestMapping("/upload")
     public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
 
 			try {
-				Map<String, Object> param = new HashMap<String, Object>();
 				List<String[]> rowList = POIUtils.readExcel(file);
 				for (int i = 0; i < rowList.size(); i++) {
 					String[] row = rowList.get(i);
@@ -134,7 +137,7 @@ public class BrandController {
 			} catch (Exception e) {
 
 				e.printStackTrace();
-				return new Result(false, "导入数据成功");
+				return new Result(false, "导入数据异常");
 			}
 
 

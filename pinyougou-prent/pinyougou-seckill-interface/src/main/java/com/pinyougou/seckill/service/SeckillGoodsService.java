@@ -6,6 +6,8 @@ import com.pinyougou.pojo.TbSeckillGoods;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreService;
+
+
 /**
  * 服务层接口
  * @author Administrator
@@ -20,7 +22,7 @@ public interface SeckillGoodsService extends CoreService<TbSeckillGoods> {
 	 * @return
 	 */
 	 PageInfo<TbSeckillGoods> findPage(Integer pageNo, Integer pageSize);
-	
+
 	
 
 	/**
@@ -37,4 +39,6 @@ public interface SeckillGoodsService extends CoreService<TbSeckillGoods> {
      * @return
      */
     Map getGoodsById(Long id);
+
+
 }
