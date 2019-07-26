@@ -134,14 +134,12 @@
                 <!--yui3-u Left all-sort-list-->
 				<div class="yui3-u Left all-sort-list" >
 					<div class="all-sort-list2" >
-						<div class="item" >
-						<!--<div class="item bo" >-->
+						<div class="item bo" v-for="(all,index) in itemList1" @mouseout="hiden(index)" @mouseover="findTwoOrSan(all.id);show(index)">
 							<!--<h3 ><a href="#" @click="findTwoOrSan(all.id)">{{all.name}}</a></h3>{{item.tbItemCats3.name}}-->
-							<h3 v-for="all in itemList1">
-                                <a href="#" @mouseover="findTwoOrSan(all.id)" >{{all.name}}</a></h3>
-
-							<div class="item-list clearfix" >
-								<div class="subitem" >
+							<h3 >
+                                <a href="#">{{all.name}}</a></h3>
+							<div class="item-list clearfix" :id="'list'+index">
+								<div class="subitem">
                                     <!--遍历二级类目-->
 									<dl class="fore1" v-for="item in itemTwoList">
 										<dt><a href="" >{{item.tbItemCats2.name}}</a></dt>

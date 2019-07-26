@@ -1,7 +1,7 @@
 ﻿var app = new Vue({
     el: "#app",
     data: {
-        pages:15,
+        pages:2,
         pageNo:1,
         list:[],
         entity:{},  //要封装的数据
@@ -100,17 +100,22 @@
         },
 
         //创建一个点击我的订单触发查询用户中心订单的函数方法http://localhost:9106/user/findUserIdOrder.shtml
-        findByUserOrder:function () {
+        findByUserOrder:function (currPage) {
 
-            axios.get('/user/findUserIdOrder.shtml').then(
+            axios.get('/user/findUserIdOrder.shtml?pageNo='+currPage).then(
 
                 function (response) { //后台响应的list<List<Map>>的封装好的数据
 
-                    alert("66")
-                    //将数据赋予变量  获取到的List<ListMap>
-                     app.orderList = response.data;
+                    //将数据赋予变量  获取到的是一个Map对象
+                    //map中有两对键值对，第一个是订单需要展示的数据，第二个是分页展示需要的数据
+                    app.orderList = response.data;
 
+                    //第一页
+                    app.pageNo = response.data.pageInfo.pageNum;
 
+                    //每页显示条数
+                    app.pages = response.data.pageInfo.pages;
+                    //alert("66")
 
                 }
             )
@@ -126,7 +131,7 @@
         this.getName();
 
         //页面加载的时候就显示
-        this.findByUserOrder();
+        this.findByUserOrder('1');
 
     }
 

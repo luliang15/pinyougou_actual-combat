@@ -1,5 +1,6 @@
 package com.pinyougou.order.service;
 
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
 
@@ -48,5 +49,5 @@ public interface OrderService {
      * @param userId
      * @return
      */
-    List<Map> findUserIdOrder(String userId);
+    Map<String,Object> findUserIdOrder(String userId, Integer pageNo, Integer pageSize);
 }

@@ -5,10 +5,10 @@ import java.util.Map;
 
 
 import com.pinyougou.order.service.OrderService;
-import com.pinyougou.pojo.TbOrder;
+
 import com.pinyougou.user.service.UserService;
 import entity.Error;
-import org.springframework.core.annotation.Order;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
@@ -196,12 +196,13 @@ public class UserController {
      *
      */
     @RequestMapping("/findUserIdOrder")
-    public List<Map> findUserIdOrder(){
+    public Map<String,Object> findUserIdOrder(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+                                                    @RequestParam(value = "pageSize", defaultValue = "2", required = true) Integer pageSize){
 
         //根据安全框架获取到用户名
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        return orderService.findUserIdOrder(userId);
+        return orderService.findUserIdOrder(userId,pageNo,pageSize);
     }
 
 }

@@ -1,16 +1,16 @@
 package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.IdWorker;
 import com.pinyougou.mapper.TbItemMapper;
 import com.pinyougou.mapper.TbOrderItemMapper;
 import com.pinyougou.mapper.TbOrderMapper;
 import com.pinyougou.mapper.TbPayLogMapper;
 import com.pinyougou.order.service.OrderService;
-import com.pinyougou.pojo.TbItem;
-import com.pinyougou.pojo.TbOrder;
-import com.pinyougou.pojo.TbOrderItem;
-import com.pinyougou.pojo.TbPayLog;
+import com.pinyougou.pojo.*;
 import entity.Cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -282,10 +282,17 @@ public class OrderServiceImpl implements OrderService {
      * @return
      */
     @Override
-    public List<Map> findUserIdOrder(String userId) {
+    public Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
+                                             Integer pageSize) {
 
-        List<Map> list = new ArrayList<>();
+        //封装分页需要的数据与页面要展示的数据的Map
+        Map<String,Object> mapInfo = new HashMap<>();
 
+        //创建分页对象、pageNo表示第一页，pageSize表示每页显示条数
+        PageHelper.startPage(pageNo,pageSize);
+
+        //这里封装前端页面需要展示的数据
+        List<Map<String,Object>> list = new ArrayList<>();
 
         //.1查出用户的订单列表
         TbOrder tbOrder = new TbOrder();
@@ -294,60 +301,53 @@ public class OrderServiceImpl implements OrderService {
         //获取到第一级的订单列表
         List<TbOrder> tbOrders = orderMapper.select(tbOrder);
 
-       // 遍历大的订单列表
+        //创建PageInfo对象 将第一级的订单列表进行分页展示
+        PageInfo<TbOrder> pageInfo = new PageInfo<>(tbOrders);
+
+        String str = JSON.toJSONString(pageInfo);
+        //5.再将字符串（成对象）反序列化给前端
+        PageInfo pageinfo1 = JSON.parseObject(str, PageInfo.class);
+
+        // 遍历大的订单列表
         for (TbOrder order : tbOrders) {
 
-            //第二级的订单集合
-            List<Map> orderList =  new ArrayList<>();
-
-            HashMap map = new HashMap<>();
+            Map<String,Object> map = new HashMap<>();
 
             //直接封装order对象，order对象中包括有：订单创建时间、订单编号、店铺的名称、订单的支付状态、订单价格
-            map.put("order",order);
+            map.put("order",order);     //order做为map的第一个键值对
 
 
             TbOrderItem tbOrderItem = new TbOrderItem();
+
             //将orderId设置为查询条件
             tbOrderItem.setOrderId(order.getOrderId());
 
             //根据订单id获取到订单item的对象
             List<TbOrderItem> tbOrderItems = orderItemMapper.select(tbOrderItem);
 
+            //将整个的订单描述集合添加进map中，tbOrderItem作为map的第二个键值对
+            map.put("tbOrderItems",tbOrderItems);
 
             for (TbOrderItem orderItem : tbOrderItems) {
 
-                //获取商品的图片地址
-                String picPath = orderItem.getPicPath();
-                map.put("picPath",picPath);
-
-                //获取商品的标题
-                String title = orderItem.getTitle();
-                map.put("title",title);
-
-                //获取商品的id
-                Long itemId = orderItem.getItemId();
-                map.put("itemId",itemId);
-
-                //商品个数
-                Integer num = orderItem.getNum();
-                map.put("num",num);
-
                 //根据itemId获取到sku
-                TbItem tbItem = itemMapper.selectByPrimaryKey(itemId);
+                TbItem tbItem = itemMapper.selectByPrimaryKey(orderItem.getItemId());
 
                 //获取商品的规格信息
                 String spec = tbItem.getSpec();
+
+                //订单的规格展示作为map的第三个键值对
                 map.put("spec",spec);
-
-                orderList.add(map);
             }
-
-            //最后将封装好的map返回出去
-           list.add(map);
+            //最后将、封装好的map添加进List<map>中
+            list.add(map);
         }
+        //第一个键值对是页面要展示的数据
+        mapInfo.put("Orders",list);
+        //第二个键值对是分页展示需要的数据
+        mapInfo.put("pageInfo",pageinfo1);
 
-
-        return list;
+        return mapInfo;
     }
 
 

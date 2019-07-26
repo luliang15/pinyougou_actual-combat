@@ -212,32 +212,24 @@ $(function(){
                         </div>
                         <div class="order-detail">
                             <div class="orders">
-                                <div class="choose-order">
-                                    <div class="sui-pagination pagination-large top-pages">
-                                        <ul>
-                                            <li class="prev disabled"><a href="#">上一页</a></li>
 
-                                            <li class="next"><a href="#">下一页</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
 
 								<!--order1   v-for="order in orderList" -->
-                                <div v-for="list in orderList">
+                                <div v-for="list in orderList.Orders">
                                 <div class="choose-title">
-                                    <label data-toggle="checkbox" class="checkbox-pretty" >
+                                    <label data-toggle="checkbox" class="checkbox-pretty">
                                            <input type="checkbox" checked="checked"><span>订单创建时间:{{list.order.createTime}}　订单编号:{{list.order.orderId}}
                                         店铺:{{list.order.sellerId}} <a>和我联系</a></span>
                                      </label>
 									  <a class="sui-btn btn-info share-btn">分享</a>
                                 </div>
 
-                                <table class="sui-table table-bordered order-datatable" >
+                                <table class="sui-table table-bordered order-datatable">
                                     <tbody>
-                                        <tr >
+                                        <tr v-for="Array in list.tbOrderItems" >
                                             <td width="35%">
-                                                <div class="typographic"><img :src="list.picPath" />
-                                                    <a href="#" class="block-text">{{list.title}}</a>
+                                                <div class="typographic"><img :src="Array.picPath" />
+                                                    <a href="#" class="block-text">{{Array.title}}</a>
                                                     <span class="guige">规格：{{list.spec}}</span>
                                                 </div>
                                             </td>
@@ -247,7 +239,7 @@ $(function(){
                                                     <li>¥{{list.order.payment}}</li>
                                                 </ul>
                                             </td>
-                                            <td width="5%" class="center">{{list.num}}</td>
+                                            <td width="5%" class="center">{{Array.num}}</td>
                                             <td width="8%" class="center">
                                                
                                             </td>
@@ -259,7 +251,8 @@ $(function(){
                                             </td>
                                             <td width="10%" class="center">
                                                 <ul class="unstyled">
-                                                    <li>{{list.order.status}}</li>
+                                                    <li v-if="list.order.status == '1'">未付款</li>
+                                                    <li v-if="list.order.status == '2'">已付款</li>
                                                     <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
                                                 </ul>
                                             </td>
@@ -267,38 +260,22 @@ $(function(){
                                                 <ul class="unstyled">
 													<li><a href="#" class="sui-btn btn-info">立即付款</a></li>
                                                     <li>取消订单</li>
-                                                    
                                                 </ul>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
+
                                 </div>
-                                <!--order2-->
 
 
 
-                                <!--order3-->
-
-
-
-
-
-                            </div>
                             <div class="choose-order">
                                 <div class="sui-pagination pagination-large top-pages">
-                                    <ul>
-                                        <li class="prev disabled"><a href="#">«上一页</a></li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li class="dotted"><span>...</span></li>
-                                        <li class="next"><a href="#">下一页»</a></li>
-                                    </ul>
-                                    <div><span>共10页&nbsp;</span><span>
-                                            到
-                                            <input type="text" class="page-num"><button class="page-confirm" onclick="alert(1)">确定</button>
-                                            页</span></div>
+
+                                    <!--传递：pages:指定总页数  pageNo:当前页码 searchList:定义的函数 用于在点击下一页的调用-->
+                                    <navigation :pages="pages" :current.sync="pageNo"  @navpage="findByUserOrder"></navigation>
+
                                 </div>
                             </div>
 
@@ -528,11 +505,17 @@ $(function(){
 		</div>
 	</div>
 </div>
+    </div>
 </div>
+
 <!--页面底部END-->
 undefined
-
-<script src="plugins/vue/vue.js"></script>
-<script src="plugins/axios/axios.js"></script>
-<script src="js/controller/userController.js"></script>
+    <script src="plugins/vue/vue.js"></script>
+    <script src="plugins/axios/axios.js"></script>
+    <!--引入分页插件js-->
+    <script src="plugins/pagination.js"></script>
+    <script src="js/controller/userController.js"></script>
 </html>
+
+
+
