@@ -123,7 +123,6 @@ public class BrandController {
     public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
 
 			try {
-				Map<String, Object> param = new HashMap<String, Object>();
 				List<String[]> rowList = POIUtils.readExcel(file);
 				for (int i = 0; i < rowList.size(); i++) {
 					String[] row = rowList.get(i);

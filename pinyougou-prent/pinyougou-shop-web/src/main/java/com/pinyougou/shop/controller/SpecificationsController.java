@@ -75,4 +75,13 @@ public class SpecificationsController {
     }
 
 
+    //模板申请页面加载查询审核过的规格进行回显
+    @RequestMapping("/findAll")
+    public List<TbSpecification> findAll(){
+        TbSpecification tbSpecification = new TbSpecification();
+        tbSpecification.setSpecStatus("1");
+        return specificationService.select(tbSpecification);
+    }
+
+
 }

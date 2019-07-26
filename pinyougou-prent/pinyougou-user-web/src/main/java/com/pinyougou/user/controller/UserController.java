@@ -1,17 +1,20 @@
 package com.pinyougou.user.controller;
-import com.alibaba.dubbo.config.annotation.Reference;
-import com.github.pagehelper.PageInfo;
-import com.pinyougou.pojo.TbAddress;
-import com.pinyougou.pojo.TbUser;
-import com.pinyougou.user.service.AddressService;
+import java.util.Date;
+import java.util.List;
+
+
 import com.pinyougou.user.service.UserService;
 import entity.Error;
-import entity.Result;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.pojo.TbUser;
+
+import com.github.pagehelper.PageInfo;
+import entity.Result;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
@@ -32,7 +35,7 @@ public class UserController {
 
 	@Reference
 	private AddressService addressService;
-	
+
 	/**
 	 * 返回全部列表
 	 * @return

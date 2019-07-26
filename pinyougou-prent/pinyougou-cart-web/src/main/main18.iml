@@ -19,11 +19,11 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="main3" />
+    <orderEntry type="module" module-name="main5" />
     <orderEntry type="module" module-name="main22" />
-    <orderEntry type="module" module-name="main27" />
+    <orderEntry type="module" module-name="main6" />
     <orderEntry type="module" module-name="main4" />
+    <orderEntry type="module" module-name="main3" />
     <orderEntry type="module" module-name="main24" />
-    <orderEntry type="module" module-name="main21" />
   </component>
 </module>

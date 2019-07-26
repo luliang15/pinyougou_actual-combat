@@ -75,12 +75,6 @@
           <element id="archive" name="pinyougou-common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="pinyougou-common" />
           </element>
-          <element id="library" level="project" name="Maven: org.apache.poi:poi:3.14" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.14" />
-          <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml-schemas:3.14" />
-          <element id="library" level="project" name="Maven: org.apache.xmlbeans:xmlbeans:2.6.0" />
-          <element id="library" level="project" name="Maven: stax:stax-api:1.0.1" />
-          <element id="library" level="project" name="Maven: com.github.virtuald:curvesapi:1.03" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.3.2" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" />

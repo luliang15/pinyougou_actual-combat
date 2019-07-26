@@ -5,7 +5,7 @@
     <!-- 页面meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>规格管理</title>
+    <title>品牌管理</title>
     <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
@@ -31,7 +31,7 @@
             <div class="pull-left">
                 <div class="form-group form-inline">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default" title="申请" @click="" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 申请规格</button>
+                        <button type="button" class="btn btn-default" title="申请" @click="brand={'brandStatus': '0'}" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 申请品牌</button>
                         <button type="button" class="btn btn-default" title="删除" @click="dele()" ><i class="fa fa-trash-o"></i> 删除</button>
                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                     </div>
@@ -46,18 +46,20 @@
                     <th class="" style="padding-right:0px">
                         <input id="selall" type="checkbox" class="icheckbox_square-blue">
                     </th>
-                    <th  class="sorting_asc">规格名称</th>
+                    <th  class="sorting_asc">品牌名称</th>
+                    <th  class="sorting_asc">品牌首字母</th>
                     <th class="sorting">审核状态</th>
                     <th class="text-center">操作</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                <!--遍历循环规格数据列表-->
+                <!--遍历循环品牌数据列表-->
                 <tr v-for="entity in list">
                     <td><input type="checkbox"></td>
-                    <td>{{entity.specName}}</td>
-                    <td>{{entity.specStatus=='0'?"未审核":'已审核'}}</td>
+                    <td>{{entity.name}}</td>
+                    <td>{{entity.firstChar}}</td>
+                    <td>{{entity.brandStatus=='0'?"未审核":'已审核'}}</td>
                     <td class="text-center">       <!--根据id点击修改时跳转到此页面-->
                         <a class="btn bg-olive btn-xs" >修改</a>
                     </td>
@@ -79,16 +81,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h3 id="myModalLabel">申请规格</h3>
+                    <h3 id="myModalLabel">申请品牌</h3>
                 </div>
-                <!--规格模态框-->
-                <div class="modal-body">
+                <!--品牌模态框-->
+                <div class="modal-body">{{brand}}
                     <table class="table table-bordered table-striped"  width="800px">
 
 
                         <tr>
-                            <td>规格名称</td>
-                            <td><input  class="form-control" v-model="specName" placeholder="规格名称" >  </td>
+                            <td>品牌名称</td>
+                            <td><input  class="form-control" v-model="brand.name" placeholder="品牌名称" >  </td>
+                            <td><input  class="form-control" v-model="brand.firstChar" placeholder="品牌首字母" >  </td>
                         </tr>
                     </table>
                 </div>
@@ -109,6 +112,6 @@
 <!--引入分页插件js-->
 <script src="../js/pagination.js"></script>
 <!--引入vue请求-->
-<script src="../js/controller/shenhe.js"></script>
+<script src="../js/controller/brand.js"></script>
 
 </html>
