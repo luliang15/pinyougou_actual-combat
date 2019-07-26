@@ -1,13 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="pinyougou-shop-web:war exploded">
     <output-path>$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/target/pinyougou-manager-web</output-path>
-    <properties id="maven-jee-properties">
-      <options>
-        <exploded>true</exploded>
-        <module>pinyougou-shop-web</module>
-        <packaging>war</packaging>
-      </options>
-    </properties>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -90,6 +83,9 @@
           <element id="library" level="project" name="Maven: tk.mybatis:mapper:3.4.6" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.32" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.9" />
+          <element id="archive" name="pinyougou-order-interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-order-interface" />
+          </element>
           <element id="archive" name="pinyougou-common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="pinyougou-common" />
           </element>
@@ -142,6 +138,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-messaging:5.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.0.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:5.0.2.RELEASE" />
+          <element id="archive" name="pinyougou-seckill-interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-seckill-interface" />
+          </element>
           <element id="library" level="project" name="Maven: com.alibaba:dubbo:2.6.1" />
           <element id="library" level="project" name="Maven: org.javassist:javassist:3.20.0-GA" />
           <element id="library" level="project" name="Maven: org.jboss.netty:netty:3.2.5.Final" />

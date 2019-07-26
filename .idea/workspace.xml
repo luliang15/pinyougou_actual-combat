@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39d57da3-7965-4e50-86e5-6db4d26d9020" name="Default Changelist" comment="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;.idea/misc.xml&#10;#&#9;.idea/modules.xml&#10;#&#9;.idea/workspace.xml&#10;#&#9;pinyougou-prent/pinyougou-cart-service/pinyougou-cart-service.iml&#10;#&#9;pinyougou-prent/pinyougou-cart-web/pinyougou-cart-web.iml&#10;#&#9;pinyougou-prent/pinyougou-content-interface/pinyougou-content-interface.iml&#10;#&#9;pinyougou-prent/pinyougou-content-service/pinyougou-content-service.iml&#10;#&#9;pinyougou-prent/pinyougou-core-service/pinyougou-core-service.iml&#10;#&#9;pinyougou-prent/pinyougou-dao/pinyougou-dao.iml&#10;#&#9;pinyougou-prent/pinyougou-es-import/pinyougou-es-import.iml&#10;#&#9;pinyougou-prent/pinyougou-manager-web/pinyougou-manager-web.iml&#10;#&#9;pinyougou-prent/pinyougou-order-interface/pinyougou-order-interface.iml&#10;#&#9;pinyougou-prent/pinyougou-order-service/pinyougou-order-service.iml&#10;#&#9;pinyougou-prent/pinyougou-page-interface/pinyougou-page-interface.iml&#10;#&#9;pinyougou-prent/pinyougou-page-service/pinyougou-page-service.iml&#10;#&#9;pinyougou-prent/pinyougou-portal-web/pinyougou-portal-web.iml&#10;#&#9;pinyougou-prent/pinyougou-seckill-interface/pinyougou-seckill-interface.iml&#10;#&#9;pinyougou-prent/pinyougou-seckill-service/pinyougou-seckill-service.iml&#10;#&#9;pinyougou-prent/pinyougou-seckill-task/pinyougou-seckill-task.iml&#10;#&#9;pinyougou-prent/pinyougou-seckill-web/pinyougou-seckill-web.iml&#10;#&#9;pinyougou-prent/pinyougou-sellergoods-interface/pinyougou-sellergoods-interface.iml&#10;#&#9;pinyougou-prent/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml&#10;#&#9;pinyougou-prent/pinyougou-shop-web/pinyougou-shop-web.iml&#10;#&#9;pinyougou-prent/pinyougou-user-interface/pinyougou-user-interface.iml&#10;#&#9;pinyougou-prent/pinyougou-user-service/pinyougou-user-service.iml&#10;#&#9;pinyougou-prent/pinyougou-user-web/pinyougou-user-web.iml">
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/searchorder.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/entity/OrderList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/java/com/pinyougou/shop/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/java/com/pinyougou/shop/controller/SeckillGoodsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/java/com/pinyougou/shop/controller/SpecificationsController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/brand.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/seckill_goods.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/specifcation.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/js/controller/seckillGoodsController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/js/controller/shenhe.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/js/controller/settingAddress.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/js/controller/settingInfo.js" afterDir="false" />
+    <list default="true" id="39d57da3-7965-4e50-86e5-6db4d26d9020" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_service_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_service_war.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_service_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_web_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_web_war.xml" afterDir="false" />
@@ -52,8 +40,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_service_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_web_war.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_web_war.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__ca_juliusdavies_not_yet_commons_ssl_0_3_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__ca_juliusdavies_not_yet_commons_ssl_0_3_9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_druid_1_0_9.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_dubbo_2_6_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_dubbo_2_6_1.xml" afterDir="false" />
@@ -211,78 +197,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xerces_xercesImpl_2_10_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xerces_xercesImpl_2_10_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_4_01.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_apis_xml_apis_1_4_01.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__xml_resolver_xml_resolver_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__xml_resolver_xml_resolver_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pinyougou_actual-combat.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/smartfox_info.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/lee-Sms-demo/lee-Sms-demo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-interface/pinyougou-cart-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/pinyougou-cart-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/src/main/resources/spring/applicationContext-redis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/src/main/resources/spring/applicationContext-redis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/src/main/resources/spring/applicationContext-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/src/main/resources/spring/applicationContext-service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-web/pinyougou-cart-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-web/src/main/resources/spring/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-web/src/main/resources/spring/springmvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-common/pinyougou-common.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-content-interface/pinyougou-content-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-content-service/pinyougou-content-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-core-service/pinyougou-core-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-core-service/src/main/main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-core-service/src/main/main.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-dao/pinyougou-dao.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-es-import/pinyougou-es-import.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/pinyougou-manager-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/pinyougou-order-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/src/main/java/com/pinyougou/order/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/src/main/java/com/pinyougou/order/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-service/pinyougou-order-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-service/src/main/java/com/pinyougou/order/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-service/src/main/java/com/pinyougou/order/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-interface/pinyougou-page-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-service/pinyougou-page-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-service/src/main/main2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-service/src/main/main2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-web/pinyougou-page-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pay-interface/pinyougou-pay-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pay-service/pinyougou-pay-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/pinyougou-pojo.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/com/pinyougou/pojo/TbSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/com/pinyougou/pojo/TbSpecification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-portal-web/pinyougou-portal-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-prent.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-search-interface/pinyougou-search-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-search-service/pinyougou-search-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-search-web/pinyougou-search-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-interface/pinyougou-seckill-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-interface/src/main/java/com/pinyougou/seckill/service/SeckillGoodsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-interface/src/main/java/com/pinyougou/seckill/service/SeckillGoodsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-service/pinyougou-seckill-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-service/src/main/java/com/pinyougou/seckill/service/impl/SeckillGoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-service/src/main/java/com/pinyougou/seckill/service/impl/SeckillGoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-task/pinyougou-seckill-task.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-web/pinyougou-seckill-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/pinyougou-sellergoods-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/GoodsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/GoodsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/pinyougou-sellergoods-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/pinyougou-sellergoods-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/pinyougou-shop-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/pinyougou-shop-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/pinyougou-shop-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-upload-web/pinyougou-upload-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-upload-web/src/main/java/com/pinyougou/upload/controller/UploadFileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-upload-web/src/main/java/com/pinyougou/upload/controller/UploadFileController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/pinyougou-user-interface.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/src/main/java/com/pinyougou/user/service/AddressService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/src/main/java/com/pinyougou/user/service/AddressService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/src/main/java/com/pinyougou/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/src/main/java/com/pinyougou/user/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/pinyougou-user-service.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/java/com/pinyougou/user/service/impl/AddressServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/java/com/pinyougou/user/service/impl/AddressServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/java/com/pinyougou/user/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/java/com/pinyougou/user/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/resources/spring/applicationContext-redis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/resources/spring/applicationContext-redis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/resources/spring/applicationContext-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/src/main/resources/spring/applicationContext-service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/pinyougou-user-web.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/java/com/pinyougou/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/java/com/pinyougou/user/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/resources/spring/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/resources/spring/springmvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/home-setting-address.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/home-setting-address.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/home-setting-info.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/home-setting-info.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/js/controller/userController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/src/main/webapp/js/controller/userController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/target/" />
@@ -400,29 +314,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="165">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/entity/OrderList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="19" column="35" selection-start-line="19" selection-start-column="35" selection-end-line="19" selection-end-column="35" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#604#605#0" expanded="true" />
-                <element signature="e#637#638#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/entity/Specification.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="19" column="59" selection-start-line="19" selection-start-column="59" selection-end-line="19" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/OrderController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1080">
@@ -452,8 +343,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/SpecificationServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="48" column="16" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="16" />
+            <state relative-caret-position="411">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="169" selection-start-line="169" selection-end-line="169" />
             </state>
           </provider>
         </entry>
@@ -476,16 +379,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/src/main/java/com/pinyougou/order/service/OrderService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+            <state relative-caret-position="264">
+              <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-common/src/main/main21.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-common/src/main/main19.iml">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -603,476 +516,6 @@
               <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
               <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-manager-web" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-interface" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-order-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="order" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-pojo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-pojo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-pojo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-pojo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-pojo" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="seckill" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="seckill" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-seckill-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="seckill" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="sellergoods" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="sellergoods" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="pinyougou_actual-combat" type="b2602c69:ProjectViewProjectNode" />
-              <item name="pinyougou-prent" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou-sellergoods-service" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="pinyougou" type="462c0819:PsiDirectoryNode" />
-              <item name="sellergoods" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -1083,7 +526,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564067714312" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564105032758" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pinyougou-prent/pom.xml" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -1355,13 +798,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28085000" />
+    <option name="totallyTimeSpent" value="28231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23927614" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23927614" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1378,7 +820,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" visible="true" weight="0.32892805" />
       <window_info anchor="bottom" id="Java Enterprise" order="10" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="12" show_stripe_button="false" />
@@ -1406,13 +848,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="韩晓强&#10;2019/7/25&#10;品优购用户中心-个人信息(完成)&#10;品优购用户中心-地址管理(完成)&#10;商家后台-秒杀订单查询(查询完成,待完善)&#10;运营商后台-订单查询(后台部分完成)" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/resources/spring/springmvc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="56" column="57" selection-start-line="56" selection-start-column="57" selection-end-line="56" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/SeckillGoodsController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1720,8 +1155,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/SpecificationServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="48" column="16" selection-start-line="48" selection-start-column="8" selection-end-line="48" selection-end-column="16" />
+        <state relative-caret-position="411">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1741,11 +1179,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/src/main/java/com/pinyougou/order/service/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="47" column="1" selection-start-line="47" selection-start-column="1" selection-end-line="47" selection-end-column="1" />
+        <state relative-caret-position="264">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="169" selection-start-line="169" selection-end-line="169" />
         </state>
       </provider>
     </entry>
