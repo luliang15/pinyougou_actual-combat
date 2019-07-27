@@ -34,14 +34,18 @@
                 <div class="form-group form-inline">
                     <div class="btn-group">   <!--绑定逻辑删除的点击按钮-->
                         <button type="button" class="btn btn-default" @click="dele()" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
-                        <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-refresh"></i> 刷新</button>
+                        <button type="button" class="btn btn-default" title="刷新" @click="newPage()"><i class="fa fa-refresh"></i> 刷新</button>
                     </div>
                 </div>
             </div>
+            {{searchEntity}}
             <div class="box-tools pull-right">
                 <div class="has-feedback">
-                    订单：<input >
-                    <button class="btn btn-default" >查询</button>
+                    订单ID： <input type="text" v-model="searchEntity.orderId"/>
+                    支付时间：<input type="text" v-model="searchEntity.paymentTime"/>
+                    用户名称: <input type="text" v-model="searchEntity.userId"/>
+                    商家名称: <input type="text" v-model="searchEntity.sellerId"/>
+                    <button class="btn btn-default" @click="searchList(1)">查询</button>
                 </div>
             </div>
             <!--工具栏/-->
@@ -54,11 +58,13 @@
                         <input id="selall" type="checkbox" class="icheckbox_square-blue">
                     </th>
                     <th class="sorting_asc">订单ID</th>
+                    <th class="text-center">商品</th>
+                    <th class="text-center">商品单价</th>
+                    <th class="text-center">购买数量</th>
                     <th class="sorting">实付金额</th>
-                    <th class="sorting">支付类型</th>
                     <th class="sorting">状态</th>
                     <th class="sorting">订单创建时间</th>
-                    <th class="sorting">订单更新时间</th>
+                    <th class="sorting">订单付款时间</th>
                     <th class="sorting">用户id</th>
                     <th class="text-center">卖家留言</th>
                     <th class="text-center">收货地区</th>
@@ -68,28 +74,30 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="order in orderList">
-                    <td><input type="checkbox"></td>
-                    <td>{{order.orderId}}</td>
-                    <td>{{order.payment}}</td>
-                    <td>{{order.paymentType=='1'?"在线支付":'货到付款'}}</td>
-                    <td>{{order.status}}</td>
-                    <td>
-                        <img alt="" src="" width="100px" height="50px">
-                    </td>
-                    <td>{{order.createTime}}</td>
-                    <td>{{order.updatetime}}</td>
-                    <td>{{order.userId}}</td>
-                    <td>{{order.buyerMessage}}</td>
-                    <td>{{order.receiverAreaName}}</td>
-                    <td>{{order.receiverMobile}}</td>
+                <tr v-for="list in list1">
+                    <td class="text-center"><input type="checkbox"></td>
+                    <td>{{list.orderId}}</td>
+                    <td><span v-for="spu1 in list.orderItems">{{spu1.title}}</span></td>
+                    <td><span v-for="spu2 in list.orderItems">{{spu2.price}}<br></span></td>
+                    <td><span v-for="spu3 in list.orderItems">{{spu3.num}}<br></span></td>
+                    <td>{{list.order.payment}}</td>
+                    <td>{{list.order.status=='2'?"已付款":'未付款'}}</td>
+                    <td>{{list.order.createTime}}</td>
+                    <td>{{list.order.paymentTime}}</td>
+                    <td>{{list.order.userId}}</td>
+                    <td>{{list.order.buyerMessage}}</td>
+                    <td>{{list.order.receiverAreaName}}</td>
+                    <td>{{list.order.receiverMobile}}</td>
+                    <td>{{list.order.receiver}}</td>
                     <td class="text-center">
-                        {{order.sellerId}}
+                        {{list.order.sellerId}}
                     </td>
                 </tr>
                 </tbody>
             </table>
             <!--数据列表/-->
+            <!--分页条-->
+            <navigation :pages="pages" :current.sync="pageNo"  @navpage="searchList"></navigation>
         </div>
         <!-- 数据表格 /-->
     </div>
@@ -171,5 +179,5 @@
 <!--分页插件-->
 <script src="../js/pagination.js"></script>
 
-<script src="../js/controller/orderController.js"></script>
+<script src="../js/controller/searchOrderController.js"></script>
 </html>

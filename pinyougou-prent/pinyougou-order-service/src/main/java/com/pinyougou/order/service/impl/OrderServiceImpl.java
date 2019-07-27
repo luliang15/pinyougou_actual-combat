@@ -1,12 +1,17 @@
 package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.IdWorker;
 import com.pinyougou.mapper.*;
 import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.*;
 import entity.Cart;
+import entity.Order;
 import entity.OrderList;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
@@ -272,12 +277,10 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private TbGoodsMapper goodsMapper;
 
-    @Override
+   /* @Override
     public List<OrderList> findAllOrder() {
         //创建list集合进行封装查询到的所有的自定义订单对象
         List<OrderList> orderList = new ArrayList<>();
-        //创建自定义订单对象
-        OrderList orderList1 = new OrderList();
         //查询出所有的订单
         List<TbOrder> orders = orderMapper.selectAll();
         if(orders==null){
@@ -285,6 +288,8 @@ public class OrderServiceImpl implements OrderService {
         }
         //遍历
         for (TbOrder order : orders) {
+            //创建自定义订单对象
+            OrderList orderList1 = new OrderList();
             orderList1.setOrder(order);
             //根据订单id查找订单选项
             Example example=new Example(TbOrderItem.class);
@@ -292,10 +297,89 @@ public class OrderServiceImpl implements OrderService {
             List<TbOrderItem> orderItems = orderItemMapper.selectByExample(example);
             orderList1.setOrderItems(orderItems);
             //根据订单选项中的商品id获取商品名称
-            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getItemId());
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getGoodsId());
             orderList1.setGoods(tbGoods);
             orderList.add(orderList1);
         }
         return orderList;
+    }*/
+
+    @Override
+    public Map<String, Object> findPage(Integer pageNo, Integer pageSize, TbOrder order) {
+        Map<String, Object> map = new HashMap<>();
+        //创建list集合进行封装查询到的所有的自定义订单对象
+        List<OrderList> orderLists = new ArrayList<>();
+        PageHelper.startPage(pageNo, pageSize);
+
+        //创建订单查询条件
+        Example example = new Example(TbOrder.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (order != null) {
+            //用户ID
+            if (StringUtils.isNotBlank(order.getUserId())) {
+                criteria.andLike("userId", "%" + order.getUserId() + "%");
+                //criteria.andUserIdLike("%"+seckillOrder.getUserId()+"%");
+            }
+            //商家ID
+            if (StringUtils.isNotBlank(order.getSellerId())) {
+                criteria.andLike("sellerId", "%" + order.getSellerId() + "%");
+                //criteria.andSellerIdLike("%"+seckillOrder.getSellerId()+"%");
+            }
+            //支付状态
+            if (StringUtils.isNotBlank(order.getStatus())) {
+                criteria.andLike("status", "%" + order.getStatus() + "%");
+                //criteria.andStatusLike("%"+seckillOrder.getStatus()+"%");
+            }
+            //收货地址
+            if (StringUtils.isNotBlank(order.getReceiverAreaName())) {
+                criteria.andLike("receiverAreaName", "%" + order.getReceiverAreaName() + "%");
+                //criteria.andReceiverAddressLike("%"+seckillOrder.getReceiverAddress()+"%");
+            }
+            //收货人
+            if (StringUtils.isNotBlank(order.getReceiver())) {
+                criteria.andLike("receiver", "%" + order.getReceiver() + "%");
+                //criteria.andReceiverMobileLike("%"+seckillOrder.getReceiverMobile()+"%");
+            }
+            //订单ID
+            if (order.getOrderId()!= null) {
+                criteria.andEqualTo("orderId", order.getOrderId());
+                //criteria.andReceiverLike("%"+seckillOrder.getReceiver()+"%");
+            }
+
+            if (order.getPaymentTime()!=null){
+                criteria.andEqualTo("paymentTime",order.getPaymentTime());
+            }
+        }
+        //查询出所有的订单
+        List<TbOrder> orders = orderMapper.selectByExample(example);
+        //对订单进行分页
+        PageInfo<TbOrder> info = new PageInfo<TbOrder>(orders);
+        //序列化再反序列化
+        String s = JSON.toJSONString(info);
+        PageInfo<OrderList> pageInfo = JSON.parseObject(s, PageInfo.class);
+
+        if (orders == null) {
+            return null;
+        }
+        //遍历
+        for (TbOrder order1: orders) {
+            //创建自定义存储订单对象
+            OrderList orderList1 = new OrderList();
+            orderList1.setOrder(order1);
+            //设置orderId的值
+            orderList1.setOrderId(String.valueOf(order1.getOrderId()));
+            //根据订单id查找订单选项
+            Example example1 = new Example(TbOrderItem.class);
+            example1.createCriteria().andEqualTo("orderId", order1.getOrderId());
+            List<TbOrderItem> orderItems = orderItemMapper.selectByExample(example1);
+            orderList1.setOrderItems(orderItems);
+            //根据订单选项中的商品id获取商品名称
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getGoodsId());
+            orderList1.setGoods(tbGoods);
+            orderLists.add(orderList1);
+        }
+        map.put("orderLists",orderLists);
+        map.put("pageInfo",pageInfo);
+        return map;
     }
 }
