@@ -58,13 +58,16 @@ public class OrderController {
 	
 	/**
 	 * 修改
-	 * @param order
+	 * @param
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(@RequestBody TbOrder order){
+	public Result update(String status,Long orderId){
 		try {
-			orderService.update(order);
+			TbOrder tbOrder = new TbOrder();
+			tbOrder.setStatus(status);
+			tbOrder.setOrderId(orderId);
+            orderService.updateByPrimaryKeySelective(tbOrder);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -115,5 +118,6 @@ public class OrderController {
 		return orderService.findOrderBySellerId(sellerId,pageNo,pageSize);
 
 	}
+
 
 }

@@ -3,7 +3,7 @@ var app = new Vue({
     el: "#app",
     data: {
         list:[],
-        status:['','等待买家付款','等待发货'],
+        status:['','未付款','已付款','未发货','已发货','交易成功','交易关闭','待评价'],
         pages: 10,
         pageNo: 1,
     },
@@ -25,6 +25,15 @@ var app = new Vue({
 
                 }
             )
+        },
+        updateStatus:function (status,orderId) {
+            axios.get('order/update.shtml?status='+status+'&orderId='+orderId).then(function (response) {
+                if (response.data) {
+                    alert('发货成功')
+                    app.findAllOrderBySellerId(1);
+                }
+            })
+
         }
 
     },
