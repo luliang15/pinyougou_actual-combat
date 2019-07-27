@@ -1,7 +1,12 @@
 package com.pinyougou.user.controller;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+
+import com.pinyougou.pojo.TbAddress;
+import com.pinyougou.user.service.AddressService;
+import com.pinyougou.order.service.OrderService;
 
 import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.user.service.AddressService;
@@ -34,6 +39,11 @@ public class UserController {
 
 	@Reference
 	private UserService userService;
+
+
+	@Reference  //注入订单实力化对象
+    private OrderService orderService;
+
 
 	@Reference
 	private AddressService addressService;
@@ -189,8 +199,23 @@ public class UserController {
             //如果没成
             return new Result(false,"发送验证码失败！");
         }
-
     }
+
+    /**
+     *
+     * 根据用户名查询到该用户的所有订单
+     *
+     */
+    @RequestMapping("/findUserIdOrder")
+    public Map<String,Object> findUserIdOrder(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+                                                    @RequestParam(value = "pageSize", defaultValue = "2", required = true) Integer pageSize){
+
+        //根据安全框架获取到用户名
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return orderService.findUserIdOrder(userId,pageNo,pageSize);
+    }
+
     @RequestMapping("/addUser")
 	public Result addUser(@RequestBody TbUser user,String birthday){
 		try {

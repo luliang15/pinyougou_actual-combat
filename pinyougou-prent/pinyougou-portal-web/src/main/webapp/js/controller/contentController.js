@@ -12,7 +12,7 @@
         contentList:[],
         //关键字变量
         keywords:'',
-        categoryId:['1','5','6'],
+        categoryId:['1','5','6','7','8','9'],
         //商品分类的变量
         itemList1:[],
 
@@ -172,11 +172,13 @@
                 }
             )
         },
+        show:function (index) {
+            $("#list"+index).css("display","block")
+        },
+        hiden:function (index) {
+            $("#list"+index).css("display","none")
+        },
 
-        //监听器  ,监听某一个变量的变化从而触发某一个函数
-        watch:function () {
-
-        }
     },
     //钩子函数 初始化了事件和
     created: function () {

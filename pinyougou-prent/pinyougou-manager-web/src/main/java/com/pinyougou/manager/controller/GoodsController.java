@@ -184,7 +184,7 @@ public class GoodsController {
     public Result updateStatus(@RequestParam String status,@RequestBody Long[] ids){
 
         try {
-            goodsService.updateStatus( ids,status);
+            goodsService.updateStatus(ids,status);
 
             //做一个判断。只能是审核通过的时候才进行更新保存的操作
             if("1".equals(status)){
@@ -207,37 +207,41 @@ public class GoodsController {
 
                 }*/
 
-               //现在不需要使用以上的方法去做更新删除或者添加的事了
-               //使用发送消息，将需要发送的消息全部封装到MessageInfo中
-                //根据主键查询的商品数据信息
-                List<TbItem> itemList = goodsService.findTbItemListByIds(ids);
-
-                //设置更新的消息的主题、标签、keys、body(消息体、商品数据)
-                MessageInfo info = new MessageInfo(
-                        "Goods_Topic",  //消息主题
-                        "goods_update_tag",//消息标签
-                        "updateStatus", //消息的唯一标识
-                        itemList,   //body，消息体，查询到的商品数据
-                        MessageInfo.METHOD_UPDATE);  //消息发送的类型，属于修改更新
 
 
-                //因为info中的method方法都是字节，需要转成字符串
-                String str = JSON.toJSONString(info);
 
-                //获取消息体的主题、标签、keys(唯一标识)、body（主要消息体,就是商品数据）
-                Message message = new Message(
-                        info.getTopic(),
-                        info.getTags(),
-                        info.getKeys(),
-                        str.getBytes()
-                );
+                   //现在不需要使用以上的方法去做更新删除或者添加的事了
+                   //使用发送消息，将需要发送的消息全部封装到MessageInfo中
+                   //根据主键查询的商品数据信息
+                   List<TbItem> itemList = goodsService.findTbItemListByIds(ids);
 
-                //发送信息
-                SendResult send = producer.send(message);
+                   //设置更新的消息的主题、标签、keys、body(消息体、商品数据)
+                   MessageInfo info = new MessageInfo(
+                           "Goods_Topic",  //消息主题
+                           "goods_update_tag",//消息标签
+                           "updateStatus", //消息的唯一标识
+                           itemList,   //body，消息体，查询到的商品数据
+                           MessageInfo.METHOD_UPDATE);  //消息发送的类型，属于修改更新
 
-                System.out.println("Update："+send);
 
-            }
+                   //因为info中的method方法都是字节，需要转成字符串
+                   String str = JSON.toJSONString(info);
+
+                   //获取消息体的主题、标签、keys(唯一标识)、body（主要消息体,就是商品数据）
+                   Message message = new Message(
+                           info.getTopic(),
+                           info.getTags(),
+                           info.getKeys(),
+                           str.getBytes()
+                   );
+
+                   //发送信息
+                   SendResult send = producer.send(message);
+
+                   System.out.println("Update：" + send);
+
+                }
+
 
             return new Result(true,"更新成功！！");
         } catch (Exception e) {

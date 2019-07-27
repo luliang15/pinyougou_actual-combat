@@ -1,5 +1,6 @@
 package com.pinyougou.order.service;
 
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
 import entity.OrderList;
@@ -42,7 +43,11 @@ public interface OrderService {
 
     Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId);
 
+    Map<String, Object> findSellInItem(String startTime, String endTime, String sellerId);
+
     List<TbOrder> findAll();
 
-    List<OrderList> findAllOrder();
+
+
+
 }

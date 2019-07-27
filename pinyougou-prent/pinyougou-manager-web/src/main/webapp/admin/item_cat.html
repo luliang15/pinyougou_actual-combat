@@ -47,6 +47,8 @@
                                         <button type="button" class="btn btn-default" title="新建" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                                         <button type="button" class="btn btn-default" title="删除" ><i class="fa fa-trash-o"></i> 删除</button>
                                         <button type="button" class="btn btn-default" title="刷新" ><i class="fa fa-check"></i> 刷新</button>
+										<button type="button" class="btn btn-default" title="驳回" @click="updateStatus(ids,2)"><i class="fa fa-refresh"></i> 驳回</button>
+										<button type="button" class="btn btn-default" title="审核通过" @click="updateStatus(ids,1)"><i class="fa fa-refresh"></i> 审核通过</button>
 										<button type="button" class="btn btn-default" title="模板下载" @click="uploadTemplate()"><i class="fa fa-refresh"></i>模板下载</button>
 										<input type="file" id="file" />
 										<button class="btn btn-primary" type="button" @click="uploadFile()">
@@ -68,17 +70,18 @@
 										  <th class="sorting_asc">分类ID</th>
 									      <th class="sorting">分类名称</th>									   
 									      <th class="sorting">类型模板ID</th>
-									     						
+										  <th class="sorting">审核状态</th>
 					                      <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
 
 			                          <tr v-for="(entity,index) in list" >
-                                          <td><input type="checkbox"></td>
+                                          <td><input type="checkbox" :value="entity.id" v-model="ids"></td>
                                           <td>{{entity.id}}</td>
                                           <td>{{entity.name}}</td>
                                           <td>{{entity.typeId}}</td>
+                                          <td>{{entity.itemcatStatus=='0'?"未审核":entity.itemcatStatus=='1'?'已审核':'已驳回'}}</td>
                                           <td class="text-center">
                                               <span v-if="grade!=3">  <!--当等级不等于1、2、3级时，把查询下级的按钮隐藏-->
                                               <button type="button"class="btn bg-olive btn-xs" @click="grade=grade+1;selectList(entity)">查询下级</button>
@@ -89,14 +92,11 @@
 
 			                      </tbody>
 			                  </table>
-			                  <!--数据列表/-->                      
-						
+			                  <!--数据列表/-->
+							<!--传递：pages:指定总页数  pageNo:当前页码 searchList:定义的函数 用于在点击下一页的调用-->
+							<navigation :pages="pages" :current.sync="pageNo"  @navpage="searchList"></navigation>
                         </div>
                         <!-- 数据表格 /-->
-                        
-                        
-                        
-                        
                      </div>
                     <!-- /.box-body -->
               
@@ -151,13 +151,15 @@
 	  </div>
 	</div>
 </div>
-                </div>
+</div>
 </body>
 
 <!--引入js-->
 <script src="../plugins/vue/vue.js"></script>
 <!--引入js-->
 <script src="../plugins/axios/axios.js"></script>
+<!--引入分页插件js-->
+<script src="../js/pagination.js"></script>
 
 <!--引入vue请求-->
 <script src="../js/controller/itemCatController.js"></script>
