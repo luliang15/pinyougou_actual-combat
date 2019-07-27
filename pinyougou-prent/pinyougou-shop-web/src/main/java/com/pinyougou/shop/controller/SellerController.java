@@ -120,7 +120,7 @@ public class SellerController {
     @Reference
     private OrderService orderService;
 	/**
-	 * 根据日期查询 此日期间隔的每一天的销售额
+	 * 根据日期查询 此日期间隔的每一天的总销售额
 	 * @param startTime
 	 * @param endTime
 	 * @return
@@ -133,5 +133,21 @@ public class SellerController {
 
         return map;
     }
+
+
+
+	/**
+	 * 获取当前用户的所有的SPU的特定时间段的销售额
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+    @RequestMapping("/findSellInItem")
+	public Map<String, Object> findSellInItem(String startTime, String endTime){
+		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+		Map<String, Object> map = orderService.findSellInItem(startTime,endTime,sellerId);
+		return map;
+	}
 
 }
