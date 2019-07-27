@@ -30,6 +30,10 @@
         <constructor-arg index="1" value="0"></constructor-arg>
     </bean>
 
+    <bean class="java.text.SimpleDateFormat" id="dateFormat">
+        <constructor-arg name="pattern" value="yyyy-MM-dd"></constructor-arg>
+    </bean>
+
 
 
 </beans>
