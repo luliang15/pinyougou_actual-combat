@@ -50,15 +50,4 @@ public interface OrderService {
 
 
 
-
-
-    /**
-     * 根据用户名查询用户的订单列表
-     * @param userId
-     * @return
-     */
-    Map<String,Object> findUserIdOrder(String userId, Integer pageNo, Integer pageSize);
-
-    List<OrderList> findAllOrder();
-
 }
