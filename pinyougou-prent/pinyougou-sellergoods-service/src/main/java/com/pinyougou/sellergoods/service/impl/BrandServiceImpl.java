@@ -8,6 +8,7 @@ import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreServiceImpl;
 import com.pinyougou.mapper.TbBrandMapper;
 import com.pinyougou.pojo.TbBrand;
+import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.sellergoods.service.BrandService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,6 +99,20 @@ public class BrandServiceImpl extends CoreServiceImpl<TbBrand> implements BrandS
         PageInfo pageinfo1 = JSON.parseObject(str, PageInfo.class);
 
         return pageinfo1;
+    }
+
+
+    //更新状态
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+        TbBrand tbBrand = new TbBrand();
+        tbBrand.setBrandStatus(status);
+        Example example = new Example(TbBrand.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Arrays.asList(ids));
+        if (ids != null) {
+            tbBrandMapper.updateByExampleSelective(tbBrand, example);
+        }
     }
 
 

@@ -1,16 +1,14 @@
 package com.pinyougou.sellergoods.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.pinyougou.common.utils.SysConstants;
+import com.pinyougou.pojo.TbBrand;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo; 									  
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import com.pinyougou.core.service.CoreServiceImpl;
 
@@ -18,36 +16,32 @@ import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
 
 import com.pinyougou.mapper.TbItemCatMapper;
-import com.pinyougou.pojo.TbItemCat;  
+import com.pinyougou.pojo.TbItemCat;
 
 import com.pinyougou.sellergoods.service.ItemCatService;
 
 
-
 /**
  * 服务实现层
- * @author Administrator
  *
+ * @author Administrator
  */
 @Service
-public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements ItemCatService {
+public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat> implements ItemCatService {
 
-	
-	private TbItemCatMapper itemCatMapper;
 
-	@Autowired
-	public ItemCatServiceImpl(TbItemCatMapper itemCatMapper) {
-		super(itemCatMapper, TbItemCat.class);
-		this.itemCatMapper=itemCatMapper;
-	}
+    private TbItemCatMapper itemCatMapper;
 
-	
-	
+    @Autowired
+    public ItemCatServiceImpl(TbItemCatMapper itemCatMapper) {
+        super(itemCatMapper, TbItemCat.class);
+        this.itemCatMapper = itemCatMapper;
+    }
 
-	
-	@Override
+
+    @Override
     public PageInfo<TbItemCat> findPage(Integer pageNo, Integer pageSize) {
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
         List<TbItemCat> all = itemCatMapper.selectAll();
         PageInfo<TbItemCat> info = new PageInfo<TbItemCat>(all);
 
@@ -57,23 +51,21 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         return pageInfo;
     }
 
-	
-	
 
-	 @Override
+    @Override
     public PageInfo<TbItemCat> findPage(Integer pageNo, Integer pageSize, TbItemCat itemCat) {
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
 
         Example example = new Example(TbItemCat.class);
         Example.Criteria criteria = example.createCriteria();
 
-        if(itemCat!=null){			
-						if(StringUtils.isNotBlank(itemCat.getName())){
-				criteria.andLike("name","%"+itemCat.getName()+"%");
-				//criteria.andNameLike("%"+itemCat.getName()+"%");
-			}
-	
-		}
+        if (itemCat != null) {
+            if (StringUtils.isNotBlank(itemCat.getName())) {
+                criteria.andLike("name", "%" + itemCat.getName() + "%");
+                //criteria.andNameLike("%"+itemCat.getName()+"%");
+            }
+
+        }
         List<TbItemCat> all = itemCatMapper.selectByExample(example);
         PageInfo<TbItemCat> info = new PageInfo<TbItemCat>(all);
         //序列化再反序列化
@@ -86,10 +78,10 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
     /**
      * 新建、修改、删除之后都需要调用这个方法
      * 所以在这个方法中加redis缓存
-     *1.加入redis的依赖
+     * 1.加入redis的依赖
      * 2.配置redis的配置文件
      * 3.   注入redis模版调用方法
-     *
+     * <p>
      * 根据商品分类表的id（商品分类表的ID为ParentID的父类ID）输入parentID去查询它对应的子信息
      *
      * @param parentId
@@ -118,9 +110,8 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 
         for (TbItemCat cat1 : all) {
             //将获取到的分类列表的数设置key为“itemCat”,值有，分类列表中的商品名称与模板ID  二级
-             redisTemplate.boundHashOps("itemCat").put(cat1.getName(),cat1.getTypeId());
+            redisTemplate.boundHashOps("itemCat").put(cat1.getName(), cat1.getTypeId());
         }
-
 
 
         return itemCats;
@@ -141,9 +132,9 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
             //2.查询到所有的item商品分类列表的数据
             tbItemCats = itemCatMapper.selectAll();
             System.out.println("cong shujuku cha!");
-        }else {
+        } else {
             //现在从redis中获取到了数据赋值给商品分类表
-           tbItemCats = (List<TbItemCat>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll");
+            tbItemCats = (List<TbItemCat>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll");
         }
 
         //3.将商品分类列表的数据存进redis中
@@ -173,7 +164,7 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         itemCat.setParentId(parentId);
 
         //2.判断，当第一次从redis中没有获取到item商品列表的数据时
-        if(redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2") == null){
+        if (redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2") == null) {
 
             //从数据库中查询获取数据,二级类目的数据
             List<TbItemCat> tbItemCats2 = itemCatMapper.select(itemCat);
@@ -189,26 +180,40 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
                 List<TbItemCat> tbItemCats3 = itemCatMapper.select(itemCat);
 
                 //存进二级类目
-                map.put("tbItemCats2",tbItemCat);
+                map.put("tbItemCats2", tbItemCat);
 
                 //将三级类目的数据存进map中
-                map.put("tbItemCats3",tbItemCats3);
+                map.put("tbItemCats3", tbItemCats3);
 
                 //最后将获取到二级与三级类目数据的map存进listMap中
                 mapList.add(map);
             }
 
-        }else {
+        } else {
             //否则则redis中有数据，不从数据库中查找，从redis中查询数据
             mapList = (List<Map>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2");
         }
 
 
         //将封装好数据存进redis中
-        redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).put("itemCatAll2",mapList);
+        redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).put("itemCatAll2", mapList);
 
         //最后返回封装好数据的mapList集合
         return mapList;
+    }
+
+    //更新状态
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+
+        TbItemCat itemCat = new TbItemCat();
+        itemCat.setItemcatStatus(status);
+        Example example = new Example(TbItemCat.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Arrays.asList(ids));
+        if (ids!= null) {
+            itemCatMapper.updateByExampleSelective(itemCat, example);
+        }
     }
 
 

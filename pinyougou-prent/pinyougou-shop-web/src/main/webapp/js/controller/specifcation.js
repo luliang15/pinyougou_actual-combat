@@ -15,7 +15,7 @@
 
         save:function () {
            axios.get("/sepcifcation/add.shtml?name="+this.specName).then((resp)=>{
-               app.findSpec();
+               app. searchList(1);
            })
         },
 
