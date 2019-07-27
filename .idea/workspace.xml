@@ -5,80 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1498ec1-45c3-4dd7-9d71-5bef2d3420f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_cart_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_content_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_content_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_manager_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_manager_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_order_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_order_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_page_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_page_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_pay_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_pay_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_portal_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_portal_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_search_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_search_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_search_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_search_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_seckill_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_seckill_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_seckill_task_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_seckill_task_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_seckill_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_seckill_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_sellergoods_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_sellergoods_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_shop_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_shop_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_upload_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_upload_web_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_service_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_service_war_exploded.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_web_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/pinyougou_user_web_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/pinyougou-cart-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-service/pinyougou-cart-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-web/pinyougou-cart-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-cart-web/pinyougou-cart-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-content-interface/pinyougou-content-interface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-content-interface/pinyougou-content-interface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-content-service/pinyougou-content-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-content-service/pinyougou-content-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-core-service/pinyougou-core-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-core-service/pinyougou-core-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-dao/pinyougou-dao.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-dao/pinyougou-dao.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-es-import/pinyougou-es-import.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-es-import/pinyougou-es-import.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/pinyougou-manager-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/pinyougou-manager-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/BrandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/BrandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/ItemCatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/ItemCatController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/SpecificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/SpecificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/TypeTemplateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/TypeTemplateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/resources/spring/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/resources/spring/springmvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/brand.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/brand.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/item_cat.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/item_cat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/specification.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/specification.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/type_template.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/type_template.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/BrandController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/BrandController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/itemCatController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/itemCatController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/specificationController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/specificationController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/typeTemplateController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/typeTemplateController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/pinyougou-order-interface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-interface/pinyougou-order-interface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-service/pinyougou-order-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-order-service/pinyougou-order-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-interface/pinyougou-page-interface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-interface/pinyougou-page-interface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-service/pinyougou-page-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-page-service/pinyougou-page-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/com/pinyougou/pojo/TbItemCat.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo/src/main/java/com/pinyougou/pojo/TbItemCat.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-portal-web/pinyougou-portal-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-portal-web/pinyougou-portal-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-interface/pinyougou-seckill-interface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-interface/pinyougou-seckill-interface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-service/pinyougou-seckill-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-service/pinyougou-seckill-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-task/pinyougou-seckill-task.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-task/pinyougou-seckill-task.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-web/pinyougou-seckill-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-web/pinyougou-seckill-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/pinyougou-sellergoods-interface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/pinyougou-sellergoods-interface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/BrandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/BrandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/ItemCatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/ItemCatService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/SpecificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/SpecificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/TypeTemplateService.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-interface/src/main/java/com/pinyougou/sellergoods/service/TypeTemplateService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/pinyougou-sellergoods-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/BrandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/BrandServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/ItemCatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/ItemCatServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/SpecificationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/SpecificationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/TypeTemplateServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/TypeTemplateServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/resources/spring/applicationContext-redis.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/resources/spring/applicationContext-redis.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/resources/spring/applicationContext-service.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/resources/spring/applicationContext-service.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/pinyougou-shop-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/pinyougou-shop-web.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/resources/spring/springmvc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/resources/spring/springmvc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/brand.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/brand.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/itemCat.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/itemCat.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/specifcation.html" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/admin/specifcation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/js/controller/itemCatController.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/js/controller/itemCatController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/js/controller/specifcation.js" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-shop-web/src/main/webapp/js/controller/specifcation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/pinyougou-user-interface.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-interface/pinyougou-user-interface.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/pinyougou-user-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-service/pinyougou-user-service.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/pinyougou-user-web.iml" beforeDir="false" afterPath="$PROJECT_DIR$/pinyougou-prent/pinyougou-user-web/pinyougou-user-web.iml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/pinyougou-prent/pinyougou-pay-service/target/" />
     <ignored path="$PROJECT_DIR$/pinyougou-prent/pinyougou-seckill-web/target/" />
@@ -198,7 +125,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/ItemCatServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="74">
+            <state relative-caret-position="3610">
               <caret line="208" selection-start-line="208" selection-end-line="208" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -210,8 +137,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/BrandController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="151" column="30" lean-forward="true" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
+            <state relative-caret-position="2660">
+              <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -219,7 +146,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/BrandServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
+            <state relative-caret-position="1729">
               <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
             </state>
           </provider>
@@ -228,7 +155,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/ItemCatController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="974">
+            <state relative-caret-position="2679">
               <caret line="162" selection-start-line="162" selection-end-line="162" />
             </state>
           </provider>
@@ -237,7 +164,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/item_cat.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
+            <state relative-caret-position="3116">
               <caret line="164" column="40" selection-start-line="164" selection-start-column="40" selection-end-line="164" selection-end-column="40" />
             </state>
           </provider>
@@ -246,7 +173,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/item.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
+            <state relative-caret-position="1824">
               <caret line="96" column="44" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="44" />
             </state>
           </provider>
@@ -255,7 +182,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/type_template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2343">
+            <state relative-caret-position="3724">
               <caret line="196" selection-start-line="196" selection-end-line="197" selection-end-column="43" />
             </state>
           </provider>
@@ -264,8 +191,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/itemCatController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="202" column="37" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="37" />
+            <state relative-caret-position="312">
+              <caret line="206" lean-forward="true" selection-start-line="206" selection-end-line="206" />
             </state>
           </provider>
         </entry>
@@ -465,8 +392,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -663,12 +588,14 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564150639107" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1564191183384" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/pinyougou-prent" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -906,12 +833,12 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="92721000" />
+    <option name="totallyTimeSpent" value="92862000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24128686" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24463807" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -928,7 +855,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32991204" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067025" side_tool="true" weight="0.24926686" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50067025" side_tool="true" visible="true" weight="0.2888563" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.28005865" />
       <window_info anchor="bottom" id="Spring" order="11" weight="0.32991204" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
@@ -1272,8 +1199,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/BrandController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="151" column="30" lean-forward="true" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
+        <state relative-caret-position="2660">
+          <caret line="151" column="30" selection-start-line="151" selection-start-column="30" selection-end-line="151" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1293,7 +1220,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/BrandServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
+        <state relative-caret-position="1729">
           <caret line="106" column="16" selection-start-line="106" selection-start-column="16" selection-end-line="106" selection-end-column="16" />
         </state>
       </provider>
@@ -1307,7 +1234,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-sellergoods-service/src/main/java/com/pinyougou/sellergoods/service/impl/ItemCatServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="74">
+        <state relative-caret-position="3610">
           <caret line="208" selection-start-line="208" selection-end-line="208" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1329,36 +1256,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/type_template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2343">
+        <state relative-caret-position="3724">
           <caret line="196" selection-start-line="196" selection-end-line="197" selection-end-column="43" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/java/com/pinyougou/manager/controller/ItemCatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="974">
+        <state relative-caret-position="2679">
           <caret line="162" selection-start-line="162" selection-end-line="162" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/item.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
+        <state relative-caret-position="1824">
           <caret line="96" column="44" selection-start-line="96" selection-start-column="30" selection-end-line="96" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/admin/item_cat.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
+        <state relative-caret-position="3116">
           <caret line="164" column="40" selection-start-line="164" selection-start-column="40" selection-end-line="164" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pinyougou-prent/pinyougou-manager-web/src/main/webapp/js/controller/itemCatController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="202" column="37" selection-start-line="202" selection-start-column="37" selection-end-line="202" selection-end-column="37" />
+        <state relative-caret-position="312">
+          <caret line="206" lean-forward="true" selection-start-line="206" selection-end-line="206" />
         </state>
       </provider>
     </entry>
@@ -1443,6 +1370,8 @@
   </component>
   <component name="mavenExecuteGoalHistory">
     <option value="$PROJECT_DIR$/pinyougou-prent/pinyougou-pojo" />
+    <option value="clean" />
+    <option value="clean install" />
     <option value="clean install" />
     <option value="clean" />
   </component>
