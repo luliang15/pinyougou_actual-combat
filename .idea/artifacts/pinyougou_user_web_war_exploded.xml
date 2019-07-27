@@ -79,6 +79,9 @@
           <element id="library" level="project" name="Maven: tk.mybatis:mapper:3.4.6" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.32" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.9" />
+          <element id="archive" name="pinyougou-order-interface-1.0-SNAPSHOT.jar">
+            <element id="module-output" name="pinyougou-order-interface" />
+          </element>
           <element id="archive" name="pinyougou-common-1.0-SNAPSHOT.jar">
             <element id="module-output" name="pinyougou-common" />
           </element>

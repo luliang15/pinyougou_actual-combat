@@ -14,7 +14,6 @@
         searchList:function (curPage) {
 
 
-
             axios.post('/seller/search.shtml?pageNo='+curPage,this.searchEntity).then(function (response) {
 
 

@@ -131,25 +131,24 @@
 	<div class="sort">
 		<div class="py-container">
 			<div class="yui3-g SortList ">
-				<div class="yui3-u Left all-sort-list">
+                <!--yui3-u Left all-sort-list-->
+				<div class="yui3-u Left all-sort-list" >
 					<div class="all-sort-list2" >
-						<div class="item" >
-						<!--<div class="item bo" >-->
-							<!--<h3 ><a href="#" @click="findTwoOrSan(all.id)">{{all.name}}</a></h3>-->
-							<h3 v-for="all in itemList1">
-                                <a href="#" @mouseover="findTwoOrSan(all.id)" >{{all.name}}</a></h3>
-
-							<div class="item-list clearfix">
-								<div class="subitem" >
-									<dl class="fore1" v-for="oll in itemTwoList" >
-										<dt><a href="" v-for="ab in oll.tbItemCats3">{{ab.name}}</a></dt>
-										<dd><a href="">免费</a><a href="">小说</a></em><a href="">励志与成功</a><em><a href="">婚恋/两性
-                                        </a></em><em><a href="">文学</a></em><em><a href="">经管</a></em><em><a href="">畅读VIP</a></em></dd>
-                                        <!--<dt v-for="oll in itemTwoList"><a href="">{{oll.name}}</a></dt>-->
+						<div class="item bo" v-for="(all,index) in itemList1" @mouseout="hiden(index)" @mouseover="findTwoOrSan(all.id);show(index)">
+							<!--<h3 ><a href="#" @click="findTwoOrSan(all.id)">{{all.name}}</a></h3>{{item.tbItemCats3.name}}-->
+							<h3 >
+                                <a href="#">{{all.name}}</a></h3>
+							<div class="item-list clearfix" :id="'list'+index">
+								<div class="subitem">
+                                    <!--遍历二级类目-->
+									<dl class="fore1" v-for="item in itemTwoList">
+										<dt><a href="" >{{item.tbItemCats2.name}}</a></dt>
+										<!--<dd v-for="ii in item.tbItemCats3"><em><a href="">{{ii.name}}</a></em>-->
+                                        <!--遍历三级类目-->
+                                        <dd ><em v-for="ii in item.tbItemCats3"><a href="" >{{ii.name}}</a></em></dd>
 									</dl>
 								</div>
 							</div>
-
 						</div>
 					</div>
 				</div>
@@ -511,7 +510,7 @@
                         <div v-for="(content,index) in contentList"
                               v-if="content.categoryId==5" >
                             <a :href="content.url">
-                                <img height="400px" width="400px" :src="content.pic" />
+                                <img height="380px" width="380px" :src="content.pic" />
                             </a>
                         </div>
 
@@ -539,6 +538,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div id="floor-2" class="floor">
 		<div class="py-container">
 			<div class="title floors">
@@ -578,7 +578,7 @@
                         <div v-for="(content,index) in contentList"
                              v-if="content.categoryId==6" >
                             <a :href="content.url">
-                                <img height="400px" width="400px" :src="content.pic" />
+                                <img height="350px" width="350px" :src="content.pic" />
                             </a>
                         </div>
 
@@ -609,7 +609,231 @@
 			</div>
 		</div>
 	</div>
-	<!--商标-->
+
+
+    <hr>
+    <!--电脑办公-->
+    <div id="floor-2" class="floor">
+        <div class="py-container">
+            <div class="title floors">
+                <h3 class="fl">电脑办公</h3>
+                <div class="fr">
+                    <ul class="sui-nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab8" data-toggle="tab">热门</a>
+                        </li>
+                        <li>
+                            <a href="#tab9" data-toggle="tab">品质优选</a>
+                        </li>
+                        <li>
+                            <a href="#tab10" data-toggle="tab">新机尝鲜</a>
+                        </li>
+                        <li>
+                            <a href="#tab11" data-toggle="tab">高性价比</a>
+                        </li>
+                        <li>
+                            <a href="#tab12" data-toggle="tab">合约机</a>
+                        </li>
+                        <li>
+                            <a href="#tab13" data-toggle="tab">手机卡</a>
+                        </li>
+                        <li>
+                            <a href="#tab14" data-toggle="tab">手机配件</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix  tab-content floor-content">
+                <div id="tab8" class="tab-pane active">
+                    <div class="yui3-g Floor-1">
+
+
+                        <!--广告列表的页面展示-->
+                        <div v-for="(content,index) in contentList"
+                             v-if="content.categoryId==7" >
+                            <a :href="content.url">
+                                <img height="350px" width="350px" :src="content.pic" />
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div id="tab2" class="tab-pane">
+                    <p>第二个</p>
+                </div>
+                <div id="tab9" class="tab-pane">
+                    <p>第三个</p>
+                </div>
+                <div id="tab10" class="tab-pane">
+                    <p>第4个</p>
+                </div>
+                <div id="tab11" class="tab-pane">
+                    <p>第5个</p>
+                </div>
+                <div id="tab12" class="tab-pane">
+                    <p>第6个</p>
+                </div>
+                <div id="tab13" class="tab-pane">
+                    <p>第7个</p>
+                </div>
+                <div id="tab14" class="tab-pane">
+                    <p>第8个</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+    <!--家具家具-->
+    <div id="floor-2" class="floor">
+        <div class="py-container">
+            <div class="title floors">
+                <h3 class="fl">家居家具</h3>
+                <div class="fr">
+                    <ul class="sui-nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab8" data-toggle="tab">热门</a>
+                        </li>
+                        <li>
+                            <a href="#tab9" data-toggle="tab">品质优选</a>
+                        </li>
+                        <li>
+                            <a href="#tab10" data-toggle="tab">新机尝鲜</a>
+                        </li>
+                        <li>
+                            <a href="#tab11" data-toggle="tab">高性价比</a>
+                        </li>
+                        <li>
+                            <a href="#tab12" data-toggle="tab">合约机</a>
+                        </li>
+                        <li>
+                            <a href="#tab13" data-toggle="tab">手机卡</a>
+                        </li>
+                        <li>
+                            <a href="#tab14" data-toggle="tab">手机配件</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix  tab-content floor-content">
+                <div id="tab8" class="tab-pane active">
+                    <div class="yui3-g Floor-1">
+
+
+                        <!--广告列表的页面展示-->
+                        <div v-for="(content,index) in contentList"
+                             v-if="content.categoryId==8" >
+                            <a :href="content.url">
+                                <img height="350px" width="350px" :src="content.pic" />
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div id="tab2" class="tab-pane">
+                    <p>第二个</p>
+                </div>
+                <div id="tab9" class="tab-pane">
+                    <p>第三个</p>
+                </div>
+                <div id="tab10" class="tab-pane">
+                    <p>第4个</p>
+                </div>
+                <div id="tab11" class="tab-pane">
+                    <p>第5个</p>
+                </div>
+                <div id="tab12" class="tab-pane">
+                    <p>第6个</p>
+                </div>
+                <div id="tab13" class="tab-pane">
+                    <p>第7个</p>
+                </div>
+                <div id="tab14" class="tab-pane">
+                    <p>第8个</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+    <!--运动户外-->
+    <div id="floor-2" class="floor">
+        <div class="py-container">
+            <div class="title floors">
+                <h3 class="fl">运动户外</h3>
+                <div class="fr">
+                    <ul class="sui-nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab8" data-toggle="tab">热门</a>
+                        </li>
+                        <li>
+                            <a href="#tab9" data-toggle="tab">品质优选</a>
+                        </li>
+                        <li>
+                            <a href="#tab10" data-toggle="tab">新机尝鲜</a>
+                        </li>
+                        <li>
+                            <a href="#tab11" data-toggle="tab">高性价比</a>
+                        </li>
+                        <li>
+                            <a href="#tab12" data-toggle="tab">合约机</a>
+                        </li>
+                        <li>
+                            <a href="#tab13" data-toggle="tab">手机卡</a>
+                        </li>
+                        <li>
+                            <a href="#tab14" data-toggle="tab">手机配件</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix  tab-content floor-content">
+                <div id="tab8" class="tab-pane active">
+                    <div class="yui3-g Floor-1">
+
+
+                        <!--广告列表的页面展示-->
+                        <div v-for="(content,index) in contentList"
+                             v-if="content.categoryId==9" >
+                            <a :href="content.url">
+                                <img height="350px" width="350px" :src="content.pic" />
+                            </a>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div id="tab2" class="tab-pane">
+                    <p>第二个</p>
+                </div>
+                <div id="tab9" class="tab-pane">
+                    <p>第三个</p>
+                </div>
+                <div id="tab10" class="tab-pane">
+                    <p>第4个</p>
+                </div>
+                <div id="tab11" class="tab-pane">
+                    <p>第5个</p>
+                </div>
+                <div id="tab12" class="tab-pane">
+                    <p>第6个</p>
+                </div>
+                <div id="tab13" class="tab-pane">
+                    <p>第7个</p>
+                </div>
+                <div id="tab14" class="tab-pane">
+                    <p>第8个</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--商标-->
 	<div class="brand">
 		<div class="py-container">
 			<ul class="Brand-list blockgary">

@@ -28,5 +28,6 @@ public interface AddressService extends CoreService<TbAddress> {
 	 * @return
 	 */
 	PageInfo<TbAddress> findPage(Integer pageNo, Integer pageSize, TbAddress Address);
-	
+
+    List<TbAddress> findAllByUserName(String username);
 }
