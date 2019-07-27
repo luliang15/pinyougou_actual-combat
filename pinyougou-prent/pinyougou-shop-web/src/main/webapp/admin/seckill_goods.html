@@ -1,0 +1,193 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>秒杀商品管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini">
+<div id="app">
+    <!-- .box-body -->
+
+    <div class="box-header with-border">
+        <h3 class="box-title">秒杀商品</h3>
+    </div>
+
+    <div class="box-body">
+
+        <!-- 数据表格 -->
+        <div class="table-box">
+
+            <!--工具栏-->
+            <div class="pull-left">
+                <div class="form-group form-inline">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" title="删除"><i class="fa fa-trash-o"></i> 删除
+                        </button>
+                        <button type="button" class="btn btn-default" title="刷新" @click="newPage()"><i class="fa fa-refresh"></i> 刷新
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="box-tools pull-right">
+                <div class="has-feedback">
+                    商品名称：<input>
+                    <button class="btn btn-default">查询</button>
+                </div>
+            </div>
+            <!--工具栏/-->
+
+            {{ids}}
+            <!--数据列表-->
+            <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+                <thead>
+                <tr>
+                    <th class="" style="padding-right:0px">
+                        <input id="selall" type="checkbox" class="icheckbox_square-blue">
+                    </th>
+                    <th class="sorting_asc">商品ID</th>
+                    <th class="sorting">商品名称</th>
+                    <th class="sorting">商品价格</th>
+                    <th class="sorting">秒杀价</th>
+                    <th class="sorting">开始时间</th>
+                    <th class="sorting">结束时间</th>
+                    <th class="sorting">数量</th>
+                    <th class="sorting">库存量</th>
+                    <th class="sorting">状态</th>
+                    <th class="text-center">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="item in list">
+                    <td><input :value="item.id" v-model="ids" type="checkbox"></td>
+                    <td>{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.costPrice}}</td>
+                    <td>{{item.startTime}}</td>
+                    <td>{{item.endTime}}</td>
+                    <td>{{item.num}}</td>
+                    <td>{{item.stockCount}}</td>
+                    <td>{{item.status==1?"已审核":"未审核"}}</td>
+                    <td>
+                        <a data-toggle="modal" data-target=".edit" data-keyboard="false"
+                           class="sui-btn  btn-info add-new" @click="addId(add.id);findAllByUserName()">编辑</a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <!--数据列表/-->
+
+            <!--分页条-->
+            <navigation :pages="pages"  @navpage="searchList"></navigation>
+
+        </div>
+        <!-- 数据表格 /-->
+        <div tabindex="-1" role="dialog" data-hasfoot="false" class="sui-modal hide fade edit"
+             style="width:580px;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" data-dismiss="modal" @click="findAllByUserName();active='';active1=''" aria-hidden="true" class="sui-close">
+                            ×
+                        </button>
+                        <h4 id="myModalLabel" class="modal-title">新增地址/编辑地址</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form action="" class="sui-form form-horizontal">
+                            {{entity_1}}
+                            <div class="control-group">
+                                <label class="control-label">收货人：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" v-model="entity_1.contact" >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">所在地区：</label>
+                                <div class="controls">
+                                    <div data-toggle="distpicker">
+                                        <div class="form-group area">
+
+                                            <select class="form-control" id="province1" v-model="entity_1.provinceId" id="province1"  :data-province="entity_1.provinceId"></select>
+                                        </div>
+                                        <div class="form-group area">
+                                            <select class="form-control" id="city1" v-model="entity_1.cityId" id="city1" :data-city="entity_1.cityId"></select>
+                                        </div>
+                                        <div class="form-group area">
+                                            <select class="form-control" id="district1" v-model="entity_1.districtId" id="district1" :data-district="entity_1.districtId"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">详细地址：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-large" v-model="entity_1.address">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">联系电话：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" v-model="entity_1.mobile" >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">是否设为默认：</label>
+                                <div class="controls">
+                                    <a href="#" class="sui-btn btn-default" @click="addIsDefault(1)" :class="{active: active1 == 1}">是</a>
+                                    <a href="#" class="sui-btn btn-default" @click="addIsDefault(0)" :class="{active: active1 == 0}">否</a>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">备注：</label>
+                                <div class="controls">
+                                    <input type="text" class="input-medium" v-model="entity_1.notes" >
+                                </div>
+                                <div class="othername">
+                                    建议填写常用地址：<a href="#" class="sui-btn btn-default" @click="addAlias('家里')" :class="{active: active == '家里'}">家里</a>　<a href="#" class="sui-btn btn-default" @click="addAlias('父母家')" :class="{active: active == '父母家'}">父母家</a>　
+                                    <a href="#" class="sui-btn btn-default" @click="addAlias('公司')" :class="{active: active == '公司'}">公司</a>
+                                </div>
+                            </div>
+
+                        </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-ok="modal" class="sui-btn btn-primary btn-large" @click="save();active='';active1=''">确定
+                        </button>
+                        <button type="button" data-dismiss="modal"
+                                class="sui-btn btn-default btn-large" @click="findAllByUserName();active='';active1=''">取消
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- /.box-body -->
+</div>
+<script src="../plugins/vue/vue.js"></script>
+<script src="../plugins/axios/axios.js"></script>
+<script src="../js/pagination.js"></script>
+<script src="../js/controller/seckillGoodsController.js"></script>
+
+</body>
+
+</html>

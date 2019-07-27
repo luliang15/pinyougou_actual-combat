@@ -1,17 +1,15 @@
 package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.IdWorker;
-import com.pinyougou.mapper.TbItemMapper;
-import com.pinyougou.mapper.TbOrderItemMapper;
-import com.pinyougou.mapper.TbOrderMapper;
-import com.pinyougou.mapper.TbPayLogMapper;
+import com.pinyougou.mapper.*;
 import com.pinyougou.order.service.OrderService;
-import com.pinyougou.pojo.TbItem;
-import com.pinyougou.pojo.TbOrder;
-import com.pinyougou.pojo.TbOrderItem;
-import com.pinyougou.pojo.TbPayLog;
+import com.pinyougou.pojo.*;
 import entity.Cart;
+import entity.OrderList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
@@ -227,6 +225,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId) {
+
         Example example = new Example(TbOrder.class);
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo("sellerId",sellerId );
@@ -273,4 +272,112 @@ public class OrderServiceImpl implements OrderService {
         return tbOrders;
 
     }
+
+
+    /**
+     * 根据用户名查询用户的订单列表
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
+                                             Integer pageSize) {
+
+        //封装分页需要的数据与页面要展示的数据的Map
+        Map<String,Object> mapInfo = new HashMap<>();
+
+        //创建分页对象、pageNo表示第一页，pageSize表示每页显示条数
+        PageHelper.startPage(pageNo,pageSize);
+
+        //这里封装前端页面需要展示的数据
+        List<Map<String,Object>> list = new ArrayList<>();
+
+        //.1查出用户的订单列表
+        TbOrder tbOrder = new TbOrder();
+        tbOrder.setUserId(userId);
+
+        //获取到第一级的订单列表
+        List<TbOrder> tbOrders = orderMapper.select(tbOrder);
+
+        //创建PageInfo对象 将第一级的订单列表进行分页展示
+        PageInfo<TbOrder> pageInfo = new PageInfo<>(tbOrders);
+
+        String str = JSON.toJSONString(pageInfo);
+        //5.再将字符串（成对象）反序列化给前端
+        PageInfo pageinfo1 = JSON.parseObject(str, PageInfo.class);
+
+        // 遍历大的订单列表
+        for (TbOrder order : tbOrders) {
+
+            Map<String,Object> map = new HashMap<>();
+
+            //直接封装order对象，order对象中包括有：订单创建时间、订单编号、店铺的名称、订单的支付状态、订单价格
+            map.put("order",order);     //order做为map的第一个键值对
+
+
+            TbOrderItem tbOrderItem = new TbOrderItem();
+
+            //将orderId设置为查询条件
+            tbOrderItem.setOrderId(order.getOrderId());
+
+            //根据订单id获取到订单item的对象
+            List<TbOrderItem> tbOrderItems = orderItemMapper.select(tbOrderItem);
+
+            //将整个的订单描述集合添加进map中，tbOrderItem作为map的第二个键值对
+            map.put("tbOrderItems",tbOrderItems);
+
+            for (TbOrderItem orderItem : tbOrderItems) {
+
+                //根据itemId获取到sku
+                TbItem tbItem = itemMapper.selectByPrimaryKey(orderItem.getItemId());
+
+                //获取商品的规格信息
+                String spec = tbItem.getSpec();
+
+                //订单的规格展示作为map的第三个键值对
+                map.put("spec",spec);
+            }
+            //最后将、封装好的map添加进List<map>中
+            list.add(map);
+        }
+        //第一个键值对是页面要展示的数据
+        mapInfo.put("Orders",list);
+        //第二个键值对是分页展示需要的数据
+        mapInfo.put("pageInfo",pageinfo1);
+
+        return mapInfo;
+    }
+
+
+    @Autowired
+    private TbGoodsMapper goodsMapper;
+
+    @Override
+    public List<OrderList> findAllOrder() {
+        //创建list集合进行封装查询到的所有的自定义订单对象
+        List<OrderList> orderList = new ArrayList<>();
+        //创建自定义订单对象
+        OrderList orderList1 = new OrderList();
+        //查询出所有的订单
+        List<TbOrder> orders = orderMapper.selectAll();
+        if(orders==null){
+            return null;
+        }
+        //遍历
+        for (TbOrder order : orders) {
+            orderList1.setOrder(order);
+            //根据订单id查找订单选项
+            Example example=new Example(TbOrderItem.class);
+            example.createCriteria().andEqualTo("orderId",order.getOrderId());
+            List<TbOrderItem> orderItems = orderItemMapper.selectByExample(example);
+            orderList1.setOrderItems(orderItems);
+            //根据订单选项中的商品id获取商品名称
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getItemId());
+            orderList1.setGoods(tbGoods);
+            orderList.add(orderList1);
+        }
+        return orderList;
+    }
+
 }

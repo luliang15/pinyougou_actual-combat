@@ -1,12 +1,16 @@
 package com.pinyougou.user.controller;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
+
+import com.pinyougou.order.service.OrderService;
 
 import com.pinyougou.pojo.TbAddress;
 import com.pinyougou.user.service.AddressService;
 import com.pinyougou.user.service.UserService;
 import entity.Error;
+
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.DigestUtils;
 import org.springframework.validation.BindingResult;
@@ -19,6 +23,9 @@ import com.github.pagehelper.PageInfo;
 import entity.Result;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 /**
  * controller
@@ -31,7 +38,16 @@ public class UserController {
 
 	@Reference
 	private UserService userService;
+
+
+	@Reference  //注入订单实力化对象
+    private OrderService orderService;
 	
+
+	@Reference
+	private AddressService addressService;
+
+
 	/**
 	 * 返回全部列表
 	 * @return
@@ -183,16 +199,89 @@ public class UserController {
             //如果没成
             return new Result(false,"发送验证码失败！");
         }
-
     }
 
-    @Reference
-	private AddressService service;
-	@RequestMapping("/test")
-	public TbAddress AA(){
+    /**
+     *
+     * 根据用户名查询到该用户的所有订单
+     *
+     */
+    @RequestMapping("/findUserIdOrder")
+    public Map<String,Object> findUserIdOrder(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+                                                    @RequestParam(value = "pageSize", defaultValue = "2", required = true) Integer pageSize){
 
-		return service.findOne(59L);
+        //根据安全框架获取到用户名
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        return orderService.findUserIdOrder(userId,pageNo,pageSize);
+    }
+
+    @RequestMapping("/addUser")
+	public Result addUser(@RequestBody TbUser user,String birthday){
+		try {
+
+			SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+			Date parse = format.parse(birthday);
+			user.setBirthday(parse);
+			userService.updateByKey(user);
+			return new Result(true,"信息添加成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"信息添加失败");
+		}
 	}
-
+	//查找全部
+	@RequestMapping("/findAllAddress")
+	public List<TbAddress> findAllAddress(){
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		List<TbAddress> address = null;
+		try {
+			address = addressService.findAllByUserName(username);
+			return address;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	//修改
+	@RequestMapping("/updateAddress")
+	public Result updateAddress(@RequestBody TbAddress address){
+		try {
+			addressService.update(address);
+			return new Result(true,"修改成功!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true,"修改失败!");
+		}
+	}
+	//删除
+	@RequestMapping("/deleteAddress")
+	public Result deleteAddress(Long id){
+		try {
+			addressService.deleteByPrimaryKey(id);
+			return new Result(true,"删除成功!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false,"删除失败!");
+		}
+	}
+	@RequestMapping("/addAddress")
+	public Result addAddress(@RequestBody TbAddress address){
+		String username = SecurityContextHolder.getContext().getAuthentication().getName();
+		address.setUserId(username);
+		address.setCreateDate(new Date());
+		try {
+			addressService.add(address);
+			return new Result(true,"添加地址成功!");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(true,"添加地址失败!");
+		}
+	}
+	@RequestMapping("/findOneAddress/{id}")
+	public TbAddress findOneAddress(@PathVariable(value = "id") Long id){
+		TbAddress address = addressService.findOne(id);
+		return address;
+	}
 
 }

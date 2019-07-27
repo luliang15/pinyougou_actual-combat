@@ -1,5 +1,4 @@
 package com.pinyougou.sellergoods.service.impl;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,29 +17,29 @@ import tk.mybatis.mapper.entity.Example;
 
 import com.pinyougou.mapper.TbSpecificationMapper;
 import com.pinyougou.pojo.TbSpecification;
-
 import com.pinyougou.sellergoods.service.SpecificationService;
+
 
 
 /**
  * 服务实现层
- *
  * @author Administrator
+ *
  */
 @Service
-public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification> implements SpecificationService {
+public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  implements SpecificationService {
 
-    //规格表
-    private TbSpecificationMapper specificationMapper;
+	//规格表
+	private TbSpecificationMapper specificationMapper;
 
-    @Autowired   //规格的选项表
+	@Autowired   //规格的选项表
     private TbSpecificationOptionMapper optionMapper;
 
-    @Autowired
-    public SpecificationServiceImpl(TbSpecificationMapper specificationMapper) {
-        super(specificationMapper, TbSpecification.class);
-        this.specificationMapper = specificationMapper;
-    }
+	@Autowired
+	public SpecificationServiceImpl(TbSpecificationMapper specificationMapper) {
+		super(specificationMapper, TbSpecification.class);
+		this.specificationMapper=specificationMapper;
+	}
 
 
     /**

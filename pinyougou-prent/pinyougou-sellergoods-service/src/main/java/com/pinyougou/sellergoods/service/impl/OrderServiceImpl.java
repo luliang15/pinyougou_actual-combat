@@ -161,6 +161,7 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 		example.orderBy("createTime");
 		List<TbOrder> tbOrders = orderMapper.selectByExample(example);
 		PageInfo<TbOrder> info = new PageInfo<TbOrder>(tbOrders);
+		//分页4.0bug
 		String s = JSON.toJSONString(info);
 		PageInfo<TbOrder> pageInfo = JSON.parseObject(s, PageInfo.class);
 
@@ -172,7 +173,6 @@ public class OrderServiceImpl extends CoreServiceImpl<TbOrder>  implements Order
 			Order order = new Order();
 			order.setTbOrder(tbOrder);
 			//根据sellerId获取商户所有SPU
-
 			Long orderId = tbOrder.getOrderId();
 			Example example1= new Example(TbOrderItem.class);
 			Example.Criteria criteria1 = example1.createCriteria();

@@ -1,23 +1,19 @@
 package com.pinyougou.user.service.impl;
-import java.util.Arrays;
-import java.util.List;
 
-import com.pinyougou.user.service.AddressService;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo; 									  
-import org.apache.commons.lang3.StringUtils;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreServiceImpl;
-
+import com.pinyougou.mapper.TbAddressMapper;
+import com.pinyougou.pojo.TbAddress;
+import com.pinyougou.user.service.AddressService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import tk.mybatis.mapper.entity.Example;
 
-import com.pinyougou.mapper.TbAddressMapper;
-import com.pinyougou.pojo.TbAddress;  
-
-
-
+import java.util.List;
 
 /**
  * 服务实现层
@@ -25,7 +21,7 @@ import com.pinyougou.pojo.TbAddress;
  *
  */
 @Service
-public class AddressServiceImpl extends CoreServiceImpl<TbAddress>  implements AddressService {
+public class AddressServiceImpl extends CoreServiceImpl<TbAddress> implements AddressService {
 
 	
 	private TbAddressMapper addressMapper;
@@ -65,43 +61,43 @@ public class AddressServiceImpl extends CoreServiceImpl<TbAddress>  implements A
         if(address!=null){			
 						if(StringUtils.isNotBlank(address.getUserId())){
 				criteria.andLike("userId","%"+address.getUserId()+"%");
-				//criteria.andUserIdLike("%"+address.getUserId()+"%");
+				//criteria.andUserIdLike("%"+Address.getUserId()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getProvinceId())){
 				criteria.andLike("provinceId","%"+address.getProvinceId()+"%");
-				//criteria.andProvinceIdLike("%"+address.getProvinceId()+"%");
+				//criteria.andProvinceIdLike("%"+Address.getProvinceId()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getCityId())){
 				criteria.andLike("cityId","%"+address.getCityId()+"%");
-				//criteria.andCityIdLike("%"+address.getCityId()+"%");
+				//criteria.andCityIdLike("%"+Address.getCityId()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getTownId())){
 				criteria.andLike("townId","%"+address.getTownId()+"%");
-				//criteria.andTownIdLike("%"+address.getTownId()+"%");
+				//criteria.andTownIdLike("%"+Address.getTownId()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getMobile())){
 				criteria.andLike("mobile","%"+address.getMobile()+"%");
-				//criteria.andMobileLike("%"+address.getMobile()+"%");
+				//criteria.andMobileLike("%"+Address.getMobile()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getAddress())){
-				criteria.andLike("address","%"+address.getAddress()+"%");
-				//criteria.andAddressLike("%"+address.getAddress()+"%");
+				criteria.andLike("Address","%"+address.getAddress()+"%");
+				//criteria.andAddressLike("%"+Address.getAddress()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getContact())){
 				criteria.andLike("contact","%"+address.getContact()+"%");
-				//criteria.andContactLike("%"+address.getContact()+"%");
+				//criteria.andContactLike("%"+Address.getContact()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getIsDefault())){
 				criteria.andLike("isDefault","%"+address.getIsDefault()+"%");
-				//criteria.andIsDefaultLike("%"+address.getIsDefault()+"%");
+				//criteria.andIsDefaultLike("%"+Address.getIsDefault()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getNotes())){
 				criteria.andLike("notes","%"+address.getNotes()+"%");
-				//criteria.andNotesLike("%"+address.getNotes()+"%");
+				//criteria.andNotesLike("%"+Address.getNotes()+"%");
 			}
 			if(StringUtils.isNotBlank(address.getAlias())){
 				criteria.andLike("alias","%"+address.getAlias()+"%");
-				//criteria.andAliasLike("%"+address.getAlias()+"%");
+				//criteria.andAliasLike("%"+Address.getAlias()+"%");
 			}
 	
 		}
@@ -113,5 +109,13 @@ public class AddressServiceImpl extends CoreServiceImpl<TbAddress>  implements A
 
         return pageInfo;
     }
-	
+
+	@Override
+	public List<TbAddress> findAllByUserName(String username) {
+		Example example=new Example(TbAddress.class);//其中tbaddress的作用为确定要操作的表
+		example.createCriteria().andEqualTo("userId",username);
+		List<TbAddress> tbAddresses = addressMapper.selectByExample(example);
+		return tbAddresses;
+	}
+
 }
