@@ -213,7 +213,8 @@ public class UserController {
         //根据安全框架获取到用户名
         String userId = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        return orderService.findUserIdOrder(userId,pageNo,pageSize);
+        // return orderService.findUserIdOrder(userId,pageNo,pageSize);
+		return null;
     }
 
     @RequestMapping("/addUser")

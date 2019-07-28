@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="pinyougou-es-import-1.0-SNAPSHOT">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/pinyougou-es-import/target/pinyougou-es-import-1.0-SNAPSHOT.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

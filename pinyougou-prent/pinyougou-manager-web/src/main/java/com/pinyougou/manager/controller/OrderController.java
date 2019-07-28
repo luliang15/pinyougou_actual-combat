@@ -59,8 +59,11 @@ public class OrderController<T> {
 	}
 	@RequestMapping("/findAllOrder")
 	public List<OrderList> findAllOrder(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
-		List<OrderList> orders= orderService.findAllOrder();
-		return orders;
+		// List<OrderList> orders= orderService.findAllOrder();
+		// return orders;
+		return null;
 
 	}
+
+
 }

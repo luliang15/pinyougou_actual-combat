@@ -1,5 +1,6 @@
 package com.pinyougou.order.service.impl;
 
+import com.alibaba.dubbo.common.utils.StringUtils;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.pinyougou.common.utils.DateUtils;
 import com.pinyougou.common.utils.IdWorker;
@@ -354,10 +355,17 @@ public class OrderServiceImpl implements OrderService {
             e.printStackTrace();
         }
 
+        //判断是查询某个用户还是查询全部用户
+        List<TbGoods> tbGoodsList;
+        if (StringUtils.isNotEmpty(sellerId)) {
+            TbGoods conditions = new TbGoods();
+            conditions.setSellerId(sellerId);
+            tbGoodsList = goodsMapper.select(conditions);
+        }else {
+            tbGoodsList = goodsMapper.selectAll();
+        }
 
-        TbGoods conditions = new TbGoods();
-        conditions.setSellerId(sellerId);
-        List<TbGoods> tbGoodsList = goodsMapper.select(conditions);
+
 
         Map<String, Object> map = new HashMap<>();
 
@@ -416,6 +424,26 @@ public class OrderServiceImpl implements OrderService {
         List<TbOrder> tbOrders = orderMapper.select(null);
         return tbOrders;
 
+    }
+
+    @Autowired
+    private TbItemCatMapper itemCatMapper;
+
+    @Override
+    public Map<String, Object> findCategorySell(Long catNo1, Long catNo2) {
+        TbItemCat itemcat = new TbItemCat();
+        if (catNo1 == null) {
+            catNo1 = 0L;
+        }
+        itemcat.setParentId(catNo1);
+        List<TbItemCat> tbItemCatList = itemCatMapper.select(itemcat);
+        for (TbItemCat tbItemCat : tbItemCatList) {
+
+            itemcat.setParentId(tbItemCat.getId());
+            List<TbItemCat> itemCat2List = itemCatMapper.select(itemcat);
+        }
+
+        return null;
     }
 
 
