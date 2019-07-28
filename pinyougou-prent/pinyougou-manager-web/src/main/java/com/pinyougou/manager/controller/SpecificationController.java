@@ -10,9 +10,7 @@ import entity.Specification;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * controller
@@ -132,6 +130,22 @@ public class SpecificationController {
 			e.printStackTrace();
 			return new Result(false, "导入数据有误！");
 		}
+
+	}
+
+	//状态审核
+	@RequestMapping("/updateStatus")
+	public Result updateStatus(@RequestBody Long[] ids,String status){
+
+		try {
+			specificationService.updateStatus(ids,status);
+			return new Result(true, "审核成功。。。");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false, "网络有点差，请稍后再试");
+		}
+
+
 
 
 	}

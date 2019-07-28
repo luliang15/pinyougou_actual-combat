@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>商品管理</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/AdminLTE.css">
+    <link rel="stylesheet" href="../plugins/adminLTE/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+    <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../plugins/birthday.js"></script>
+
+    <script>
+        $(function () {
+            $.ms_DatePicker({
+                YearSelector: "#select_year2",
+                MonthSelector: "#select_month2",
+                DaySelector: "#select_day2"
+
+
+            });
+            $.ms_DatePicker({
+                YearSelector: "#select_year1",
+                MonthSelector: "#select_month1",
+                DaySelector: "#select_day1"
+            });
+
+
+        });
+    </script>
+
+</head>
+
+<body class="hold-transition skin-red sidebar-mini">
+
+<br>
+
+
+<!-- .box-body -->
+<!--<table>
+    <tr>
+        <td>
+            <div id="chart" style="width: 600px;height:400px;" ></div>
+        </td>
+        <td>
+            <div id="chart2" style="width: 600px;height:400px;" ></div>
+        </td>
+    </tr>
+</table>-->
+
+
+<div class="control-group">
+    <label for="inputPassword" class="control-label">开始时间：</label>
+    <div class="controls">
+        <select id="select_year2" rel="2019" v-model="startTime_year"></select>年
+        <select id="select_month2" rel="7" v-model="startTime_month"></select>月
+        <select id="select_day2" rel="15" v-model="startTime_day"></select>日
+    </div>
+</div>
+<div class="control-group">
+    <label for="inputPassword" class="control-label">结束时间：</label>
+    <div class="controls">
+        <select id="select_year1" rel="2019" v-model="endTime_year"></select>年
+        <select id="select_month1" rel="8" v-model="endTime_month"></select>月
+        <select id="select_day1" rel="1" v-model="endTime_day"></select>日
+        &nbsp;&nbsp;
+        <button class="btn bg-olive btn-xs" onclick="createPicture()">生成图例</button>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button class="btn bg-olive btn-xs" onclick="turnSellTable()">查看表格</button>
+    </div>
+</div>
+<br>
+<br>
+<div id="chart" style="width: 1200px;height:500px;"></div>
+<br>
+<div id="chart2" style="width: 1200px;height:500px;"></div>
+
+
+</div>
+</body>
+
+<script src="../plugins/vue/vue.js"></script>
+<!--引入插件-->
+<script src="../js/controller/base.js"></script>
+<script src="../plugins/axios/axios.js"></script>
+<script src="../plugins/echarts/echarts.js"></script>
+<!--<script src="../js/controller/pictureController.js"></script>-->
+
+
+<script>
+
+
+    function createPicture() {
+        var myChart = echarts.init(document.getElementById('chart'));
+        var myChart2 = echarts.init(document.getElementById('chart2'));
+
+        var start_year = document.getElementById('select_year2').value
+        var start_month = document.getElementById('select_month2').value
+        var start_day = document.getElementById('select_day2').value
+        var end_year = document.getElementById('select_year1').value
+        var end_month = document.getElementById('select_month1').value
+        var end_day = document.getElementById('select_day1').value
+
+        var startTime = start_year + '-' + start_month + '-' + start_day
+        var endTime = end_year + '-' + end_month + '-' + end_day
+
+
+        axios.get("/seller/findSellInItem.shtml", {
+            params: {
+                startTime: startTime,
+                endTime: endTime
+            }
+        }).then((res) => {
+            myChart.setOption({
+                    title: {
+                        text: '商品销量'
+                    },
+                    toolbox: {
+                        feature: {
+                            saveAsImage: {},
+                            magicType: {
+                                type: ['line', 'bar']
+                            }
+                        }
+                    },
+                    tooltip: {
+                        trigger: 'axis',
+                        axisPointer: {
+                            type: 'cross',
+                            label: {
+                                backgroundColor: '#6a7985'
+                            }
+                        }
+                    },
+                    legend: {
+                        data: ['销量（单位：元）']
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: res.data.goodsNames
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        name: '销量（单位：元）',
+                        data: res.data.money,
+                        type: 'line'
+                    }]
+                }
+            )
+
+
+            var datas = []
+            for (let i = 0; i < res.data.goodsNames.length; i++) {
+
+                var obj = {value: '', name: ''}
+
+
+                obj.name = res.data.goodsNames[i]
+                obj.value = res.data.money[i]
+
+                datas.push(obj)
+            }
+
+
+            myChart2.setOption({
+                    title: {
+                        text: '商品销量占比',
+                        subtext: '',
+                        left: 'center'
+                    },
+                    tooltip: {//提示框组件
+                        trigger: 'item',//触发类型，在饼形图中为item
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"//提示内容格式
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        // top: 'middle',
+                        bottom: 0,
+                        left: 50,
+                        data: res.data.goodsNames
+                    },
+                    series: [{
+                        name: '每天销量占比',
+                        // radius : '55%',
+                        // center: ['50%', '60%'],
+                        selectedMode: 'single',
+                        data: datas,
+                        type: 'pie',
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }]
+                }
+            )
+        })
+    }
+
+    function turnSellTable() {
+        var start_year = document.getElementById('select_year2').value
+        var start_month = document.getElementById('select_month2').value
+        var start_day = document.getElementById('select_day2').value
+        var end_year = document.getElementById('select_year1').value
+        var end_month = document.getElementById('select_month1').value
+        var end_day = document.getElementById('select_day1').value
+
+        var startTime = start_year + '-' + start_month + '-' + start_day
+        var endTime = end_year + '-' + end_month + '-' + end_day
+
+        window.location.href='sellTable.html?startTime='+startTime+'&endTime='+endTime
+
+    }
+
+
+</script>
+
+
+</html>

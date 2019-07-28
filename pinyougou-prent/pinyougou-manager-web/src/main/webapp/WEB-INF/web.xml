@@ -48,11 +48,11 @@
 
 
 
-    <servlet-mapping>
-        <servlet-name>springmvc</servlet-name>
-        <!--映射*.shtml-->
-        <url-pattern>*.shtml</url-pattern>
-    </servlet-mapping>
+        <servlet-mapping>
+            <servlet-name>springmvc</servlet-name>
+            <!--映射*.shtml-->
+            <url-pattern>*.shtml</url-pattern>
+        </servlet-mapping>
 
 </web-app>
 

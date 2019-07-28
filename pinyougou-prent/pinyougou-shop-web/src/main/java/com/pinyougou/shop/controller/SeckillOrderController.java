@@ -2,12 +2,11 @@ package com.pinyougou.shop.controller;
 import java.util.List;
 import java.util.Map;
 
-import entity.Order;
+import com.pinyougou.seckill.service.SeckillOrderService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
-import com.pinyougou.pojo.TbOrder;
-import com.pinyougou.sellergoods.service.OrderService;
+import com.pinyougou.pojo.TbSeckillOrder;
 
 import com.github.pagehelper.PageInfo;
 import entity.Result;
@@ -17,38 +16,38 @@ import entity.Result;
  *
  */
 @RestController
-@RequestMapping("/order")
-public class OrderController {
+@RequestMapping("/seckillOrder")
+public class SeckillOrderController {
 
 	@Reference
-	private OrderService orderService;
+	private SeckillOrderService seckillOrderService;
 	
 	/**
 	 * 返回全部列表
 	 * @return
 	 */
 	@RequestMapping("/findAll")
-	public List<TbOrder> findAll(){			
-		return orderService.findAll();
+	public List<TbSeckillOrder> findAll(){			
+		return seckillOrderService.findAll();
 	}
 	
 	
 	
 	@RequestMapping("/findPage")
-    public PageInfo<TbOrder> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+    public PageInfo<TbSeckillOrder> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
                                       @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize) {
-        return orderService.findPage(pageNo, pageSize);
+        return seckillOrderService.findPage(pageNo, pageSize);
     }
 	
 	/**
 	 * 增加
-	 * @param order
+	 * @param seckillOrder
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbOrder order){
+	public Result add(@RequestBody TbSeckillOrder seckillOrder){
 		try {
-			orderService.add(order);
+			seckillOrderService.add(seckillOrder);
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -58,16 +57,13 @@ public class OrderController {
 	
 	/**
 	 * 修改
-	 * @param
+	 * @param seckillOrder
 	 * @return
 	 */
 	@RequestMapping("/update")
-	public Result update(String status,Long orderId){
+	public Result update(@RequestBody TbSeckillOrder seckillOrder){
 		try {
-			TbOrder tbOrder = new TbOrder();
-			tbOrder.setStatus(status);
-			tbOrder.setOrderId(orderId);
-            orderService.updateByPrimaryKeySelective(tbOrder);
+			seckillOrderService.update(seckillOrder);
 			return new Result(true, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,8 +77,8 @@ public class OrderController {
 	 * @return
 	 */
 	@RequestMapping("/findOne/{id}")
-	public TbOrder findOne(@PathVariable(value = "id") Long id){
-		return orderService.findOne(id);		
+	public TbSeckillOrder findOne(@PathVariable(value = "id") Long id){
+		return seckillOrderService.findOne(id);		
 	}
 	
 	/**
@@ -93,7 +89,7 @@ public class OrderController {
 	@RequestMapping("/delete")
 	public Result delete(@RequestBody Long[] ids){
 		try {
-			orderService.delete(ids);
+			seckillOrderService.delete(ids);
 			return new Result(true, "删除成功"); 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -104,20 +100,11 @@ public class OrderController {
 	
 
 	@RequestMapping("/search")
-    public PageInfo<TbOrder> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+    public Map<String, Object> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
                                       @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
-                                      @RequestBody TbOrder order) {
-        return orderService.findPage(pageNo, pageSize, order);
+                                      @RequestBody TbSeckillOrder seckillOrder) {
+		String shopName = SecurityContextHolder.getContext().getAuthentication().getName();
+		seckillOrder.setSellerId(shopName);
+        return seckillOrderService.findPage(pageNo, pageSize, seckillOrder);
     }
-
-    @RequestMapping("/findOrderBySellerId")
-	public Map<String,Object> findOrderBySellerId(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
-										  @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize){
-
-		String sellerId = SecurityContextHolder.getContext().getAuthentication().getName();
-		return orderService.findOrderBySellerId(sellerId,pageNo,pageSize);
-
-	}
-
-
 }

@@ -60,5 +60,6 @@ public interface SpecificationService extends CoreService<TbSpecification> {
 	 * @return
 	 */
 	PageInfo<TbSpecification> findPage(Integer pageNo, Integer pageSize, TbSpecification Specification);
-	
+
+    void updateStatus(Long[] ids, String status);
 }

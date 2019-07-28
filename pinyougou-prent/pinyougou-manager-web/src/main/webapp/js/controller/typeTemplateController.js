@@ -14,6 +14,18 @@
         searchEntity:{}
     },
     methods: {
+
+        //审核状态
+        updateStatus: function (ids,status) {
+            axios.post("/typeTemplate/updateStatus.shtml?status="+status,ids).then((resp)=>{
+                app.ids=[]
+                app.searchList(1)
+            })
+
+
+        },
+
+
         searchList:function (curPage) {
             axios.post('/typeTemplate/search.shtml?pageNo='+curPage,this.searchEntity).then(function (response) {
                 //获取数据

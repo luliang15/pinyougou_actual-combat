@@ -43,16 +43,11 @@ public interface OrderService {
 
     Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId);
 
+    Map<String, Object> findSellInItem(String startTime, String endTime, String sellerId);
+
     List<TbOrder> findAll();
 
+   /* List<OrderList> findAllOrder();*/
 
-    /**
-     * 根据用户名查询用户的订单列表
-     * @param userId
-     * @return
-     */
-    Map<String,Object> findUserIdOrder(String userId, Integer pageNo, Integer pageSize);
-
-    List<OrderList> findAllOrder();
-
+    Map<String, Object> findPage(Integer pageNo, Integer pageSize, TbOrder order);
 }

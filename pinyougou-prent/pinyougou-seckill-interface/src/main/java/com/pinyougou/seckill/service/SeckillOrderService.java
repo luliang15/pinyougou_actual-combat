@@ -1,5 +1,8 @@
 package com.pinyougou.seckill.service;
 import java.util.List;
+import java.util.Map;
+
+import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbSeckillOrder;
 
 import com.github.pagehelper.PageInfo;
@@ -27,7 +30,7 @@ public interface SeckillOrderService extends CoreService<TbSeckillOrder> {
 	 * @param pageSize 每页记录数
 	 * @return
 	 */
-	PageInfo<TbSeckillOrder> findPage(Integer pageNo, Integer pageSize, TbSeckillOrder SeckillOrder);
+	Map<String, Object> findPage(Integer pageNo, Integer pageSize, TbSeckillOrder SeckillOrder);
 
     /**
      *  此方法用于创建用户抢到秒杀订单且将订单存进redis中的（预订单）

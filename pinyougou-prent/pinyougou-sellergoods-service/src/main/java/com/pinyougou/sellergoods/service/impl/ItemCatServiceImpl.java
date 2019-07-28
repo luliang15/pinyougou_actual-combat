@@ -1,16 +1,14 @@
 package com.pinyougou.sellergoods.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.pinyougou.common.utils.SysConstants;
+import com.pinyougou.pojo.TbBrand;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo; 									  
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import com.pinyougou.core.service.CoreServiceImpl;
 
@@ -18,7 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
 
 import com.pinyougou.mapper.TbItemCatMapper;
-import com.pinyougou.pojo.TbItemCat;  
+import com.pinyougou.pojo.TbItemCat;
 
 import com.pinyougou.sellergoods.service.ItemCatService;
 
@@ -30,7 +28,7 @@ import com.pinyougou.sellergoods.service.ItemCatService;
  *
  */
 @Service
-public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements ItemCatService {
+public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat> implements ItemCatService {
 
 	
 	private TbItemCatMapper itemCatMapper;
@@ -44,7 +42,7 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 	
 	
 
-	
+
 	@Override
     public PageInfo<TbItemCat> findPage(Integer pageNo, Integer pageSize) {
         PageHelper.startPage(pageNo,pageSize);
@@ -57,23 +55,21 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         return pageInfo;
     }
 
-	
-	
 
-	 @Override
+    @Override
     public PageInfo<TbItemCat> findPage(Integer pageNo, Integer pageSize, TbItemCat itemCat) {
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
 
         Example example = new Example(TbItemCat.class);
         Example.Criteria criteria = example.createCriteria();
 
-        if(itemCat!=null){			
-						if(StringUtils.isNotBlank(itemCat.getName())){
-				criteria.andLike("name","%"+itemCat.getName()+"%");
-				//criteria.andNameLike("%"+itemCat.getName()+"%");
-			}
-	
-		}
+        if (itemCat != null) {
+            if (StringUtils.isNotBlank(itemCat.getName())) {
+                criteria.andLike("name", "%" + itemCat.getName() + "%");
+                //criteria.andNameLike("%"+itemCat.getName()+"%");
+            }
+
+        }
         List<TbItemCat> all = itemCatMapper.selectByExample(example);
         PageInfo<TbItemCat> info = new PageInfo<TbItemCat>(all);
         //序列化再反序列化
@@ -212,5 +208,17 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         return mapList;
     }
 
+    //更新状态cao
+    @Override
+    public void updateStatus(Long[] ids, String status) {
 
+        TbItemCat itemCat = new TbItemCat();
+        itemCat.setItemcatStatus(status);
+        Example example = new Example(TbItemCat.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Arrays.asList(ids));
+        if (ids!= null) {
+            itemCatMapper.updateByExampleSelective(itemCat, example);
+        }
+    }
 }
