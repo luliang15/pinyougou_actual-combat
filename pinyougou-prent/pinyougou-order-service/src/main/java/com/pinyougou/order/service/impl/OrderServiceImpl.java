@@ -2,6 +2,8 @@ package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.IdWorker;
@@ -332,7 +334,7 @@ public class OrderServiceImpl implements OrderService {
                 //根据itemId获取到sku
                 TbItem tbItem = itemMapper.selectByPrimaryKey(orderItem.getItemId());
 
-                //获取商品的规格信息
+                //获取商品的规格信息，此商品规格的数据在数据库中是json字符串形式
                 String spec = tbItem.getSpec();
 
                 //订单的规格展示作为map的第三个键值对

@@ -227,10 +227,23 @@ $(function(){
                                 <table class="sui-table table-bordered order-datatable">
                                     <tbody>
                                         <tr v-for="Array in list.tbOrderItems" >
-                                            <td width="35%">
-                                                <div class="typographic"><img :src="Array.picPath" />
-                                                    <a href="#" class="block-text">{{Array.title}}</a>
-                                                    <span class="guige">规格：{{list.spec}}</span>
+                                            <td width="35%">{{list.spec}}
+                                                <div class="typographic"><img height="120px" width="120px" :src="Array.picPath" />
+
+                                                    <!--<a v-for="(value,key) in list.spec">{{key}}&nbsp;{{value}}-->
+                                                    <table>
+                                                        <tr>
+                                                            <td>
+                                                                <a href="#" class="block-text">{{Array.title}}</a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <span class="guige"><h3 style="color: #1ba157" v-for="(value,key) in list.spec">{{key}}&nbsp;{{value}}</h3></span>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+
                                                 </div>
                                             </td>
                                             <td width="5%" class="center">

@@ -3,6 +3,7 @@ package com.pinyougou.cart.service;
 import entity.Cart;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName:CartService
@@ -50,5 +51,7 @@ public interface CartService {
      * @param cartList
      */
     public void saveCartListToRedis(String username,List<Cart> cartList);
+
+
 
 }

@@ -32,4 +32,7 @@ public class SysConstants {
 
     //分类商品的key
     public static final String ITEMCATLIST = "itemCatList";
+
+    //我的收藏的商品Favorite
+    public static final String MY_FAVORITE = "My_Favorite";
 }

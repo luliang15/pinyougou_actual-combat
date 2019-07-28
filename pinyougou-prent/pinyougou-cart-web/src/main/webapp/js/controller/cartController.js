@@ -17,6 +17,7 @@ var app = new Vue({
         address:{},    //定义一个变量
         //这里需要给paymentType定义一个默认值。如果不给默认值，页面不会渲染
         order:{/*paymentType:'1'*/},     //定义订单对象，用于绑定页面上所有需要提交的数据
+
     },
     //3.放置方法的地方
     methods:{
@@ -159,6 +160,30 @@ var app = new Vue({
                         alert("提交失败！！")
                     }
 
+                }
+            )
+        },
+
+        //定义一个点击函数，点将商品移到我的收藏中,点击移到我的关注的时候跳转到用户中心的我的收藏
+        MoveMyFavorite:function (itemId) {
+
+            axios.get('http://localhost:9106/user/favorite.shtml',{
+                params:{
+                    itemId:itemId
+                },
+                //客户端在ajax的时候也要携带cookie到服务器
+                withCredentials:true
+                }
+               ).then(
+                function (response) {  //获取到的map对象
+
+                    //判断移到我的收藏是否成功
+                    if(response.data.success){
+
+                        window.location.href = "http://localhost:9106/home-index.html"
+                    }else {
+                        alert("移到我的收藏失败！！！")
+                    }
                 }
             )
         }

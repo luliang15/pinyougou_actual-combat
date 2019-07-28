@@ -22,6 +22,8 @@ import com.pinyougou.pojo.TbUser;
 import com.github.pagehelper.PageInfo;
 import entity.Result;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -283,5 +285,40 @@ public class UserController {
 		TbAddress address = addressService.findOne(id);
 		return address;
 	}
+
+
+    /**
+     * 根据商品id触发点击事件将商品移到我的收藏中
+     * @param itemId  商品Id
+     * @return  http://localhost:9106/home-index.html
+     */
+    @RequestMapping("/favorite")
+    //跨域请求
+    @CrossOrigin(origins = {"http://localhost:9107"},allowCredentials = "true")
+    public Result AddFavorite(Long itemId){
+
+        try {
+            userService.moveMyFavorite(itemId);
+            //如果跳转到我的收藏页面chengg
+            return new Result(true,"添加收藏成功");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"添加收藏失败");
+        }
+    }
+
+    /**
+     * 接收前端发送的请求
+     * 根据点击事件触发的查询所有我的收藏的信息页面
+     */
+    @RequestMapping("/myFavorite")
+    @CrossOrigin(origins = {"http://localhost:9107"},allowCredentials = "true")
+    public List<Map<String,Object>> findMyFavorite(){
+
+        List<Map<String,Object>> map = userService.findMyFavorite();
+
+        return map;
+    }
 
 }

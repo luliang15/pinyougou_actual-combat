@@ -9,6 +9,7 @@ import entity.Result;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName:CartController
@@ -108,7 +110,7 @@ public class CartController {
      */
     @RequestMapping("/addGoodsToCartList")
     //指定访问的域来访，可以携带cookie   这就是spring框架提供的跨域访问的注解 可以放在类上，跨整个类
-    @CrossOrigin(origins = {"http://localhost:9105"},allowCredentials = "true")
+    @CrossOrigin(origins = {"http://localhost:9105","http://localhost:9106"},allowCredentials = "true")
     public Result addGoodsToCartList(Long itemId, Integer num,
                                      HttpServletRequest request,
                                      HttpServletResponse response){
@@ -198,4 +200,6 @@ public class CartController {
 
         return SecurityContextHolder.getContext().getAuthentication().getName();
     }
+
+
 }
