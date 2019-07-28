@@ -1,11 +1,5 @@
-package com.pinyougou.common.utils;
+package com.pinyougou.manager.utils;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -14,32 +8,51 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 //文件导入数据库
-public class POIUtils {
+public class IncreasePOIUtils {
     private final static String xls = "xls";
     private final static String xlsx = "xlsx";
     private final static String DATE_FORMAT = "yyyy/MM/dd";
     /**
      * 读入excel文件，解析后返回
-     * @param file
+     * @param
      * @throws IOException
      */
-    public static List<String[]> readExcel(MultipartFile file) throws IOException {
+    public static  List<Map<String,String[]>>  readExcel(MultipartFile file) throws IOException {
+
+
+      /*  List<String[]> list = new ArrayList<String[]>();*/
+        //定义map存放每页的map对象(每循环一个list集合（对应每一页的数据，每循环一个map则对应当前的每一行数据） )
+        List<Map<String,String[]>> mapList = new ArrayList<>();
 
         //检查文件
         checkFile(file);
         //获得Workbook工作薄对象
         Workbook workbook = getWorkBook(file);
-        //创建返回对象，把每行中的值作为一个数组，所有行作为一个集合返回
-        List<String[]> list = new ArrayList<String[]>();
+
+        int count = 1;
         if(workbook != null){
             for(int sheetNum = 0;sheetNum < workbook.getNumberOfSheets();sheetNum++){
+                //每走一页就会创建一个map对象
+                Map<String,String[]> map = new HashMap<>();
+
                 //获得当前sheet工作表
                 Sheet sheet = workbook.getSheetAt(sheetNum);
                 if(sheet == null){
                     continue;
                 }
+
+
                 //获得当前sheet的开始行
                 int firstRowNum  = sheet.getFirstRowNum();
                 //获得当前sheet的结束行
@@ -55,18 +68,25 @@ public class POIUtils {
                     int firstCellNum = row.getFirstCellNum();
                     //获得当前行的列数
                     int lastCellNum = row.getPhysicalNumberOfCells();
-                    String[] cells = new String[row.getPhysicalNumberOfCells()];
+                    String[] cells = new String[lastCellNum];
                     //循环当前行
                     for(int cellNum = firstCellNum; cellNum < lastCellNum;cellNum++){
+
                         Cell cell = row.getCell(cellNum);
+
                         cells[cellNum] = getCellValue(cell);
                     }
-                    list.add(cells);
+                  /*  list.add(cells);*/
+                    //每一行多列的数组都存放在数组中最终，几行对应几个map集合
+                    map.put(count+"",cells);
+                    count++;
                 }
+            //每行数数组存放在数组中，最终
+            mapList.add(map);
             }
             workbook.close();
         }
-        return list;
+        return mapList;
     }
 
     //校验文件是否合法

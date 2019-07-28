@@ -187,7 +187,7 @@ var app = new Vue({
         //poi数据导入
         daoRu:function () {
             if (this.jsonList==''){
-                alert("不要作死，请先上传文件")
+                alert("不要作死，请先上传数据文件")
                 return false
             } else {
                 axios.post("/brand/into.shtml",this.jsonList).then((resp)=>{

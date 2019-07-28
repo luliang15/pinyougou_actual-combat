@@ -8,7 +8,9 @@
         //optionList:[]代表一个规格可能有多个选项，使用数组容器装
         entity: {specification: {}, optionList: [{}]},
         ids: [],
-        searchEntity: {}
+        searchEntity: {},
+        jsonList:[],
+        message:"暂无数据请先导入数据",
     },
     methods: {
 
@@ -164,13 +166,30 @@
 
             }).then(function (response) {
                 if (response.data.success) {
-                    //上传成功，会打印出上传的路径
-                    alert("上传成功")
+                    app.jsonList =JSON.parse(response.data.message)
                 } else {
                     //上传失败
                     alert(response.data.message);
                 }
             })
+        },
+
+        //poi数据导入
+        daoRu:function () {
+            if (this.jsonList==''){
+                alert("不要作死，请先上传数据文件")
+                return false
+            } else {
+                axios.post("/specification/into.shtml",this.jsonList).then((resp)=>{
+                    if (resp.data.message){
+                        alert("导入成功")
+                        location.reload()
+                    } else {
+                        alert("导入失败")
+                    }
+                })
+            }
+
         },
 
 
