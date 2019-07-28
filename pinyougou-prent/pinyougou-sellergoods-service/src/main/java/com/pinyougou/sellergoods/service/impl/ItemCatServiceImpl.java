@@ -1,16 +1,14 @@
 package com.pinyougou.sellergoods.service.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.pinyougou.common.utils.SysConstants;
+import com.pinyougou.pojo.TbBrand;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo; 									  
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import com.pinyougou.core.service.CoreServiceImpl;
 
@@ -18,7 +16,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
 
 import com.pinyougou.mapper.TbItemCatMapper;
-import com.pinyougou.pojo.TbItemCat;  
+import com.pinyougou.pojo.TbItemCat;
 
 import com.pinyougou.sellergoods.service.ItemCatService;
 
@@ -30,7 +28,7 @@ import com.pinyougou.sellergoods.service.ItemCatService;
  *
  */
 @Service
-public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements ItemCatService {
+public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat> implements ItemCatService {
 
 	
 	private TbItemCatMapper itemCatMapper;
@@ -44,7 +42,7 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 	
 	
 
-	
+
 	@Override
     public PageInfo<TbItemCat> findPage(Integer pageNo, Integer pageSize) {
         PageHelper.startPage(pageNo,pageSize);
@@ -57,23 +55,21 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         return pageInfo;
     }
 
-	
-	
 
-	 @Override
+    @Override
     public PageInfo<TbItemCat> findPage(Integer pageNo, Integer pageSize, TbItemCat itemCat) {
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
 
         Example example = new Example(TbItemCat.class);
         Example.Criteria criteria = example.createCriteria();
 
-        if(itemCat!=null){			
-						if(StringUtils.isNotBlank(itemCat.getName())){
-				criteria.andLike("name","%"+itemCat.getName()+"%");
-				//criteria.andNameLike("%"+itemCat.getName()+"%");
-			}
-	
-		}
+        if (itemCat != null) {
+            if (StringUtils.isNotBlank(itemCat.getName())) {
+                criteria.andLike("name", "%" + itemCat.getName() + "%");
+                //criteria.andNameLike("%"+itemCat.getName()+"%");
+            }
+
+        }
         List<TbItemCat> all = itemCatMapper.selectByExample(example);
         PageInfo<TbItemCat> info = new PageInfo<TbItemCat>(all);
         //序列化再反序列化
@@ -158,7 +154,7 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
      * //list中再包含一个map，map中有多个键值对，第一个键值是二级类目的key与value
      * //第二个键值对中是三级类目的可以与value
      *
-     * @param parentId
+     * @param parentId 一级类目的id  就是二级类目的parentId
      * @return
      */
     @Override
@@ -172,8 +168,8 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
         //根据传递的parentId查询到二级类目的数据
         itemCat.setParentId(parentId);
 
-        //2.判断，当第一次从redis中没有获取到item商品列表的数据时
-        if(redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2") == null){
+        //2.判断，当第一次从redis中没有获取到item商品列表的数据时   加上一级的id去做大key
+        if(redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2"+parentId) == null){
 
             //从数据库中查询获取数据,二级类目的数据
             List<TbItemCat> tbItemCats2 = itemCatMapper.select(itemCat);
@@ -183,8 +179,9 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 
                 HashMap<String, Object> map = new HashMap<>();
 
-                //创建根据二级类目的parentId的条件
-                itemCat.setParentId(tbItemCat.getParentId());
+                //创建根据二级类目的id作为条件。二级的id就是三级的parentId
+                itemCat.setParentId(tbItemCat.getId());
+
                 //查询出三级类目的数据
                 List<TbItemCat> tbItemCats3 = itemCatMapper.select(itemCat);
 
@@ -200,16 +197,28 @@ public class ItemCatServiceImpl extends CoreServiceImpl<TbItemCat>  implements I
 
         }else {
             //否则则redis中有数据，不从数据库中查找，从redis中查询数据
-            mapList = (List<Map>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2");
+            mapList = (List<Map>) redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).get("itemCatAll2"+parentId);
         }
 
 
         //将封装好数据存进redis中
-        redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).put("itemCatAll2",mapList);
+        redisTemplate.boundHashOps(SysConstants.ITEMCATLIST).put("itemCatAll2"+parentId,mapList);
 
         //最后返回封装好数据的mapList集合
         return mapList;
     }
 
+    //更新状态cao
+    @Override
+    public void updateStatus(Long[] ids, String status) {
 
+        TbItemCat itemCat = new TbItemCat();
+        itemCat.setItemcatStatus(status);
+        Example example = new Example(TbItemCat.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Arrays.asList(ids));
+        if (ids!= null) {
+            itemCatMapper.updateByExampleSelective(itemCat, example);
+        }
+    }
 }

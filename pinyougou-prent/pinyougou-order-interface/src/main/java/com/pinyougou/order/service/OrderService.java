@@ -43,6 +43,8 @@ public interface OrderService {
 
     Map<String, Object> findSellInOneTime(String startTime, String endTime, String sellerId);
 
+    Map<String, Object> findSellInItem(String startTime, String endTime, String sellerId);
+
     List<TbOrder> findAll();
 
    /* List<OrderList> findAllOrder();*/

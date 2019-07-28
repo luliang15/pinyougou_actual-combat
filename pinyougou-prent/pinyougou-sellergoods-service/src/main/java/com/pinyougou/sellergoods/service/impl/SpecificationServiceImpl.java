@@ -1,22 +1,24 @@
 package com.pinyougou.sellergoods.service.impl;
+import java.util.Arrays;
+import java.util.List;
 
+import com.pinyougou.mapper.TbSpecificationOptionMapper;
+import com.pinyougou.pojo.TbSpecificationOption;
+import entity.Specification;
+import org.springframework.beans.factory.annotation.Autowired;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pinyougou.core.service.CoreServiceImpl;
-import com.pinyougou.mapper.TbSpecificationMapper;
-import com.pinyougou.mapper.TbSpecificationOptionMapper;
-import com.pinyougou.pojo.TbSpecification;
-import com.pinyougou.pojo.TbSpecificationOption;
-import com.pinyougou.sellergoods.service.SpecificationService;
-import entity.Specification;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pinyougou.core.service.CoreServiceImpl;
+
 import tk.mybatis.mapper.entity.Example;
 
-import java.util.Arrays;
-import java.util.List;
+import com.pinyougou.mapper.TbSpecificationMapper;
+import com.pinyougou.pojo.TbSpecification;
+import com.pinyougou.sellergoods.service.SpecificationService;
+
 
 
 /**
@@ -53,7 +55,7 @@ public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  
         //1.根据规格id修改对应id的内容信息
         specificationMapper.updateByPrimaryKey(specification.getSpecification());
         //2.创建规格选项表的对象
-        TbSpecificationOption option= new TbSpecificationOption();
+        TbSpecificationOption option = new TbSpecificationOption();
         //3.规格选项表添加进规格表的id，作为条件显示对应得规格选项内容
         option.setSpecId(specification.getSpecification().getId());
         //删除规格选项(作为修改得一项功能)
@@ -125,7 +127,8 @@ public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  
     /**
      * 新添加进来的方法
      * 添加数据
-     *新增规格以及规格的规格选项
+     * 新增规格以及规格的规格选项
+     *
      * @param record
      * @return
      */
@@ -153,7 +156,7 @@ public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  
 
     @Override
     public PageInfo<TbSpecification> findPage(Integer pageNo, Integer pageSize) {
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
         List<TbSpecification> all = specificationMapper.selectAll();
         PageInfo<TbSpecification> info = new PageInfo<TbSpecification>(all);
 
@@ -163,23 +166,21 @@ public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  
         return pageInfo;
     }
 
-	
-	
 
-	 @Override
+    @Override
     public PageInfo<TbSpecification> findPage(Integer pageNo, Integer pageSize, TbSpecification specification) {
-        PageHelper.startPage(pageNo,pageSize);
+        PageHelper.startPage(pageNo, pageSize);
 
         Example example = new Example(TbSpecification.class);
         Example.Criteria criteria = example.createCriteria();
 
-        if(specification!=null){			
-						if(StringUtils.isNotBlank(specification.getSpecName())){
-				criteria.andLike("specName","%"+specification.getSpecName()+"%");
-				//criteria.andSpecNameLike("%"+specification.getSpecName()+"%");
-			}
-	
-		}
+        if (specification != null) {
+            if (StringUtils.isNotBlank(specification.getSpecName())) {
+                criteria.andLike("specName", "%" + specification.getSpecName() + "%");
+                //criteria.andSpecNameLike("%"+specification.getSpecName()+"%");
+            }
+
+        }
         List<TbSpecification> all = specificationMapper.selectByExample(example);
         PageInfo<TbSpecification> info = new PageInfo<TbSpecification>(all);
         //序列化再反序列化
@@ -188,5 +189,18 @@ public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  
 
         return pageInfo;
     }
-	
+
+    @Override
+    public void updateStatus(Long[] ids, String status) {
+        TbSpecification tbSpecification = new TbSpecification();
+        tbSpecification.setSpecStatus(status);
+        Example example = new Example(tbSpecification.getClass());
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andIn("id", Arrays.asList(ids));
+        if (ids != null) {
+            specificationMapper.updateByExampleSelective(tbSpecification, example);
+        }
+
+    }
+
 }

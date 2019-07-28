@@ -12,6 +12,18 @@
         searchEntity:{}
     },
     methods: {
+        //审核状态
+        updateStatus: function (ids,status) {
+            alert(666)
+            axios.post("/itemCat/updateStatus.shtml?status="+status,ids).then((resp)=>{
+                app.ids=[]
+                app.searchList(1)
+            })
+
+
+        },
+
+
         searchList:function (curPage) {
             axios.post('/itemCat/search.shtml?pageNo='+curPage,this.searchEntity).then(function (response) {
                 //获取数据
@@ -136,6 +148,7 @@
             this.entity.parentId = p_entity.id;
             //每次点击等级查询时，页面都会进行刷新，刷新每一等级的变量信息内容
             this.findByParentId(p_entity.id);
+
         },
 
 
@@ -182,13 +195,13 @@
     },
     //钩子函数 初始化了事件和
     created: function () {
-      
         this.searchList(1);
         //初始化根据ParentId查询的到信息,一级类目的ID默认从0开始
         //this.findByParentId(0);
 
        //初始化根据ParentId查询的到信息,一级类目的ID默认从0开始
-        this.selectList({id:0});
+       /* this.selectList({id:0});*/0
     }
 
 })
+

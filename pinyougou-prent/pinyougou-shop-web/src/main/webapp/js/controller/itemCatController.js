@@ -3,8 +3,10 @@
     data: {
         pages:15,
         pageNo:1,
-        list:[],
-        entity:{customAttributeItems:[]}, //初始化，entity是下拉框要添加的数据的总集合，一开始给初始化为空
+        list:[],//分类对象
+        templateObj:[],//，欧版对象
+        entity:{name:'',parentId:0,typeId:0}, //初始化，entity是下拉框要添加的数据的总集合，一开始给初始化为空
+        newEntity:{name:'',parentId:0,typeId:0,status:'0'}, //用来存储到分类表中
 
         //页面加载的时候，发送请求，获取所有的品牌列表的数据，组合成如下的格式，赋值给该变量
         brandOptions:[],
@@ -13,18 +15,33 @@
         ids:[],
         searchEntity:{},
         templateName:[],
+        itemCat1List:[],//分类回显
+        templateNameList:[],//模板名称下拉回显
     },
     methods: {
+
+
         searchList:function (curPage) {
             axios.post('/itemCat/search.shtml?pageNo='+curPage,this.searchEntity).then(function (response) {
                 //获取数据
                 app.list=response.data.list;
+
+                app.itemCat1List=[]
+                var list = app.list;
+                for (var i = 0; i <list.length ; i++) {
+
+                    app.itemCat1List.push(list[i].name)
+
+                }
 
                 //当前页
                 app.pageNo=curPage;
                 //总页数
                 app.pages=response.data.pages;
             });
+
+
+
         },
      //查询所有品牌列表
         findAll:function () {
@@ -34,9 +51,13 @@
                 //注意：this 在axios中就不再是 vue实例了。
                 app.list=response.data;
 
+
+
+
             }).catch(function (error) {
 
             })
+
         },
          findPage:function () {
             var that = this;
@@ -58,150 +79,87 @@
         findTemplate:function () {
 
             axios.get("/typeTemplate/findAll.shtml").then((resp)=>{
+                app.templateObj = resp.data
                 var template = resp.data
                 for (var i = 0; i <template.length ; i++) {
-                    var id = template[i].id
-                    var id = template[i].id;
-                    var name = template[i].name;
-                    template[id] =  name
-                    var value = id+":"+name
+                    //得到每一个对象
+                   var JsonStr = template[i];
+                   var id = JsonStr.id;
+                   var name = JsonStr.name;
+                   //下拉回显
+                    app.templateNameList .push(name)
+                    //显示页面回显
+                   app.templateName[id] = name;
+
 
                 }
+
 
             })
 
 
             },
 
-        /*   //添加审核商品
+
+
+        //添加审核商品
         add:function () {
-            axios.post('/itemCat/add.shtml',this.entity).then((response)=>{
+            axios.post('/itemCat/add.shtml',this.newEntity).then((response)=>{
                     if(response.data.success){
                         alert(response.data.message)
-                        app.searchList(1);
+                        this.searchList(1);
                     }
 
             }).catch(function (error) {
-                console.log("1231312131321");
+
             });
         },
-        update:function () {
-            axios.post('/itemCat/update.shtml',this.entity).then(function (response) {
-                console.log(response);
-                if(response.data.success){
-                    app.searchList(1);
+
+    },
+
+    //监听
+    watch: {
+        //newval参数为开始选中的列表信息，oldval为原本选中的列表信息
+        'entity.parentId': function (newval, oldval) {
+            //此时监听第一级 变量,二级变量根据一级变量的变化从而查询二级列表所要展示的信息
+            //判断一级列表的类目不为空
+            if (newval != undefined) {
+                var cat1List = this.itemCat1List;
+                var itemCatList = this.list
+                for (var i = 0; i <itemCatList.length ; i++) {
+                    if (newval==itemCatList[i].name){
+                        this.newEntity.parentId = itemCatList[i].parentId
+
+                    }
+
                 }
-            }).catch(function (error) {
-                console.log("1231312131321");
-            });
-        },
-        save:function () {
-            if(this.entity.id!=null){
-                this.update();
-            }else{
-                this.add();
+
             }
-        },*/
-        //修改时的回显
-   /*     findOne:function (id) {
-            axios.get('/itemCat/findOne/'+id+'.shtml').then(function (response) {
+        }, //监听模板下拉的的变化
+        'entity.typeId':function (newval,oldval) {
+            //通过名称获取对应模板的数据的id
+            if (newval!=undefined){
+                var obj = this.templateObj
+                for (var i = 0; i <obj.length; i++) {
 
-                app.entity=response.data;
-                //将json字符串转成json对像(js对象)
-                app.entity.brandIds=JSON.parse(app.entity.brandIds);
-                app.entity.customAttributeItems=JSON.parse(app.entity.customAttributeItems);
-                app.entity.specIds=JSON.parse(app.entity.specIds);
+                    if (newval==obj[i].name){
+                        this.newEntity.typeId = obj[i].id
+                    }
 
-            }).catch(function (error) {
-                console.log("1231312131321");
-            });
-        },*/
-   /*     //删除的函数方法
-        dele:function () {
-            axios.post('/itemCat/delete.shtml',this.ids).then(function (response) {
-                console.log(response);
-                if(response.data.success){
-                    app.searchList(1);
                 }
-            }).catch(function (error) {
-                console.log("1231312131321");
-            });
-        },*/
-     /*   //定义一个查询所有品牌对象的函数
-        findAllBrandOptions:function () {
-            axios.get('/brand/findAll.shtml').then(function (response) {
-          //下拉框想要获取到的对象格式[{'id':1,text:'联想'},{'id':2,text:'华为'}]
-            // response.data ====>[{id:1,name:"联想",firstChar:"L"}]  品牌列表
-                var brandList = response.data;
-                for(var i=0;i<brandList.length;i++){
-                    var obj = brandList[i];   //循环遍历获取到的品牌列表元素{id:1,name:"联想",firstChar:"L"}
-                    app.brandOptions.push({"id":obj.id,"text":obj.name});
-                }
-
-            }).catch(function (error) {
-                //响应报错信息的地方
-            })
-        },*/
-
- /*       //查询所有规格列表的数据回显
-        findAllSpecOptions:function () {
-
-            axios.get('/sepcifcation/findAll.shtml').then(function (response) {
-                //下拉框想要获取到的对象格式[{'id':1,text:'颜色'},{'id':2,text:'桂萼'}]
-                // 服务器响应过来的的格式
-                // response.data ====>[{id:1,name:"联想",firstChar:"L"}]  品牌列表
-                var specList = response.data;
-
-                for(var i=0;i<specList.length;i++){
-                    var obj = specList[i];   //循环遍历获取到的品牌列表元素{id:1,name:"颜色",firstChar:"L"}
-                    app.specOptions.push({"id":obj.id,"text":obj.specName});
-                }
-
-            }).catch(function (error) {
-                //响应报错信息的地方
-            })
-        },
-        // 当点击新增按钮的时候调用，向已有的数组中添加一个{} (json对象)
-        addTableRow:function () {
-            //向数组中添加对象
-            this.entity.customAttributeItems.push({});
-        },
-        //删点击删除按钮的时候，向已有的数组中删除对应的那个对象
-        removeTableRow:function (index) {
-            //
-            this.entity.customAttributeItems.splice(index,1);
-        },*/
-
-   /*     //将json对象转成字符串，以逗号拼接后返回
-        jsonToString:function (strList,key) {
-           //定义一个空字符串
-           var str = "";
-
-           //1.将json字符串 转成 json对象
-
-            var jsonObjArray = JSON.parse(strList);
-
-            for(var i=0;i<jsonObjArray.length;i++){
-
-                var obj = jsonObjArray[i];
-
-                str+=obj[key]+",";
-                // str+=obj.key+",";
             }
 
-            if(str.length>0){
-                str = str.substring(0,str.length-1);
-            }
 
-            return str;
-        },
-*/
+
+        }
+
 
 
     },
-    //钩子函数 初始化了事件和
+
+        //钩子函数 初始化了事件和
     created: function () {
-      
+
         this.searchList(1);
         this.findTemplate();
         //初始化的时候调用查询品牌列表的方法

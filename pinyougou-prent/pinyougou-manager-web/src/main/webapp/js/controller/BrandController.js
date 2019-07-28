@@ -11,11 +11,17 @@ var app = new Vue({
         searchEntity:{}   //搜索条件对象
     },
     methods:{
-        //定义方法的地方
 
-        //第一：页面加载的时候就应该被调用，默认查询第一页的数据
-        //第二：它点击下一页的时候也被调用
-        //发送请求，获取分页的数据，将获取到的数据赋值给上面的变量
+        //审核状态
+        updateStatus: function (ids,status) {
+            axios.post("/brand/updateStatus.shtml?status="+status,ids).then((resp)=>{
+                app.ids=[]
+                app.searchList(1)
+            })
+
+
+        },
+
         searchList:function(curPage){
 
 

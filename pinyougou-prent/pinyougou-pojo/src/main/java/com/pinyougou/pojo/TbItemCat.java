@@ -32,15 +32,15 @@ public class TbItemCat implements Serializable {
     private Long typeId;
 
 
-    @Column(name = "status")
-    private String status;
+    @Column(name = "itemcat_status")
+    private String itemcatStatus;
 
-    public String getStatus() {
-        return status;
+    public String getItemcatStatus() {
+        return itemcatStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setItemcatStatus(String itemcatStatus) {
+        this.itemcatStatus = itemcatStatus;
     }
 
     private static final long serialVersionUID = 1L;

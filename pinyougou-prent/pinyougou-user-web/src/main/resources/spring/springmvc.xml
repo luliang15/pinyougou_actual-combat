@@ -37,9 +37,20 @@
                         </property>
                     </bean>
                 </property>
+
+                <property name="features">
+                    <array>
+                        <value>DisableCircularReferenceDetect</value>
+                    </array>
+                </property>
+
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <bean id="DisableCircularReferenceDetect" class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean">
+        <property name="staticField" value="com.alibaba.fastjson.serializer.SerializerFeature.DisableCircularReferenceDetect"></property>
+    </bean>
 
     <!--配置dubbo的配置项-->
     <dubbo:application name="pinyougou-user-web"></dubbo:application>

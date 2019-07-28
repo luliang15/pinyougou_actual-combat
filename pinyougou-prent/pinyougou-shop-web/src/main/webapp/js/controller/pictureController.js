@@ -13,12 +13,14 @@ var app = new Vue({
     },
     //3.放置方法的地方
     methods: {
+        createLine:function () {
 
+        }
     },
 
     //4.钩子函数，一些显示数据可初始化的地方
     created:function () {
-        
+
     }
 
 

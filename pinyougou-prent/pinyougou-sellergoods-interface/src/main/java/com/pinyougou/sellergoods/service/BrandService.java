@@ -25,6 +25,8 @@ public interface BrandService extends CoreService<TbBrand> {
 
     //根据条件进行吗，模糊查询并分页
     PageInfo<TbBrand> findPage(Integer pageNo, Integer pageSize, TbBrand tbBrand);
+
+    void updateStatus(Long[] ids, String status);
 }
 
    /* //添加列表的方法

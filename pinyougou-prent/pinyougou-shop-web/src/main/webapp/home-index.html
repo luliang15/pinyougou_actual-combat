@@ -260,10 +260,14 @@
                                             <td width="10%" class="center">
                                                 <ul class="unstyled">
                                                     <li v-if="order.tbOrder.status==2"><a href="#"
-                                                                                          class="sui-btn btn-info">立即发货</span></a>
+                                                                                          class="sui-btn btn-info" @click="updateStatus(4,order.tbOrder.orderId)">立即发货</span></a>
                                                     </li>
-                                                    <li>取消订单</li>
+                                                    <li v-if="order.tbOrder.status==3"><a href="#"
+                                                                                          class="sui-btn btn-info" @click="updateStatus(4,order.tbOrder.orderId)">立即发货</a></li>
 
+                                                    <li v-if="order.tbOrder.status==5">交易成功</li>
+                                                    <li v-if="order.tbOrder.status==6">交易关闭</li>
+                                                    <li>取消订单</li>
                                                 </ul>
                                             </td>
                                         </tr>
