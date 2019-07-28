@@ -7,9 +7,6 @@
           <element id="module-output" name="pinyougou-upload-web" />
         </element>
         <element id="directory" name="lib">
-          <element id="archive" name="pinyougou-common-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-common" />
-          </element>
           <element id="library" level="project" name="Maven: org.apache.poi:poi:3.14" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.14" />
@@ -44,9 +41,6 @@
           <element id="library" level="project" name="Maven: io.netty:netty-all:4.0.42.Final" />
           <element id="library" level="project" name="Maven: org.apache.rocketmq:rocketmq-logging:4.4.0" />
           <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:1.1.33.Fork26" />
-          <element id="archive" name="pinyougou-pojo-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-pojo" />
-          </element>
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:4.0.0" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:0.9.1" />

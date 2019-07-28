@@ -143,6 +143,8 @@ public class ItemCatController {
 				itemCat.setParentId(Long.valueOf(row[0]));
 				itemCat.setName(row[1]);
 				itemCat.setTypeId(Long.valueOf(row[2]));
+				//梳妆台默认为0 未审核
+				itemCat.setItemcatStatus("0");
 				itemCatService.add(itemCat);
 			}
 			return new Result(true, "导入数据成功");

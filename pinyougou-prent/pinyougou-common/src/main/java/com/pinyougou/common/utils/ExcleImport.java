@@ -63,11 +63,8 @@ public class ExcleImport {
                         + fieldName.substring(1);
                 try {
                     Class tCls = t.getClass();
-                    Method getMethod = tCls.getMethod(getMethodName,
-                            new Class[]
-                                    {});
-                    Object value = getMethod.invoke(t, new Object[]
-                            {});
+                    Method getMethod = tCls.getMethod(getMethodName, new Class[]{});
+                    Object value = getMethod.invoke(t, new Object[]{});
                     // 判断值的类型后进行强制类型转换
                     String textValue = null;
                     // if (value instanceof Integer) {

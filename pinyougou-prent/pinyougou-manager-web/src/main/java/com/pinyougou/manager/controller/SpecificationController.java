@@ -121,6 +121,8 @@ public class SpecificationController {
 				String[] row = rowList.get(i);
 				TbSpecification specification = new TbSpecification();
 				specification.setSpecName(row[0]);
+				//默认为未审核
+				specification.setSpecStatus("0");
 				specificationService.add(specification);
 
 			}

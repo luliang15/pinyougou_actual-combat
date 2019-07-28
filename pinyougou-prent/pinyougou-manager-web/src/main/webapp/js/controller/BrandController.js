@@ -8,7 +8,10 @@ var app = new Vue({
         list:[],     //获取到服务器响应数据，数组形式
         entity:{} ,  //品牌对象,绑定页面、
         ids:[] ,  //为品牌绑定删除的ids数组参数
-        searchEntity:{}   //搜索条件对象
+        searchEntity:{},   //搜索条件对象
+        jsonList:[],
+        message:"暂无数据请先导入数据",
+
     },
     methods:{
 
@@ -135,17 +138,29 @@ var app = new Vue({
 
         },
 
+        uploadBefore:function(){
+            var formData = new FormData() // 声明一个FormData对象
+            this.formData = new window.FormData() // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
+            this.formData.append('file', document.querySelector('input[type=file]').files[0]) // 'userfile' 这个名字要和后台获取文件的名字一样;
+            let file = document.querySelector('input[type=file]').files[0]
+            let fileName = file.name.substring(file.name.lastIndexOf(".")+1,file.name.length)
+            const fileType = fileName == 'xls';
+            if (!fileType) {
+                alert('上传文件格式为xls，请检查文件格式');
+            }
+        },
+
         //模拟form表单文件上传
         //excle文件上传
         uploadFile:function(){
 
             //创建一个表单对象，html中的
             var formData = new FormData();
-
             //添加字段 类似：<input type="text" name="username">
             //file ===> <input type="file" name="file">
             //file.files[0]
             formData.append('file', file.files[0]);
+
 
             axios({
                 url:'http://localhost:9101/brand/upload.shtml',
@@ -160,13 +175,31 @@ var app = new Vue({
 
             }).then(function (response) {
                 if (response.data.success) {
+                    app.jsonList = JSON.parse(response.data.message)
                     //上传成功，会打印出上传的路径
-                    alert("上传成功")
+
                 } else {
                     //上传失败
                     alert(response.data.message);
                 }
             })
+        },
+        //poi数据导入
+        daoRu:function () {
+            if (this.jsonList==''){
+                alert("不要作死，请先上传文件")
+                return false
+            } else {
+                axios.post("/brand/into.shtml",this.jsonList).then((resp)=>{
+                    if (resp.data.message){
+                        alert("导入成功")
+                        location.reload()
+                    } else {
+                        alert("导入失败")
+                    }
+                })
+            }
+
         },
 
 

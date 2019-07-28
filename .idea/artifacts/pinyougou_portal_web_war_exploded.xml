@@ -7,23 +7,11 @@
           <element id="module-output" name="pinyougou-portal-web" />
         </element>
         <element id="directory" name="lib">
-          <element id="archive" name="pinyougou-content-interface-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-content-interface" />
-          </element>
-          <element id="archive" name="pinyougou-core-service-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-core-service" />
-          </element>
-          <element id="archive" name="pinyougou-dao-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-dao" />
-          </element>
           <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.4.5" />
           <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:1.3.2" />
           <element id="library" level="project" name="Maven: tk.mybatis:mapper:3.4.6" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.32" />
           <element id="library" level="project" name="Maven: com.alibaba:druid:1.0.9" />
-          <element id="archive" name="pinyougou-pojo-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-pojo" />
-          </element>
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0" />
           <element id="library" level="project" name="Maven: com.github.pagehelper:pagehelper:4.0.0" />
           <element id="library" level="project" name="Maven: com.github.jsqlparser:jsqlparser:0.9.1" />
@@ -83,12 +71,6 @@
           <element id="library" level="project" name="Maven: org.hibernate:hibernate-validator:5.2.0.Final" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.2.1.Final" />
           <element id="library" level="project" name="Maven: com.fasterxml:classmate:1.1.0" />
-          <element id="archive" name="pinyougou-sellergoods-interface-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-sellergoods-interface" />
-          </element>
-          <element id="archive" name="pinyougou-common-1.0-SNAPSHOT.jar">
-            <element id="module-output" name="pinyougou-common" />
-          </element>
           <element id="library" level="project" name="Maven: org.apache.poi:poi:3.14" />
           <element id="library" level="project" name="Maven: commons-codec:commons-codec:1.10" />
           <element id="library" level="project" name="Maven: org.apache.poi:poi-ooxml:3.14" />
