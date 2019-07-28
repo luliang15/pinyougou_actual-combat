@@ -9,14 +9,17 @@
         ids:[],
         searchEntity:{},
         loginName:'',  //获取到的用户名
-<<<<<<< HEAD
+
         num: 1,
         // sku:skuList[0],
         //定义一个变量来接受根据用户名查询到的订单列表的数据
         orderList:[],
 
-=======
->>>>>>> 815ef515ae210cf603c1cbc95c6c7c8bac0b89bf
+        //我的收藏的数据变量
+        myFavorite:[]
+
+
+
     },
     methods: {
 
@@ -69,17 +72,22 @@
             axios.get('/login/name.shtml').then(function (response) {
                 app.loginName=response.data;
 
+
             }).catch(function (error) {
                 console.log(error);
             });
         },
-<<<<<<< HEAD
+
         //添加购物车
-        addGoodsToCart:function () {
-            alert("addGoodsToCart")
-            axios.get('http://localhost:9107/cart/addGoodsToCartList.shtml?itemId='+this.sku.id+'&num='+this.num).
+        addGoodsToCart:function (itemId) {
+
+            axios.get('http://localhost:9107/cart/addGoodsToCartList.shtml?itemId='+itemId+'&num='+this.num,{
+                //跨域发送请求时携带参数
+                withCredentials:true
+            }).
             then(
                 function (response) {//response.data=result
+                    alert("66")
                     if(response.data.success){
                         window.location.href="http://localhost:9107/cart.html";
                     }else{
@@ -100,6 +108,16 @@
                     //map中有两对键值对，第一个是订单需要展示的数据，第二个是分页展示需要的数据
                     app.orderList = response.data;
 
+                    console.log(app.orderList)
+                    //获取map中的Orders集合
+                    var arr = app.orderList.Orders
+                    //遍历orders
+                    for (var i = 0; i < arr.length; i++) {
+                        console.log(JSON.parse(arr[i].spec))
+                        //将orders中的spec json字符串转换成json对象
+                        arr[i].spec = JSON.parse(arr[i].spec)
+                    }
+
                     //第一页
                     app.pageNo = response.data.pageInfo.pageNum;
 
@@ -109,27 +127,53 @@
 
                 }
             )
-
         },
 
-=======
+        //withCredentials:true
+        //定义一个函数，当点击我的收藏跳转到home-person-collect.html页面做我的收藏的数据展示
+        findMyFavorite:function () {
+            //发送请求向后台获取到我的收藏的数据
+            axios.get('/user/myFavorite.shtml',{
+                //跨域发送请求时携带参数
+                withCredentials:true
+            }).then(function (response) {
+
+
+                //将后台响应的数据赋予给我的收藏的变量
+                app.myFavorite = response.data;
+
+                var specList = response.data;
+
+                for (var i = 0; i <specList.length ; i++) {
+
+                    specList[i].spec = JSON.parse(specList[i].spec);
+                }
+
+
+                console.log(app.myFavorite)
+            })
+        }
+
+
+        ,
         getGoodsHref:function () {
             window.location.href='home-setting-info.html';
         }
->>>>>>> 815ef515ae210cf603c1cbc95c6c7c8bac0b89bf
+
     },
     //钩子函数 初始化了事件和
     created: function () {
 
         //初始化的时候就显示用户名称
         this.getName();
-<<<<<<< HEAD
+
 
         //页面加载的时候就显示
         this.findByUserOrder('1');
 
-=======
->>>>>>> 815ef515ae210cf603c1cbc95c6c7c8bac0b89bf
+        //页面一加载的时候便显示
+        this.findMyFavorite();
+
     }
 
 })

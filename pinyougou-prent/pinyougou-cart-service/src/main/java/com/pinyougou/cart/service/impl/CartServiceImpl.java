@@ -2,6 +2,7 @@ package com.pinyougou.cart.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.pinyougou.cart.service.CartService;
+import com.pinyougou.common.utils.SysConstants;
 import com.pinyougou.mapper.TbItemMapper;
 import com.pinyougou.pojo.TbItem;
 import com.pinyougou.pojo.TbOrderItem;
@@ -11,7 +12,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName:CartServiceImpl
@@ -206,6 +209,7 @@ public class CartServiceImpl implements CartService {
     public void saveCartListToRedis(String username, List<Cart> cartList) {
         redisTemplate.boundHashOps("cartList").put(username,cartList);
     }
+
 
     /**
      * 此方法用来判断此购物车的明细列表集合中是否包含此商品

@@ -1,12 +1,16 @@
 package com.pinyougou.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.ExcleImport;
 import com.pinyougou.order.service.OrderService;
+import com.pinyougou.pojo.TbBrand;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.sellergoods.service.GoodsService;
 import entity.OrderList;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +21,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * controller
@@ -57,10 +62,17 @@ public class OrderController<T> {
         }
         return orders;
 	}
-	@RequestMapping("/findAllOrder")
-	public List<OrderList> findAllOrder(HttpServletRequest req, HttpServletResponse res, HttpSession session) {
-		/*List<OrderList> orders= orderService.findAllOrder();*/
-		return null;
-
+/*	@RequestMapping("/findAllOrder")
+	public List<OrderList> findAllOrder() {
+		List<OrderList> orders= orderService.findAllOrder();
+		return orders;
+	}*/
+	@RequestMapping("/search")
+	public Map<String, Object> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+										@RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
+										@RequestBody TbOrder order) {
+		return orderService.findPage(pageNo, pageSize, order);
 	}
+
+
 }

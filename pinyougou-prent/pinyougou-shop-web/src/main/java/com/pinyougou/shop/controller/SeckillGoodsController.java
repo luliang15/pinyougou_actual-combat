@@ -113,11 +113,11 @@ public class SeckillGoodsController {
 	
 
 	@RequestMapping("/findPageGoods")
-    public PageInfo<TbSeckillGoods> findPageGoods(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
-                                      @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
-											 @RequestBody TbSeckillGoods tbSeckillGoods) {
+	public PageInfo<TbSeckillGoods> findPageGoods(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+												  @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
+												  @RequestBody TbSeckillGoods tbSeckillGoods) {
 		return seckillGoodsService.findPage(pageNo, pageSize,tbSeckillGoods);
-    }
+	}
 
     /**
      * 根据商品id获取到秒杀商品，设置好秒杀商品的开始时间，与秒杀结束时间

@@ -12,7 +12,7 @@ var app = new Vue({
         findAll:function () {
             axios.get("/order/findAll.shtml").then((resp)=>{
                 app.orderList = resp.data
-            })
+            });
         },
 
         upload:function () {

@@ -1,12 +1,20 @@
 package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.DateUtils;
 import com.pinyougou.common.utils.IdWorker;
 import com.pinyougou.mapper.*;
 import com.pinyougou.order.service.OrderService;
 import com.pinyougou.pojo.*;
 import entity.Cart;
+import entity.Order;
+import entity.OrderList;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import tk.mybatis.mapper.entity.Example;
@@ -49,7 +57,6 @@ public class OrderServiceImpl implements OrderService {
      * 提交订单的方法
      * 1.订单号不能重复
      * 2.拆单
-     *
      * @param tbOrder
      */
     @Override   //这个tbOrder是页面传过来的，是一个大的订单，需要进行拆弹支付
@@ -60,7 +67,7 @@ public class OrderServiceImpl implements OrderService {
                 redisTemplate.boundHashOps("Redis_CartList").get(tbOrder.getUserId());
 
         double total_fee = 0;  //创建总金额
-        List<String> orderList = new ArrayList<>();  //创建订单列表，获取订单号
+        List<String> orderList =  new ArrayList<>();  //创建订单列表，获取订单号
         //遍历购物车列表先，这里就是拆单，每一个cart（购物车对象）就是一个订单
         for (Cart cart : cartList) {
             //1.获取订单的数据  插入到订单列表中
@@ -129,7 +136,7 @@ public class OrderServiceImpl implements OrderService {
         payLog.setOutTradeNo(outTradeNo);//支付订单号
         payLog.setCreateTime(new Date());//创建时间
         double v = total_fee * 100;  //元的单位转分的单位
-        payLog.setTotalFee((long) v);   //记录总金额
+        payLog.setTotalFee((long)v);   //记录总金额
         payLog.setTradeState("0");  //未支付状态
         payLog.setPayType("1");   //支付的方式 0 支付宝，1 微信支付 2 银行
         payLog.setOrderList(orderList.toString().replace(
@@ -221,7 +228,6 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 根据商家名 查询某一段时间内 每天的销售额
-     *
      * @param startTime
      * @param endTime
      * @param sellerId
@@ -324,7 +330,6 @@ public class OrderServiceImpl implements OrderService {
 
         map.put("days", dateStrList);
         map.put("money", moneyList);
-
         return map;
     }
 
@@ -417,6 +422,183 @@ public class OrderServiceImpl implements OrderService {
         return tbOrders;
 
     }
+    @Override
+    public Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
+                                             Integer pageSize) {
 
+        //封装分页需要的数据与页面要展示的数据的Map
+        Map<String,Object> mapInfo = new HashMap<>();
+
+        //创建分页对象、pageNo表示第一页，pageSize表示每页显示条数
+        PageHelper.startPage(pageNo,pageSize);
+
+        //这里封装前端页面需要展示的数据
+        List<Map<String,Object>> list = new ArrayList<>();
+
+        //.1查出用户的订单列表
+        TbOrder tbOrder = new TbOrder();
+        tbOrder.setUserId(userId);
+
+        //获取到第一级的订单列表
+        List<TbOrder> tbOrders = orderMapper.select(tbOrder);
+
+        //创建PageInfo对象 将第一级的订单列表进行分页展示
+        PageInfo<TbOrder> pageInfo = new PageInfo<>(tbOrders);
+
+        String str = JSON.toJSONString(pageInfo);
+        //5.再将字符串（成对象）反序列化给前端
+        PageInfo pageinfo1 = JSON.parseObject(str, PageInfo.class);
+
+        // 遍历大的订单列表
+        for (TbOrder order : tbOrders) {
+
+            Map<String,Object> map = new HashMap<>();
+
+            //直接封装order对象，order对象中包括有：订单创建时间、订单编号、店铺的名称、订单的支付状态、订单价格
+            map.put("order",order);     //order做为map的第一个键值对
+
+
+            TbOrderItem tbOrderItem = new TbOrderItem();
+
+            //将orderId设置为查询条件
+            tbOrderItem.setOrderId(order.getOrderId());
+
+            //根据订单id获取到订单item的对象
+            List<TbOrderItem> tbOrderItems = orderItemMapper.select(tbOrderItem);
+
+            //将整个的订单描述集合添加进map中，tbOrderItem作为map的第二个键值对
+            map.put("tbOrderItems",tbOrderItems);
+
+            for (TbOrderItem orderItem : tbOrderItems) {
+
+                //根据itemId获取到sku
+                TbItem tbItem = itemMapper.selectByPrimaryKey(orderItem.getItemId());
+
+                //获取商品的规格信息，此商品规格的数据在数据库中是json字符串形式
+                String spec = tbItem.getSpec();
+
+                //订单的规格展示作为map的第三个键值对
+                map.put("spec",spec);
+            }
+            //最后将、封装好的map添加进List<map>中
+            list.add(map);
+        }
+        //第一个键值对是页面要展示的数据
+        mapInfo.put("Orders",list);
+        //第二个键值对是分页展示需要的数据
+        mapInfo.put("pageInfo",pageinfo1);
+
+        return mapInfo;
+    }
+
+
+    @Autowired
+    private TbGoodsMapper goodsMapper;
+
+    @Override
+    public List<OrderList> findAllOrder() {
+        //创建list集合进行封装查询到的所有的自定义订单对象
+        List<OrderList> orderList = new ArrayList<>();
+        //创建自定义订单对象
+        OrderList orderList1 = new OrderList();
+        //查询出所有的订单
+        List<TbOrder> orders = orderMapper.selectAll();
+        if(orders==null){
+            return null;
+        }
+        //遍历
+        for (TbOrder order : orders) {
+            orderList1.setOrder(order);
+            //根据订单id查找订单选项
+            Example example=new Example(TbOrderItem.class);
+            example.createCriteria().andEqualTo("orderId",order.getOrderId());
+            List<TbOrderItem> orderItems = orderItemMapper.selectByExample(example);
+            orderList1.setOrderItems(orderItems);
+            //根据订单选项中的商品id获取商品名称
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getItemId());
+            orderList1.setGoods(tbGoods);
+            orderList.add(orderList1);
+        }
+        return orderList;
+    }
+
+    @Override
+    public Map<String, Object> findPage(Integer pageNo, Integer pageSize, TbOrder order) {
+        Map<String, Object> map = new HashMap<>();
+        //创建list集合进行封装查询到的所有的自定义订单对象
+        List<OrderList> orderLists = new ArrayList<>();
+        PageHelper.startPage(pageNo, pageSize);
+
+        //创建订单查询条件
+        Example example = new Example(TbOrder.class);
+        Example.Criteria criteria = example.createCriteria();
+        if (order != null) {
+            //用户ID
+            if (StringUtils.isNotBlank(order.getUserId())) {
+                criteria.andLike("userId", "%" + order.getUserId() + "%");
+                //criteria.andUserIdLike("%"+seckillOrder.getUserId()+"%");
+            }
+            //商家ID
+            if (StringUtils.isNotBlank(order.getSellerId())) {
+                criteria.andLike("sellerId", "%" + order.getSellerId() + "%");
+                //criteria.andSellerIdLike("%"+seckillOrder.getSellerId()+"%");
+            }
+            //支付状态
+            if (StringUtils.isNotBlank(order.getStatus())) {
+                criteria.andLike("status", "%" + order.getStatus() + "%");
+                //criteria.andStatusLike("%"+seckillOrder.getStatus()+"%");
+            }
+            //收货地址
+            if (StringUtils.isNotBlank(order.getReceiverAreaName())) {
+                criteria.andLike("receiverAreaName", "%" + order.getReceiverAreaName() + "%");
+                //criteria.andReceiverAddressLike("%"+seckillOrder.getReceiverAddress()+"%");
+            }
+            //收货人
+            if (StringUtils.isNotBlank(order.getReceiver())) {
+                criteria.andLike("receiver", "%" + order.getReceiver() + "%");
+                //criteria.andReceiverMobileLike("%"+seckillOrder.getReceiverMobile()+"%");
+            }
+            //订单ID
+            if (order.getOrderId()!= null) {
+                criteria.andEqualTo("orderId", order.getOrderId());
+                //criteria.andReceiverLike("%"+seckillOrder.getReceiver()+"%");
+            }
+
+            if (order.getPaymentTime()!=null){
+                criteria.andEqualTo("paymentTime",order.getPaymentTime());
+            }
+        }
+        //查询出所有的订单
+        List<TbOrder> orders = orderMapper.selectByExample(example);
+        //对订单进行分页
+        PageInfo<TbOrder> info = new PageInfo<TbOrder>(orders);
+        //序列化再反序列化
+        String s = JSON.toJSONString(info);
+        PageInfo<OrderList> pageInfo = JSON.parseObject(s, PageInfo.class);
+
+        if (orders == null) {
+            return null;
+        }
+        //遍历
+        for (TbOrder order1: orders) {
+            //创建自定义存储订单对象
+            OrderList orderList1 = new OrderList();
+            orderList1.setOrder(order1);
+            //设置orderId的值
+            orderList1.setOrderId(String.valueOf(order1.getOrderId()));
+            //根据订单id查找订单选项
+            Example example1 = new Example(TbOrderItem.class);
+            example1.createCriteria().andEqualTo("orderId", order1.getOrderId());
+            List<TbOrderItem> orderItems = orderItemMapper.selectByExample(example1);
+            orderList1.setOrderItems(orderItems);
+            //根据订单选项中的商品id获取商品名称
+            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(orderItems.get(0).getGoodsId());
+            orderList1.setGoods(tbGoods);
+            orderLists.add(orderList1);
+        }
+        map.put("orderLists",orderLists);
+        map.put("pageInfo",pageInfo);
+        return map;
+    }
 
 }
