@@ -143,4 +143,19 @@ public class BrandController {
 
 		}
 
+
+    //商品审核
+    @RequestMapping("/updateStatus")
+    public Result updateStatus(@RequestBody Long[] ids,String status){
+
+        try {
+            brandService.updateStatus(ids,status);
+            return new Result(true, "审核成功。");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false, "网络有点差，请稍后再试");
+        }
+
+    }
+
 }

@@ -53,4 +53,7 @@ public interface ItemCatService extends CoreService<TbItemCat> {
      * @return
      */
     List<Map> findById(Long parentId);
+
+    void updateStatus(Long[] ids, String status);
+
 }

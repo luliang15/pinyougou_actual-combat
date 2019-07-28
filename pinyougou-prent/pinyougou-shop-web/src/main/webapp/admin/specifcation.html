@@ -57,7 +57,7 @@
                 <tr v-for="entity in list">
                     <td><input type="checkbox"></td>
                     <td>{{entity.specName}}</td>
-                    <td>{{entity.specStatus=='0'?"未审核":'已审核'}}</td>
+                    <td>{{entity.specStatus=='0'?"未审核":entity.specStatus=='1'?'已审核':'已驳回'}}</td>
                     <td class="text-center">       <!--根据id点击修改时跳转到此页面-->
                         <a class="btn bg-olive btn-xs" >修改</a>
                     </td>

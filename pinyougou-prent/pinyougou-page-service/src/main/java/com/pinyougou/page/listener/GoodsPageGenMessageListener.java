@@ -96,6 +96,11 @@ public class GoodsPageGenMessageListener implements MessageListenerConcurrently 
         return ConsumeConcurrentlyStatus.RECONSUME_LATER;
     }
 
+    /**
+     * 静态页面生成的方法
+     * @param info   消息对象的参数
+     * @param s      打印此消息的类型，为删除、修改、增加？
+     */
     private void updatePageHtml(MessageInfo info, String s) {
 
         //获取到的是Map对象 并不能直接序列化回来 需要直接转成字符串

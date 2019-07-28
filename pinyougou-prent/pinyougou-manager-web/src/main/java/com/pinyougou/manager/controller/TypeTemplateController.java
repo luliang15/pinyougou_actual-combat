@@ -132,5 +132,20 @@ public class TypeTemplateController {
 
 
 	}
+
+
+	//审核状态更新
+	@RequestMapping("/updateStatus")
+	public Result updateStatus(@RequestBody Long[] ids,String status){
+
+		try {
+			typeTemplateService.updateStatus(ids,status);
+			return new Result(true, "审核成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Result(false, "网络有点差，请稍后再试");
+		}
+
+	}
 	
 }

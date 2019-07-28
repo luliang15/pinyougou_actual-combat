@@ -59,7 +59,7 @@
                     <td><input type="checkbox"></td>
                     <td>{{entity.name}}</td>
                     <td>{{entity.firstChar}}</td>
-                    <td>{{entity.brandStatus=='0'?"未审核":'已审核'}}</td>
+                    <td>{{entity.brandStatus=='0'?"未审核":entity.brandStatus=='1'?'已审核':'已驳回'}}</td>
                     <td class="text-center">       <!--根据id点击修改时跳转到此页面-->
                         <a class="btn bg-olive btn-xs" >修改</a>
                     </td>
