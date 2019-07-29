@@ -159,7 +159,7 @@ public class IdWorker {
         return id;
     }
 
-    
+
     public static void main(String[] args) {
 		
     	IdWorker idWorker=new IdWorker(0,0);

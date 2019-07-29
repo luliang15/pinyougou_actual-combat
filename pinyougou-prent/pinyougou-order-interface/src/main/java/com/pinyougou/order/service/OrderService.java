@@ -1,6 +1,5 @@
 package com.pinyougou.order.service;
 
-import com.github.pagehelper.PageInfo;
 import com.pinyougou.pojo.TbOrder;
 import com.pinyougou.pojo.TbPayLog;
 import entity.OrderList;
@@ -47,7 +46,13 @@ public interface OrderService {
 
     List<TbOrder> findAll();
 
-   /* List<OrderList> findAllOrder();*/
+
+    Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
+                                       Integer pageSize);
+
+    Map<String, Object> findCategorySell(Long catNo1, Long catNo2, String startTime, String endTime);
+
+    List<OrderList> findAllOrder();
 
     Map<String, Object> findPage(Integer pageNo, Integer pageSize, TbOrder order);
 }

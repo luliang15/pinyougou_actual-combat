@@ -2,11 +2,14 @@ package com.pinyougou.shop.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.github.pagehelper.PageInfo;
+import com.pinyougou.common.utils.IdWorker;
 import com.pinyougou.pojo.TbSeckillGoods;
 import com.pinyougou.seckill.service.SeckillGoodsService;
 import entity.Result;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,9 +48,19 @@ public class SeckillGoodsController {
 	 * @return
 	 */
 	@RequestMapping("/add")
-	public Result add(@RequestBody TbSeckillGoods seckillGoods){
+	public Result add(@RequestBody TbSeckillGoods seckillGoods,String startTime,String endTime){
 		try {
+			SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD hh:mm:ss");
+			Date start = format.parse(startTime);
+			Date end = format.parse(endTime);
+			seckillGoods.setStartTime(start);
+			seckillGoods.setEndTime(end);
+			IdWorker idWorker=new IdWorker(0,0);
+			long nextId = idWorker.nextId();
+			seckillGoods.setGoodsId(nextId);
+
 			seckillGoodsService.add(seckillGoods);
+
 			return new Result(true, "增加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
