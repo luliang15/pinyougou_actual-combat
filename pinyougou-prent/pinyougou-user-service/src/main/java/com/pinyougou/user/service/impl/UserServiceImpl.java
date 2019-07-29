@@ -1,12 +1,16 @@
 package com.pinyougou.user.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+import com.alibaba.dubbo.config.annotation.Reference;
+import com.pinyougou.common.utils.SysConstants;
+import com.pinyougou.mapper.TbItemMapper;
+import com.pinyougou.pojo.TbItem;
 import com.pinyougou.user.service.UserService;
 
+import entity.Result;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 
@@ -145,6 +149,8 @@ public class UserServiceImpl extends CoreServiceImpl<TbUser> implements UserServ
     @Value("${template_code}")
     private String template_code;
 
+
+
     /**
      * 1.根据手机号码，生产验证码
      * 2.将验证码 存储到redis中
@@ -236,5 +242,76 @@ public class UserServiceImpl extends CoreServiceImpl<TbUser> implements UserServ
         user.setCreated(tbUser.getCreated());
         user.setUpdated(tbUser.getUpdated());
         userMapper.updateByPrimaryKey(user);
+    }
+
+
+    @Autowired  //远程注入商品查询的实例化对象
+    private TbItemMapper tbItemMapper;
+
+    /** 根据商品id获取到商品对象
+     * 将商品对象存到redis总，移到我的购物车的操作
+     *
+     * 1.商品标题
+     * 2.商品规格
+     * 3.商品价钱
+     * 4.商品的个数
+     * 5.商品图片
+     * 6.商品的一个点击跳转加入购物车的按钮
+     * @param itemId  商品id
+     * @return
+     */
+    @Override
+    public void moveMyFavorite(Long itemId) {
+
+        List<Map<String,Object>> list = new ArrayList<>();
+
+        Map<String,Object> map = new HashMap<>();
+
+        //根据商品id获取到商品
+        TbItem tbItem = tbItemMapper.selectByPrimaryKey(itemId);
+
+        //1.获取商品标题
+        String title = tbItem.getTitle();
+
+        //2.获取商品规格
+        String spec = tbItem.getSpec();
+
+        //3.获取商品价钱
+        BigDecimal price = tbItem.getPrice();
+
+        //4.获取商品库存数量
+        Integer num = tbItem.getNum();
+
+        //5.获取商品图片
+        String image = tbItem.getImage();
+
+        //将数据都封装到map中
+        map.put("title",title);
+        map.put("spec",spec);
+        map.put("price",price);
+        map.put("num",num);
+        map.put("image",image);
+        map.put("itemId",itemId);
+
+
+        list.add(map);
+
+        //将封装好的map(收藏对象)移到我的收藏，存进redis中
+        redisTemplate.boundHashOps(SysConstants.MY_FAVORITE).put("Favorite",list);
+    }
+
+    /**
+     * 查询所有我的收藏的页面信息展示
+     *
+     * @return
+     */
+    @Override
+    public List<Map<String, Object>> findMyFavorite() {
+
+        //从redis中获取到收藏页面的信息做展示
+        List<Map<String, Object>> favoriteList = (List<Map<String, Object>>)
+                redisTemplate.boundHashOps(SysConstants.MY_FAVORITE).get("Favorite");
+
+        return favoriteList;
     }
 }

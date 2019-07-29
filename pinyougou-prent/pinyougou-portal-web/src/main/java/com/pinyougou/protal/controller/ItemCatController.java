@@ -135,8 +135,6 @@ public class ItemCatController {
 
         List<Map> itemMaps = itemCatService.findById(parentId);
 
-       
-
 	    return itemMaps;
     }
 

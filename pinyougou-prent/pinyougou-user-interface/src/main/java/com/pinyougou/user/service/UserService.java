@@ -1,9 +1,13 @@
 package com.pinyougou.user.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbUser;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreService;
+import entity.Result;
+
 /**
  * 服务层接口
  * @author Administrator
@@ -45,4 +49,14 @@ public interface UserService extends CoreService<TbUser> {
     boolean checkSmsCode(String phone, String smsCode);
 
     void updateByKey(TbUser user);
+
+    //设置我的收藏的信息
+    void moveMyFavorite(Long itemId);
+
+    /**
+     * 查询所有我的收藏的页面信息展示
+     * @return
+     */
+    List<Map<String, Object>> findMyFavorite();
+
 }

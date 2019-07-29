@@ -136,6 +136,7 @@ public class GoodsController {
                     ids,   //body，消息体，根插此id查询到要删除的数据
                     MessageInfo.METHOD_DELETE);  //消息发送的类型，属于修改更新
 
+
             //转JSON
             String str = JSON.toJSONString(info);
 
@@ -206,8 +207,6 @@ public class GoodsController {
                     itemPageService.genItemHtml(id);
 
                 }*/
-
-
 
 
                    //现在不需要使用以上的方法去做更新删除或者添加的事了

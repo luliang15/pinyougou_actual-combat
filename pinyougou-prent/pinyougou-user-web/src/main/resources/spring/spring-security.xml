@@ -17,6 +17,7 @@
     <!--放行注册页面时要发送的注册请求-->
     <http pattern="/user/add/*.shtml" security="none"></http>
     <http pattern="/user/sendCode.shtml" security="none"></http>
+    <http pattern="/user/favorite.shtml" security="none"></http>
 
 
     <!--   entry-point-ref  入口点引用 -->
