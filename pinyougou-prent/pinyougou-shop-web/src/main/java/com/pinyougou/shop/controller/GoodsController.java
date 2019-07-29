@@ -119,5 +119,12 @@ public class GoodsController {
 
         return goodsService.findPage(pageNo, pageSize, goods);
     }
-	
+
+    @RequestMapping("/changeIsMarketable")
+	public Result changeIsMarketable(@RequestBody Long[] ids,Integer status){
+		goodsService.changeIsMarketable(ids,status);
+
+		return new Result();
+	}
+
 }
