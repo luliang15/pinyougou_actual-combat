@@ -1,6 +1,7 @@
 package com.pinyougou.manager.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.POIUtils;
 import com.pinyougou.pojo.TbBrand;
@@ -9,9 +10,7 @@ import entity.Result;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @ClassName:BrandController
@@ -89,7 +88,7 @@ public class BrandController {
     //批量删除的方法,根据id删除对应的品牌对象
     //定义一个品牌数组的id参数，使之可以批量删除、
     @RequestMapping("/delete")
-    public Result delete(@RequestBody Long[] ids){
+    public Result delete(@RequestBody Long[] ids) {
         try {
             brandService.delete(ids);
             //修改成功
@@ -107,7 +106,7 @@ public class BrandController {
     public PageInfo<TbBrand> search(
             @RequestParam(value = "pageNo", required = true, defaultValue = "1") Integer pageNo,
             @RequestParam(value = "pageSize", required = true, defaultValue = "10") Integer pageSize,
-            @RequestBody TbBrand tbBrand ){
+            @RequestBody TbBrand tbBrand) {
         //根据条件进行模糊查询并分页
 
         PageInfo<TbBrand> pageInfo = brandService.findPage(pageNo, pageSize, tbBrand);
@@ -116,40 +115,68 @@ public class BrandController {
     }
 
 
-
-
     //poi导入数据
     @RequestMapping("/upload")
     public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
 
-			try {
-				List<String[]> rowList = POIUtils.readExcel(file);
-				for (int i = 0; i < rowList.size(); i++) {
-					String[] row = rowList.get(i);
-					TbBrand tbBrand = new TbBrand();
-					tbBrand.setName(row[0]);
-					tbBrand.setFirstChar(row[1]);
+        try {
+            String filename = file.getOriginalFilename();
 
-					brandService.add(tbBrand);
+            if (!filename.contains("xls")) {
+                return new Result(false, "请上传正确的格式文件！！不要作死！");
+            }
+            if (filename.contains("xlsx")) {
+                return new Result(false, "请上传正确的格式文件！！不要作死！");
+            }
+            List<String[]> rowList = POIUtils.readExcel(file);
+            List<TbBrand> list = new ArrayList<>();
+            for (int i = 0; i < rowList.size(); i++) {
+                String[] row = rowList.get(i);
+                TbBrand tbBrand = new TbBrand();
+                tbBrand.setName(row[0]);
+                tbBrand.setFirstChar(row[1]);
+                //状态默认为0未审核
+                tbBrand.setBrandStatus("0");
+                list.add(tbBrand);
+                //brandService.add(tbBrand);
+            }
+            String jsonString = JSON.toJSONString(list);
+            return new Result(true, jsonString);
+        } catch (Exception e) {
 
-				}
-				return new Result(true, "导入数据成功");
-			} catch (Exception e) {
-
-				e.printStackTrace();
-				return new Result(false, "导入数据异常");
-			}
+            e.printStackTrace();
+            return new Result(false, "导入数据异常");
+        }
 
 
-		}
+    }
+
+
+    //poi导入数据
+    @RequestMapping("/into")
+    public Result into(@RequestBody List<TbBrand> tbBrands) throws Exception {
+        try {
+            if (tbBrands != null) {
+                for (TbBrand tbBrand : tbBrands) {
+
+                    brandService.add(tbBrand);
+                }
+            }
+            return new Result(true, "导入数据成功");
+        } catch (Exception e) {
+
+            e.printStackTrace();
+            return new Result(false, "导入数据失败");
+        }
+    }
 
 
     //商品审核
     @RequestMapping("/updateStatus")
-    public Result updateStatus(@RequestBody Long[] ids,String status){
+    public Result updateStatus(@RequestBody Long[] ids, String status) {
 
         try {
-            brandService.updateStatus(ids,status);
+            brandService.updateStatus(ids, status);
             return new Result(true, "审核成功。");
         } catch (Exception e) {
             e.printStackTrace();

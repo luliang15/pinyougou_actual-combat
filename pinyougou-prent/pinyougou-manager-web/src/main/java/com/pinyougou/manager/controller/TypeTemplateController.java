@@ -121,6 +121,8 @@ public class TypeTemplateController {
 				tbSpecification.setSpecIds(row[1]);
 				tbSpecification.setBrandIds(row[2]);
 				tbSpecification.setCustomAttributeItems(row[3]);
+				//默认为未审核
+				tbSpecification.setTemplateStatus("0");
 				typeTemplateService.add(tbSpecification);
 			}
 			return new Result(true, "导入数据成功");
