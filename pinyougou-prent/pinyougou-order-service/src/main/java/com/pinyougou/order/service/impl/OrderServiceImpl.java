@@ -420,6 +420,7 @@ public class OrderServiceImpl implements OrderService {
                     Example example = new Example(TbOrder.class);
                     Example.Criteria criteria = example.createCriteria();
                     criteria.andEqualTo("status", "2");
+                    criteria.andEqualTo("auditStatus", "1");
                     criteria.andGreaterThanOrEqualTo("paymentTime", startTime);
                     criteria.andLessThan("paymentTime", endDate);
                     criteria.andIn("orderId", tbOrderIdSet);
@@ -538,7 +539,7 @@ public class OrderServiceImpl implements OrderService {
 
 
         //全部查询  即页面默认的时候第一级的分类ID和第二级分类ID都不传过来
-        if (catNo1 == null) {
+        if (catNo1 == null && catNo2 == null) {
             //规定时间内所有已经售出的商品订单
             Example example = new Example(TbOrder.class);
             Example.Criteria criteria = example.createCriteria();
@@ -547,27 +548,207 @@ public class OrderServiceImpl implements OrderService {
             criteria.andLessThan("paymentTime", endDate);
             List<TbOrder> tbOrderList = orderMapper.selectByExample(example);
 
-            //根据订单ID查询出所有的订单商品tbOrderItem
+            //根据订单ID查询出所有的订单商品tbOrderItem  累计每个goods的销售额和销量
             if (tbOrderList != null && tbOrderList.size() > 0) {
+
+                HashMap<String, Object> map = new HashMap<>();
+
+                List<Double> moneyList = new ArrayList<>();
+                List<Integer> numList = new ArrayList<>();
+                List<String> nameList = new ArrayList<>();
+
+                Map<String, Object> moneyMap = new HashMap<>();
+                Map<String, Object> numMap = new HashMap<>();
+                Set<String> goosNameSet = new HashSet<>();
+
                 for (TbOrder tbOrder : tbOrderList) {
+
                     TbOrderItem condition = new TbOrderItem();
                     condition.setOrderId(tbOrder.getOrderId());
                     List<TbOrderItem> orderItemList = orderItemMapper.select(condition);
                     if (orderItemList != null && orderItemList.size() > 0) {
-                        Set<Long> goodsIdSet = new HashSet<>();
+
                         for (TbOrderItem tbOrderItem : orderItemList) {
-                            goodsIdSet.add(tbOrderItem.getGoodsId());
+
+                            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(tbOrderItem.getGoodsId());
+
+                            if (tbGoods != null) {
+                                String goodsName = tbGoods.getGoodsName();
+                                Double money = (Double) moneyMap.get(goodsName);
+                                if (money == null) {
+                                    money = 0.0;
+                                }
+                                moneyMap.put(goodsName, money + tbOrderItem.getTotalFee().doubleValue());
+
+                                Integer num = (Integer) numMap.get(goodsName);
+                                if (num == null) {
+                                    num = 0;
+                                }
+                                numMap.put(goodsName, num + tbOrderItem.getNum());
+
+                                goosNameSet.add(goodsName);
+                            }
+
                         }
                     }
 
                 }
+
+                for (String gname : goosNameSet) {
+                    moneyList.add((Double) moneyMap.get(gname));
+                    numList.add((Integer) numMap.get(gname));
+                    nameList.add(gname);
+                }
+
+                map.put("money", moneyList);
+                map.put("num", numList);
+                map.put("goodsNames", nameList);
+
+                return map;
             }
 
 
             //页面只传了第一级分类ID而不传第二级分类ID的时候
-        } else if (catNo2 == null) {
+        } else if (catNo1 != null && catNo2 == null) {
+            //规定时间内所有已经售出的商品订单
+            Example example = new Example(TbOrder.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("status", "2");
+            criteria.andGreaterThanOrEqualTo("paymentTime", startTime);
+            criteria.andLessThan("paymentTime", endDate);
+            List<TbOrder> tbOrderList = orderMapper.selectByExample(example);
+
+            //根据订单ID查询出所有的订单商品tbOrderItem  累计每个goods的销售额和销量
+            if (tbOrderList != null && tbOrderList.size() > 0) {
+
+                HashMap<String, Object> map = new HashMap<>();
+
+                List<Double> moneyList = new ArrayList<>();
+                List<Integer> numList = new ArrayList<>();
+                List<String> nameList = new ArrayList<>();
+
+                Map<String, Object> moneyMap = new HashMap<>();
+                Map<String, Object> numMap = new HashMap<>();
+                Set<String> goosNameSet = new HashSet<>();
+
+                for (TbOrder tbOrder : tbOrderList) {
+
+                    TbOrderItem condition = new TbOrderItem();
+                    condition.setOrderId(tbOrder.getOrderId());
+                    List<TbOrderItem> orderItemList = orderItemMapper.select(condition);
+                    if (orderItemList != null && orderItemList.size() > 0) {
+
+                        for (TbOrderItem tbOrderItem : orderItemList) {
+
+                            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(tbOrderItem.getGoodsId());
+
+                            Long category1Id = tbGoods.getCategory1Id();
+
+                            if (tbGoods != null && catNo1.equals(category1Id)) {
+                                String goodsName = tbGoods.getGoodsName();
+                                Double money = (Double) moneyMap.get(goodsName);
+                                if (money == null) {
+                                    money = 0.0;
+                                }
+                                moneyMap.put(goodsName, money + tbOrderItem.getTotalFee().doubleValue());
+
+                                Integer num = (Integer) numMap.get(goodsName);
+                                if (num == null) {
+                                    num = 0;
+                                }
+                                numMap.put(goodsName, num + tbOrderItem.getNum());
+
+                                goosNameSet.add(goodsName);
+                            }
+
+                        }
+                    }
+
+                }
+
+                for (String gname : goosNameSet) {
+                    moneyList.add((Double) moneyMap.get(gname));
+                    numList.add((Integer) numMap.get(gname));
+                    nameList.add(gname);
+                }
+
+                map.put("money", moneyList);
+                map.put("num", numList);
+                map.put("goodsNames", nameList);
+
+                return map;
+            }
 
 
+        } else if (catNo1 != null && catNo2 != null) {
+            //规定时间内所有已经售出的商品订单
+            Example example = new Example(TbOrder.class);
+            Example.Criteria criteria = example.createCriteria();
+            criteria.andEqualTo("status", "2");
+            criteria.andGreaterThanOrEqualTo("paymentTime", startTime);
+            criteria.andLessThan("paymentTime", endDate);
+            List<TbOrder> tbOrderList = orderMapper.selectByExample(example);
+
+            //根据订单ID查询出所有的订单商品tbOrderItem  累计每个goods的销售额和销量
+            if (tbOrderList != null && tbOrderList.size() > 0) {
+
+                HashMap<String, Object> map = new HashMap<>();
+
+                List<Double> moneyList = new ArrayList<>();
+                List<Integer> numList = new ArrayList<>();
+                List<String> nameList = new ArrayList<>();
+
+                Map<String, Object> moneyMap = new HashMap<>();
+                Map<String, Object> numMap = new HashMap<>();
+                Set<String> goosNameSet = new HashSet<>();
+
+                for (TbOrder tbOrder : tbOrderList) {
+
+                    TbOrderItem condition = new TbOrderItem();
+                    condition.setOrderId(tbOrder.getOrderId());
+                    List<TbOrderItem> orderItemList = orderItemMapper.select(condition);
+                    if (orderItemList != null && orderItemList.size() > 0) {
+
+                        for (TbOrderItem tbOrderItem : orderItemList) {
+
+                            TbGoods tbGoods = goodsMapper.selectByPrimaryKey(tbOrderItem.getGoodsId());
+
+                            Long category2Id = tbGoods.getCategory2Id();
+
+                            if (tbGoods != null && catNo2.equals(category2Id)) {
+                                String goodsName = tbGoods.getGoodsName();
+                                Double money = (Double) moneyMap.get(goodsName);
+                                if (money == null) {
+                                    money = 0.0;
+                                }
+                                moneyMap.put(goodsName, money + tbOrderItem.getTotalFee().doubleValue());
+
+                                Integer num = (Integer) numMap.get(goodsName);
+                                if (num == null) {
+                                    num = 0;
+                                }
+                                numMap.put(goodsName, num + tbOrderItem.getNum());
+
+                                goosNameSet.add(goodsName);
+                            }
+
+                        }
+                    }
+
+                }
+
+                for (String gname : goosNameSet) {
+                    moneyList.add((Double) moneyMap.get(gname));
+                    numList.add((Integer) numMap.get(gname));
+                    nameList.add(gname);
+                }
+
+                map.put("money", moneyList);
+                map.put("num", numList);
+                map.put("goodsNames", nameList);
+
+                return map;
+            }
         }
 
 
