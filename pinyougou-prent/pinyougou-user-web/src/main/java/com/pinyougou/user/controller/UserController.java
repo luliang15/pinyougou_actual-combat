@@ -23,8 +23,6 @@ import com.pinyougou.pojo.TbUser;
 import com.github.pagehelper.PageInfo;
 import entity.Result;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -45,11 +43,10 @@ public class UserController {
 
 	@Reference  //注入订单实力化对象
     private OrderService orderService;
-	
+
 
 	@Reference
 	private AddressService addressService;
-
 
 	/**
 	 * 返回全部列表
@@ -321,5 +318,6 @@ public class UserController {
 
         return map;
     }
+
 
 }
