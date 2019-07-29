@@ -11,7 +11,6 @@ var app = new Vue({
     methods:{
         //获取用户名的方法
         getUserInfo:function () {
-            alert(6766)
             //向服务器发送axios请求
             axios.get('/login/user/info.shtml').then(function (response) {
 

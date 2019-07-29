@@ -11,6 +11,7 @@ import com.pinyougou.pojo.TbItem;
 import com.pinyougou.user.service.UserService;
 
 import entity.Result;
+import entity.User;
 import org.apache.rocketmq.client.producer.DefaultMQProducer;
 import org.apache.rocketmq.common.message.Message;
 
@@ -313,5 +314,66 @@ public class UserServiceImpl extends CoreServiceImpl<TbUser> implements UserServ
                 redisTemplate.boundHashOps(SysConstants.MY_FAVORITE).get("Favorite");
 
         return favoriteList;
+    }
+
+    @Override
+    public List<User> userClassification() {
+        Example example=new Example(TbUser.class);
+        example.createCriteria().andEqualTo("sex","男");
+        List<TbUser> usersMan = userMapper.selectByExample(example);
+        Example example1=new Example(TbUser.class);
+        example1.createCriteria().andEqualTo("sex","女");
+        List<TbUser> usersWoman = userMapper.selectByExample(example1);
+        int weekMan=0;
+        int weekWoman=0;
+        int monthMan=0;
+        int monthWoman=0;
+        int otherMan=0;
+        int otherWoman=0;
+        for (TbUser tbUser : usersMan) {
+            long time = (new Date().getTime())-tbUser.getLastLoginTime().getTime();
+            if (time / 86400000 <= 7) {
+                weekMan++;
+                continue;
+            }
+            if (time / 86400000 > 30) {
+                monthMan++;
+                continue;
+            }
+            otherMan++;
+        }
+        for (TbUser tbUser : usersWoman) {
+            long time = (new Date().getTime())-tbUser.getLastLoginTime().getTime();
+            if (time / 86400000 <= 7) {
+                weekWoman++;
+                continue;
+            }
+            if (time / 86400000 > 30) {
+                monthWoman++;
+                continue;
+            }
+            otherWoman++;
+        }
+        //进行封装
+        User userMan = new User();
+        userMan.setSex("男");
+        Map<String, Object> mapMan = new HashMap<>();
+        mapMan.put("active",weekMan);
+        mapMan.put("secondaryActive",monthMan);
+        mapMan.put("unActive",otherMan);
+        userMan.setMap(mapMan);
+
+        User userWoman = new User();
+        userWoman.setSex("女");
+        Map<String, Object> mapWoman = new HashMap<>();
+        mapWoman.put("active",weekWoman);
+        mapWoman.put("secondaryActive",monthWoman);
+        mapWoman.put("unActive",otherWoman);
+        userWoman.setMap(mapWoman);
+
+        ArrayList<User> users = new ArrayList<>();
+        users.add(userMan);
+        users.add(userWoman);
+        return users;
     }
 }

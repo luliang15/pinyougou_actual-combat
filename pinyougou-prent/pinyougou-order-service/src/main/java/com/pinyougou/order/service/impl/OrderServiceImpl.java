@@ -2,6 +2,8 @@ package com.pinyougou.order.service.impl;
 
 import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.common.utils.DateUtils;
@@ -54,7 +56,6 @@ public class OrderServiceImpl implements OrderService {
      * 提交订单的方法
      * 1.订单号不能重复
      * 2.拆单
-     *
      * @param tbOrder
      */
     @Override   //这个tbOrder是页面传过来的，是一个大的订单，需要进行拆单支付
@@ -226,7 +227,6 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 根据商家名 查询某一段时间内 每天的销售额
-     *
      * @param startTime
      * @param endTime
      * @param sellerId
@@ -252,6 +252,7 @@ public class OrderServiceImpl implements OrderService {
             calendar.setTime(endDate);
             calendar.add(Calendar.DAY_OF_MONTH, 1);
             endDate = calendar.getTime();
+
 
 
         } catch (Exception e) {
@@ -337,7 +338,6 @@ public class OrderServiceImpl implements OrderService {
 
     /**
      * 获取当前用户的所有的SPU的特定时间段的销售额
-     *
      * @param startTime
      * @param endTime
      * @param sellerId
@@ -439,6 +439,7 @@ public class OrderServiceImpl implements OrderService {
             map.put("money", moneyList);
             return map;
         }
+
         return null;
     }
 
@@ -449,9 +450,8 @@ public class OrderServiceImpl implements OrderService {
 
     }
 
-    @Override
-    public Map<String, Object> findUserIdOrder(String userId, Integer pageNo,
-                                               Integer pageSize) {
+    public Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
+                                             Integer pageSize) {
 
         //封装分页需要的数据与页面要展示的数据的Map
         Map<String, Object> mapInfo = new HashMap<>();

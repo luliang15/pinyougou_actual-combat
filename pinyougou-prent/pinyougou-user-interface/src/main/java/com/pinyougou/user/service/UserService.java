@@ -7,6 +7,7 @@ import com.pinyougou.pojo.TbUser;
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreService;
 import entity.Result;
+import entity.User;
 
 /**
  * 服务层接口
@@ -59,4 +60,5 @@ public interface UserService extends CoreService<TbUser> {
      */
     List<Map<String, Object>> findMyFavorite();
 
+	List<User> userClassification();
 }
