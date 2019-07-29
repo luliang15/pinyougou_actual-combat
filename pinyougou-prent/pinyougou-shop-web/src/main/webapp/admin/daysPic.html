@@ -157,6 +157,7 @@
             }
 
 
+
             myChart2.setOption({
                     title: {
                         text: '店铺每日销售额占比',
@@ -169,13 +170,15 @@
                     },
                     legend: {
                         orient: 'vertical',
+                        type: 'scroll',
                         // top: 'middle',
                         bottom: 0,
                         left: 50,
-                        data: res.data.days
+                        data: res.data.days,
                     },
                     series: [{
                         name: '每日销量占比',
+
                         // radius : '55%',
                         // center: ['50%', '60%'],
                         selectedMode: 'single',

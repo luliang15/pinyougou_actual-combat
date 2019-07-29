@@ -1,6 +1,10 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
+import java.util.Map;
 
+
+import com.pinyougou.order.service.OrderService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.pinyougou.pojo.TbSeller;
@@ -129,5 +133,34 @@ public class SellerController {
             return new Result(false,"失败");
         }
     }
+
+    @Reference
+	private OrderService orderService;
+
+	/**
+	 * 所有的SPU的特定时间段的销售额
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	@RequestMapping("/findSellInItem")
+	public Map<String, Object> findSellInItem(String startTime, String endTime){
+
+
+		String sellerId = null;
+
+		Map<String, Object> map = orderService.findSellInItem(startTime,endTime,sellerId);
+
+		return map;
+	}
+
+	/**
+	 * 查询出所有的分类下的商品的销售额 比如 一级分类的销售额 二级分类的商品的销售额 三级分类的商品的销售额
+	 * @return
+	 */
+	@RequestMapping("/findCategorySell")
+	public Map<String,Object> findCategorySell(Long catNo1,Long catNo2,String startTime, String endTime){
+		return orderService.findCategorySell(catNo1,catNo2,startTime,endTime);
+	}
 
 }
