@@ -1,9 +1,12 @@
 package com.pinyougou.sellergoods.service;
 import java.util.List;
+import java.util.Map;
+
 import com.pinyougou.pojo.TbSpecification;
 
 import com.github.pagehelper.PageInfo;
 import com.pinyougou.core.service.CoreService;
+import com.pinyougou.pojo.TbSpecificationOption;
 import entity.Specification;
 
 /**
@@ -62,4 +65,8 @@ public interface SpecificationService extends CoreService<TbSpecification> {
 	PageInfo<TbSpecification> findPage(Integer pageNo, Integer pageSize, TbSpecification Specification);
 
     void updateStatus(Long[] ids, String status);
+
+
+    void insertSpecification(List<Map<String, Object>> mapList);
+
 }

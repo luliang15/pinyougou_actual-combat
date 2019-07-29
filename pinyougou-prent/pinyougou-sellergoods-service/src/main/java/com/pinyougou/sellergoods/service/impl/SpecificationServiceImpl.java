@@ -1,6 +1,8 @@
 package com.pinyougou.sellergoods.service.impl;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import com.pinyougou.mapper.TbSpecificationOptionMapper;
 import com.pinyougou.pojo.TbSpecificationOption;
@@ -20,26 +22,25 @@ import com.pinyougou.pojo.TbSpecification;
 import com.pinyougou.sellergoods.service.SpecificationService;
 
 
-
 /**
  * 服务实现层
- * @author Administrator
  *
+ * @author Administrator
  */
 @Service
-public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  implements SpecificationService {
+public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification> implements SpecificationService {
 
-	//规格表
-	private TbSpecificationMapper specificationMapper;
+    //规格表
+    private TbSpecificationMapper specificationMapper;
 
-	@Autowired   //规格的选项表
+    @Autowired   //规格的选项表
     private TbSpecificationOptionMapper optionMapper;
 
-	@Autowired
-	public SpecificationServiceImpl(TbSpecificationMapper specificationMapper) {
-		super(specificationMapper, TbSpecification.class);
-		this.specificationMapper=specificationMapper;
-	}
+    @Autowired
+    public SpecificationServiceImpl(TbSpecificationMapper specificationMapper) {
+        super(specificationMapper, TbSpecification.class);
+        this.specificationMapper = specificationMapper;
+    }
 
 
     /**
@@ -199,6 +200,35 @@ public class SpecificationServiceImpl extends CoreServiceImpl<TbSpecification>  
         criteria.andIn("id", Arrays.asList(ids));
         if (ids != null) {
             specificationMapper.updateByExampleSelective(tbSpecification, example);
+        }
+
+    }
+
+
+    //规格添加
+    @Override
+    public void insertSpecification(List<Map<String, Object>> mapList) {
+
+        for (Map<String, Object> map : mapList) {
+            //父类对象
+            String specName = (String) map.get("specName");
+            TbSpecification specification = new TbSpecification();
+            specification.setSpecName(specName);
+            specification.setSpecStatus("0");
+            specificationMapper.insert(specification);
+            //子类规格选项
+            List<Map> mapArrayList = (List<Map>) map.get("spName");
+            for (Map map1 : mapArrayList) {
+                String optionName = (String) map1.get("optionName");
+                Integer sOrder = (Integer) map1.get("sOrder");
+                TbSpecificationOption option = new TbSpecificationOption();
+                option.setSpecId(specification.getId());
+                option.setOptionName(optionName);
+                option.setOrders(sOrder);
+
+                optionMapper.insert(option);
+            }
+
         }
 
     }

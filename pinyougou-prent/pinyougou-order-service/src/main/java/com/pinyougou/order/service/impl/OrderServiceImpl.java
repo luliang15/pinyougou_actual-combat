@@ -492,8 +492,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-    @Autowired
-    private TbGoodsMapper goodsMapper;
 
     @Override
     public List<OrderList> findAllOrder() {

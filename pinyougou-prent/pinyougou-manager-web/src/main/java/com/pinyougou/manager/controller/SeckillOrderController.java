@@ -1,5 +1,6 @@
 package com.pinyougou.manager.controller;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.*;
 import com.alibaba.dubbo.config.annotation.Reference;
@@ -98,9 +99,9 @@ public class SeckillOrderController {
 	
 
 	@RequestMapping("/search")
-    public PageInfo<TbSeckillOrder> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
-                                      @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
-                                      @RequestBody TbSeckillOrder seckillOrder) {
+    public Map<String, Object> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
+										@RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
+										@RequestBody TbSeckillOrder seckillOrder) {
         return seckillOrderService.findPage(pageNo, pageSize, seckillOrder);
     }
 	

@@ -47,7 +47,10 @@ public interface OrderService {
 
     List<TbOrder> findAll();
 
-   /* List<OrderList> findAllOrder();*/
+    Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
+                                       Integer pageSize);
+
+    List<OrderList> findAllOrder();
 
     Map<String, Object> findPage(Integer pageNo, Integer pageSize, TbOrder order);
 }

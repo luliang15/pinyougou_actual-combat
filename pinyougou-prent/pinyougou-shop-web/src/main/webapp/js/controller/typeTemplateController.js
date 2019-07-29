@@ -66,7 +66,6 @@
         },
         update:function () {
             axios.post('/typeTemplate/update.shtml',this.entity).then(function (response) {
-                console.log(response);
                 if(response.data.success){
                     app.searchList(1);
                 }
