@@ -39,47 +39,88 @@
 
 <body class="hold-transition skin-red sidebar-mini">
 
-<br>
+<div id="app">
+
+    <br>
 
 
-<!-- .box-body -->
-<!--<table>
-    <tr>
-        <td>
-            <div id="chart" style="width: 600px;height:400px;" ></div>
-        </td>
-        <td>
-            <div id="chart2" style="width: 600px;height:400px;" ></div>
-        </td>
-    </tr>
-</table>-->
+    <table class="sui-table table-bordered">
+        <tr>
+            <td width="300">
+                <div class="control-group">
+                    <label for="inputPassword" class="control-label">一级分类：</label>
+                    <!--下拉框选中此父级ID时，将value值绑定到该变量中-->
+                    <select class="form-control" v-model="entity.goods.category1Id" >
+                        <!--在这里展示第一级商品分类的列表信息,遍历列表信息，使用v-for-->
+                        <!--给列表信息赋值，使用v-band 使用简写：冒号赋值也行-->
+                        <option :value="itemCat.id" v-for="itemCat in itemCat1List">
+                            <!--展示文本信息，获取itemCat表中的name属性即可展示文本信息-->
+                            {{itemCat.name}}
+                        </option>
+                    </select>
+                </div>
+            </td>
+            <td width="300">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td width="300">
+                <div class="control-group">
+                    <label for="inputPassword" class="control-label">二级分类：</label>
+                    <!--下拉框选中此父级ID时，将value值绑定到该变量中-->
+                    <select class="form-control" v-model="entity.goods.category2Id" >
+                        <!--在这里展示第一级商品分类的列表信息,遍历列表信息，使用v-for-->
+                        <!--给列表信息赋值，使用v-band 使用简写：冒号赋值也行-->
+                        <option :value="itemCat.id" v-for="itemCat in itemCat2List">
+                            <!--展示文本信息，获取itemCat表中的name属性即可展示文本信息-->
+                            {{itemCat.name}}
+                        </option>
 
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="300">
+                <div class="control-group">
+                    <label for="inputPassword" class="control-label">开始时间：</label>
+                    <div class="controls">
+                        <select id="select_year2" rel="2019"></select>年
+                        <select id="select_month2" rel="7"></select>月
+                        <select id="select_day2" rel="15"></select>日
+                    </div>
+                </div>
+            </td>
+            <td width="300"></td>
+            <td width="300">
+                <div class="control-group">
+                    <label for="inputPassword" class="control-label">结束时间：</label>
+                    <div class="controls">
+                        <select id="select_year1" rel="2019"></select>年
+                        <select id="select_month1" rel="8"></select>月
+                        <select id="select_day1" rel="1"></select>日
 
-<div class="control-group">
-    <label for="inputPassword" class="control-label">开始时间：</label>
-    <div class="controls">
-        <select id="select_year2" rel="2019" v-model="startTime_year"></select>年
-        <select id="select_month2" rel="7" v-model="startTime_month"></select>月
-        <select id="select_day2" rel="15" v-model="startTime_day"></select>日
-    </div>
-</div>
-<div class="control-group">
-    <label for="inputPassword" class="control-label">结束时间：</label>
-    <div class="controls">
-        <select id="select_year1" rel="2019" v-model="endTime_year"></select>年
-        <select id="select_month1" rel="8" v-model="endTime_month"></select>月
-        <select id="select_day1" rel="1" v-model="endTime_day"></select>日
-        &nbsp;&nbsp;
-        <button class="btn bg-olive btn-xs" onclick="createPicture()">生成图例</button>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button class="btn bg-olive btn-xs" onclick="turnSellTable()">查看表格</button>
-    </div>
-</div>
-<br>
-<br>
-<!--<div id="chart" style="width: 1200px;height:500px;"></div>-->
-<!--<br>-->
-<div id="chart2" style="width: 1200px;height:500px;"></div>
+                    </div>
+                </div>
+            </td>
+            <td width="300">
+                <button class="btn bg-olive btn-xs" @click="createPicture()">生成图例</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn bg-olive btn-xs" @click="turnSellTable()">查看表格</button>
+            </td>
+        </tr>
+
+    </table>
+
+    <br>
+    <br>
+    <table class="sui-table table-bordered">
+        <tr>
+            <td>
+                <div id="chart" style="width: 620px;height:460px;"></div>
+            </td>
+            <td>
+                <div id="chart2" style="width: 620px;height:460px;"></div>
+            </td>
+        </tr>
+    </table>
 
 
 </div>
@@ -90,14 +131,12 @@
 <script src="../js/controller/base.js"></script>
 <script src="../plugins/axios/axios.js"></script>
 <script src="../plugins/echarts/echarts.js"></script>
-<!--<script src="../js/controller/pictureController.js"></script>-->
-
+<script src="../js/controller/pictureController.js"></script>
 
 <script>
 
-
-    function createPicture() {
-        // var myChart = echarts.init(document.getElementById('chart'));
+    $(function ou() {
+        var myChart = echarts.init(document.getElementById('chart'));
         var myChart2 = echarts.init(document.getElementById('chart2'));
 
         var start_year = document.getElementById('select_year2').value
@@ -110,15 +149,24 @@
         var startTime = start_year + '-' + start_month + '-' + start_day
         var endTime = end_year + '-' + end_month + '-' + end_day
 
+        if (startTime == '--') {
+            startTime = '2019-7-15'
+        }
+        if (endTime == '--') {
+            endTime = '2019-7-31'
+        }
 
-        axios.get("/seller/findSellInItem.shtml", {
+
+        axios.get("/seller/findCategorySell.shtml", {
             params: {
                 startTime: startTime,
-                endTime: endTime
+                endTime: endTime,
+                catNo1: this.catNo1,
+                catNo2: this.catNo2
+
+
             }
         }).then((res) => {
-
-
 
             var datas = []
             for (let i = 0; i < res.data.goodsNames.length; i++) {
@@ -127,16 +175,28 @@
 
 
                 obj.name = res.data.goodsNames[i]
-                obj.value = res.data.money[i]
+                obj.value = res.data.num[i]
 
                 datas.push(obj)
             }
 
+            var datas2 = []
 
-            myChart2.setOption({
+            for (let i = 0; i < res.data.goodsNames.length; i++) {
+
+                var obj = {value: '', name: ''}
+
+
+                obj.name = res.data.goodsNames[i]
+                obj.value = res.data.money[i]
+
+                datas2.push(obj)
+            }
+
+            myChart.setOption({
                     title: {
                         text: '商品销量占比',
-                        subtext: '',
+                        subtext: '按照同一类别不同商品统计（单位：件）',
                         left: 'center'
                     },
                     tooltip: {//提示框组件
@@ -148,18 +208,18 @@
                         type: 'scroll',
                         // top: 'middle',
                         bottom: 0,
-                        left: 50,
+                        left: 0,
                         data: res.data.goodsNames
                     },
                     series: [{
                         name: '每天销量占比',
                         // radius : '55%',
                         // center: ['50%', '60%'],
-                       /* label: {
-                            normal: {
-                                position: 'inner'
-                            }
-                        },*/
+                        /* label: {
+                             normal: {
+                                 position: 'inner'
+                             }
+                         },*/
                         selectedMode: 'single',
                         data: datas,
                         type: 'pie',
@@ -173,26 +233,50 @@
                     }]
                 }
             )
+
+
+            myChart2.setOption({
+                    title: {
+                        text: '商品销售额占比',
+                        subtext: '按照同一类别不同商品统计（单位：元）',
+                        left: 'center'
+                    },
+                    tooltip: {//提示框组件
+                        trigger: 'item',//触发类型，在饼形图中为item
+                        formatter: "{a} <br/>{b} : {c} ({d}%)"//提示内容格式
+                    },
+                    legend: {
+                        orient: 'vertical',
+                        type: 'scroll',
+                        // top: 'middle',
+                        bottom: 0,
+                        left: 0,
+                        data: res.data.goodsNames
+                    },
+                    series: [{
+                        name: '每天销售额占比',
+                        // radius : '55%',
+                        // center: ['50%', '60%'],
+                        /* label: {
+                             normal: {
+                                 position: 'inner'
+                             }
+                         },*/
+                        selectedMode: 'single',
+                        data: datas2,
+                        type: 'pie',
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }]
+                }
+            )
         })
-    }
-
-    function turnSellTable() {
-        var start_year = document.getElementById('select_year2').value
-        var start_month = document.getElementById('select_month2').value
-        var start_day = document.getElementById('select_day2').value
-        var end_year = document.getElementById('select_year1').value
-        var end_month = document.getElementById('select_month1').value
-        var end_day = document.getElementById('select_day1').value
-
-        var startTime = start_year + '-' + start_month + '-' + start_day
-        var endTime = end_year + '-' + end_month + '-' + end_day
-
-        window.location.href='sellTable.html?startTime='+startTime+'&endTime='+endTime
-
-    }
-
+    })
 
 </script>
-
-
 </html>
