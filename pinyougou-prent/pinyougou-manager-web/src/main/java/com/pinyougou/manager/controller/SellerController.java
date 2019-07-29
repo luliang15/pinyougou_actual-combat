@@ -159,8 +159,8 @@ public class SellerController {
 	 * @return
 	 */
 	@RequestMapping("/findCategorySell")
-	public Map<String,Object> findCategorySell(Long catNo1,Long catNo2){
-		return orderService.findCategorySell(catNo1,catNo2);
+	public Map<String,Object> findCategorySell(Long catNo1,Long catNo2,String startTime, String endTime){
+		return orderService.findCategorySell(catNo1,catNo2,startTime,endTime);
 	}
 
 }
