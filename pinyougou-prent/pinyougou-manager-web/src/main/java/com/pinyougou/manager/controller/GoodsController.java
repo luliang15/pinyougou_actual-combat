@@ -188,7 +188,7 @@ public class GoodsController {
             goodsService.updateStatus(ids,status);
 
             //做一个判断。只能是审核通过的时候才进行更新保存的操作
-            if("1".equals(status)){
+				if("1".equals(status)){
                /* //1.获取被审核的先通过SPU  获取到SPU的商品的数据
                 List<TbItem> itemList = goodsService.findTbItemListByIds(ids);
 
@@ -208,7 +208,7 @@ public class GoodsController {
 
                 }*/
 
-
+				/*
                    //现在不需要使用以上的方法去做更新删除或者添加的事了
                    //使用发送消息，将需要发送的消息全部封装到MessageInfo中
                    //根据主键查询的商品数据信息
@@ -237,7 +237,7 @@ public class GoodsController {
                    //发送信息
                    SendResult send = producer.send(message);
 
-                   System.out.println("Update：" + send);
+                   System.out.println("Update：" + send);*/
 
                 }
 

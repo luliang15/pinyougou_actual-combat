@@ -371,6 +371,8 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
         //传入要修改的值
         TbGoods tbGoods = new TbGoods();
         tbGoods.setAuditStatus(status);
+        //只要进行审核 上架状态全部改为下架
+        tbGoods.setIsMarketable("0");
         goodsMapper.updateByExampleSelective(tbGoods, exmaple);
 
     }
@@ -412,16 +414,21 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     @Override
     public void changeIsMarketable(Long[] ids, Integer status) {
 
-        if (ids == null) {
-            throw new RuntimeException("请先勾选您需要上架的商品!");
-        }
 
         if (status.intValue() == 1) {
             //如果需要上架
             for (Long goodsId : ids) {
+
+                TbGoods tbGoods = goodsMapper.selectByPrimaryKey(goodsId);
+                if (!"1".equals(tbGoods.getAuditStatus())){
+                    throw new RuntimeException("请先将"+tbGoods.getGoodsName()+"进行审核！");
+                }
+
                 TbGoods condition = new TbGoods();
+                condition.setId(goodsId);
                 condition.setIsMarketable("1");
                 goodsMapper.updateByPrimaryKeySelective(condition);
+
             }
 
         } else {
