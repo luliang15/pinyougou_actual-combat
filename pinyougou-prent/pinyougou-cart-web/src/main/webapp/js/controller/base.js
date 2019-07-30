@@ -1,6 +1,6 @@
 
 //定义一个插件
-let URLComponent={};
+var URLComponent={};
 
 URLComponent.install=function (Vue, options) {
     //定义一个全局的方法

@@ -65,4 +65,8 @@ public interface GoodsService extends CoreService<TbGoods> {
      * @return
      */
     List<TbItem> findTbItemListByIds(Long[] ids);
+
+    void changeIsMarketable(Long[] ids, Integer status);
+
+
 }

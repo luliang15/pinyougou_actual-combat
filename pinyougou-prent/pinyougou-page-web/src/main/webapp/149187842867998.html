@@ -22,18 +22,18 @@
     //SKU商品列表的数据是从后台查询相应到这里的
     var skuList=[
                         {
-            "id":10561621,
-            "title":"海尔冰箱 移动3G 16G",
+            "id":10561623,
+            "title":"三国称霸 移动3G 32G",
             "price":0.01,
-            "spec": {"网络":"移动3G","机身内存":"16G"}
+            "spec": {"网络":"移动3G","机身内存":"32G"}
         } ,
 
          //_index代表下标，如果当前下标小于最后一个下标，就有逗号
         {
-            "id":10561622,  //id是Long类型，可能数据比较长，加？c代表去除逗号
-            "title":"海尔冰箱 移动4G 16G",
+            "id":10561624,  //id是Long类型，可能数据比较长，加？c代表去除逗号
+            "title":"三国称霸 移动3G 16G",
             "price":0.01,
-            "spec": {"网络":"移动4G","机身内存":"16G"}
+            "spec": {"网络":"移动3G","机身内存":"16G"}
         }
 
     ];
@@ -76,7 +76,6 @@
                         </li>
                         <li class="f-item space"></li>
                         <li class="f-item">网站导航</li>
-
                     </ul>
                 </div>
             </div>
@@ -158,12 +157,12 @@
         <div class="crumb-wrap">
             <ul class="sui-breadcrumb">
                 <li>
-                <li><a href="#">家用电器</a></li>
-                <li><a href="#">大家电</a></li>
-                <li><a href="#">空调</a></li>
+                <li><a href="#">图书、音像、电子书刊</a></li>
+                <li><a href="#">英文原版</a></li>
+                <li><a href="#">商务投资</a></li>
                 </li>
 
-                <li class="active">海尔冰箱</li>
+                <li class="active">三国称霸</li>
             </ul>
         </div>
         <!--product-info-->
@@ -173,7 +172,7 @@
                 <div class="zoom">
                     <!--默认第一个预览-->
                     <div id="preview" class="spec-preview">
-                        <span class="jqzoom"><img jqimg="http://192.168.25.133/group1/M00/00/00/wKgZhV0Z9F-AJS_IAAJLX6bBPuo745.jpg"  width="400px" height="400px" src="http://192.168.25.133/group1/M00/00/00/wKgZhV0Z9F-AJS_IAAJLX6bBPuo745.jpg"/></span>
+                        <span class="jqzoom"><img jqimg="http://192.168.25.133/group1/M00/00/00/wKgZhV0Yc5WAO61PAABNZxXmql4204.jpg"  width="400px" height="400px" src="http://192.168.25.133/group1/M00/00/00/wKgZhV0Yc5WAO61PAABNZxXmql4204.jpg"/></span>
                     </div>
                     <!--下方的缩略图-->
                     <div class="spec-scroll">
@@ -181,7 +180,7 @@
                         <!--左右按钮-->
                         <div class="items">
                             <ul>
-                                <li><img src="http://192.168.25.133/group1/M00/00/00/wKgZhV0Z9F-AJS_IAAJLX6bBPuo745.jpg"  width="400px" height="400px" bimg="http://192.168.25.133/group1/M00/00/00/wKgZhV0Z9F-AJS_IAAJLX6bBPuo745.jpg" onmousemove="preview(this)"/></li>
+                                <li><img src="http://192.168.25.133/group1/M00/00/00/wKgZhV0Yc5WAO61PAABNZxXmql4204.jpg"  width="400px" height="400px" bimg="http://192.168.25.133/group1/M00/00/00/wKgZhV0Yc5WAO61PAABNZxXmql4204.jpg" onmousemove="preview(this)"/></li>
                             </ul>
                         </div>
                         <a class="next">&gt;</a>
@@ -192,7 +191,7 @@
                 <div class="sku-name">
                     <h4>{{sku.title}}</h4>
                 </div>
-                <div class="news"><span>海尔兄弟</span></div>
+                <div class="news"><span>传奇镍币</span></div>
                 <div class="summary">
                     <div class="summary-wrap">
                         <div class="fl title">
@@ -247,6 +246,9 @@
                                             <i>机身内存</i>
                                         </div>
                                     </dt>
+                                        <dd><a href="javascript:;" :class="{selected:isSelected('机身内存','32G')}"
+                                               @click="selectSpecifcation('机身内存','32G')">32G
+                                                <span title="点击取消选择">&nbsp;</span></a></dd>
                                         <dd><a href="javascript:;" :class="{selected:isSelected('机身内存','16G')}"
                                                @click="selectSpecifcation('机身内存','16G')">16G
                                                 <span title="点击取消选择">&nbsp;</span></a></dd>
@@ -259,9 +261,6 @@
                                     </dt>
                                         <dd><a href="javascript:;" :class="{selected:isSelected('网络','移动3G')}"
                                                @click="selectSpecifcation('网络','移动3G')">移动3G
-                                                <span title="点击取消选择">&nbsp;</span></a></dd>
-                                        <dd><a href="javascript:;" :class="{selected:isSelected('网络','移动4G')}"
-                                               @click="selectSpecifcation('网络','移动4G')">移动4G
                                                 <span title="点击取消选择">&nbsp;</span></a></dd>
                                 </dl>
                         </div>
@@ -519,20 +518,20 @@
                                 <li>机身内存：64GB</li>
                             </ul>
                             <div class="intro-detail">
-                                海尔还激情
+                                个人公告三国称霸
                             </div>
                         </div>
                         <div id="two" class="tab-pane">
-                            <p>有，好冷</p>
+                            <p>该改改</p>
                         </div>
                         <div id="three" class="tab-pane">
-                            <p>10年保障</p>
+                            <p>该改改方该改改</p>
                         </div>
                         <div id="four" class="tab-pane">
                             <p>商品评价</p>
                         </div>
                         <div id="five" class="tab-pane">
-                                    <li>内存大小 ：128</li>
+                                    <li>内存大小 ：64G</li>
                                     <li>颜色 ：白色</li>
 
                         </div>

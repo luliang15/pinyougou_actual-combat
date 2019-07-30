@@ -317,4 +317,49 @@ public class UserController {
         List<Map<String, Object>> map = userService.findMyFavorite();
         return map;
     }
+
+    /**
+     * 接收前端发送的请求  需要跨域接收请求
+     * 根据点击事件触发的查询所有我的收藏的信息页面
+     * http://localhost:9106/user/myFootprint.shtml?goodsId=149187842868005
+     */
+    @RequestMapping("/myFootprint")
+    @CrossOrigin(origins = {"http://localhost:9105"},allowCredentials = "true")
+    public Result findMyFootprint(Long goodsId){
+
+        //获取用户名
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        //如果是匿名用户是没有记录的
+        if("anonymousUser".equals(userId)){
+
+           return new Result(false,"用户未登录！");
+        }
+
+        try {
+         userService.findMyFootprint(goodsId,userId);
+
+            return new Result(true,"存入成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result(false,"存入失败");
+        }
+
+    }
+
+    /**
+     * 从redis中获取用户浏览的商品详细信息
+     * 商品详细信息从左到右压入队列，取从右取，当商品为空时，则从redis中删除此商品
+     */
+    @RequestMapping("/findFootprint")
+    @CrossOrigin(origins = {"http://localhost:9105"},allowCredentials = "true")
+    public List<Map<String,Object>> findAllFootprint(){
+
+        String userId = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        List<Map<String,Object>> list = userService.findAllFootprint(userId);
+
+        return list;
+    }
+
 }

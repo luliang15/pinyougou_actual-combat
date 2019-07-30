@@ -420,7 +420,6 @@ public class OrderServiceImpl implements OrderService {
                     Example example = new Example(TbOrder.class);
                     Example.Criteria criteria = example.createCriteria();
                     criteria.andEqualTo("status", "2");
-                    criteria.andEqualTo("auditStatus", "1");
                     criteria.andGreaterThanOrEqualTo("paymentTime", startTime);
                     criteria.andLessThan("paymentTime", endDate);
                     criteria.andIn("orderId", tbOrderIdSet);

@@ -100,8 +100,9 @@ public class SeckillOrderController {
 
 	@RequestMapping("/search")
     public Map<String, Object> findPage(@RequestParam(value = "pageNo", defaultValue = "1", required = true) Integer pageNo,
-										@RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
-										@RequestBody TbSeckillOrder seckillOrder) {
+                                        @RequestParam(value = "pageSize", defaultValue = "10", required = true) Integer pageSize,
+                                        @RequestBody TbSeckillOrder seckillOrder) {
+
         return seckillOrderService.findPage(pageNo, pageSize, seckillOrder);
     }
 	

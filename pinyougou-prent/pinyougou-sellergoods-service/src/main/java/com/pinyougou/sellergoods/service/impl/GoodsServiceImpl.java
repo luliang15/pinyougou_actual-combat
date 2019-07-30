@@ -65,8 +65,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     }
 
     /**
-     *
-     * @param pageNo 当前页 码
+     * @param pageNo   当前页 码
      * @param pageSize 每页记录数
      * @param goods
      * @return
@@ -79,13 +78,13 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
         Example.Criteria criteria = example.createCriteria();
 
         //添加一个条件，只查询没有被删除的，false代表的状态为没有被删除
-        criteria.andEqualTo("isDelete",false);//只查询没有被删除的
+        criteria.andEqualTo("isDelete", false);//只查询没有被删除的
 
 
         if (goods != null) {
             if (StringUtils.isNotBlank(goods.getSellerId())) {
                 //根据商家的名称查询显示
-                criteria.andEqualTo("sellerId",  goods.getSellerId());
+                criteria.andEqualTo("sellerId", goods.getSellerId());
                 //criteria.andSellerIdLike("%"+goods.getSellerId()+"%");
             }
             if (StringUtils.isNotBlank(goods.getGoodsName())) {
@@ -93,7 +92,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
                 //criteria.andGoodsNameLike("%"+goods.getGoodsName()+"%");
             }
             if (StringUtils.isNotBlank(goods.getAuditStatus())) {
-                criteria.andEqualTo("auditStatus",  goods.getAuditStatus() );
+                criteria.andEqualTo("auditStatus", goods.getAuditStatus());
                 //criteria.andAuditStatusLike("%"+goods.getAuditStatus()+"%");
             }
             if (StringUtils.isNotBlank(goods.getIsMarketable())) {
@@ -131,7 +130,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
      */
     @Override
     public void add(Goods goods) {
-  //1.获取SPU的数据
+        //1.获取SPU的数据
         TbGoods tbGoods = goods.getGoods();
 
         //添加审核状态，默认就是未审核
@@ -160,6 +159,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
     /**
      * 新增组合商品的方法
+     *
      * @param tbGoods
      * @param goodsDesc
      * @param itemList
@@ -167,7 +167,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     private void saveItems(TbGoods tbGoods, TbGoodsDesc goodsDesc, List<TbItem> itemList) {
 
         //判断如果为1就是启用规格
-        if("1".equals(tbGoods.getIsEnableSpec())){
+        if ("1".equals(tbGoods.getIsEnableSpec())) {
 
             System.out.println("有规格的添加！！！");
             //1.如果启用规格
@@ -184,12 +184,12 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
                 String spec = tbItem.getSpec();//{"网络":"移动3G","机身内存":"32G"}
 
                 //因为此时取到得字段还是json字符串，需要转换成json对象,并使用map接收这些数据
-                Map<String,String> map = JSON.parseObject(spec, Map.class);
+                Map<String, String> map = JSON.parseObject(spec, Map.class);
 
                 //遍历这个map
                 for (String key : map.keySet()) {
                     //开始拼接字符串
-                    title+=" "+map.get(key);
+                    title += " " + map.get(key);
                 }
                 //将title设置进去
                 tbItem.setTitle(title);
@@ -199,7 +199,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
                 //数据库中存储图片得地址形式是list<map>得形式
                 List<Map> maps = JSON.parseArray(goodsDesc.getItemImages(), Map.class);
                 //取出的：
-                String images  = maps.get(0).get("url").toString();
+                String images = maps.get(0).get("url").toString();
                 String image = goodsDesc.getItemImages();
 
                 //设置第三级类目判断id
@@ -230,11 +230,11 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
             }
 
-        }else {
+        } else {
 
             //.如果不启用规格,保存的时候，SKU列表还是需要有数据的，只不过需要的是单品数据，
             System.out.println("没有规格的添加");
-               //不用也没有那么多的规格选项
+            //不用也没有那么多的规格选项
             //1.创建SKU商品规格列表对象
             TbItem tbItem = new TbItem();
 
@@ -244,7 +244,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
             //商品价格
             tbItem.setPrice(tbGoods.getPrice());
-            System.out.println("商品价格："+tbGoods.getPrice());
+            System.out.println("商品价格：" + tbGoods.getPrice());
 
             //商品库存，因为tbGoods数据库没有这个字段，写一个默认的，写死的
             tbItem.setNum(999);
@@ -261,7 +261,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
             //设置图片
             List<Map> maps = JSON.parseArray(goodsDesc.getItemImages(), Map.class);
             //取出的：
-            String images  = maps.get(0).get("url").toString();
+            String images = maps.get(0).get("url").toString();
             String image = goodsDesc.getItemImages();
 
             //设置(商品的分类iD)第三级类目判断id
@@ -324,6 +324,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     /**
      * 根据id修改组合对象
      * 更新
+     *
      * @param goods
      * @return
      */
@@ -343,13 +344,13 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
         //3.获取SKU的数据，然后更新  先删除原本数据库的该SKU，再添加页面传递过来的SKU数据
         //delete from tb_item where goodsId=2,根据条件删除
         Example example = new Example(TbItem.class);
-        example.createCriteria().andEqualTo("goodsId",tbGoods.getId());
+        example.createCriteria().andEqualTo("goodsId", tbGoods.getId());
         int i = itemMapper.deleteByExample(example);
 
 
         //新增
         List<TbItem> itemList = goods.getItemList();
-        saveItems(tbGoods,goodsDesc,itemList);
+        saveItems(tbGoods, goodsDesc, itemList);
     }
 
     /**
@@ -365,12 +366,14 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
         //根据条件去审核修改商品的安全状态
         Example exmaple = new Example(TbGoods.class);
-        exmaple.createCriteria().andIn("id",Arrays.asList(ids));
+        exmaple.createCriteria().andIn("id", Arrays.asList(ids));
 
         //传入要修改的值
         TbGoods tbGoods = new TbGoods();
         tbGoods.setAuditStatus(status);
-        goodsMapper.updateByExampleSelective(tbGoods,exmaple);
+        //只要进行审核 上架状态全部改为下架
+        tbGoods.setIsMarketable("0");
+        goodsMapper.updateByExampleSelective(tbGoods, exmaple);
 
     }
 
@@ -390,10 +393,10 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
         Example.Criteria criteria = example.createCriteria();
 
         //根据item表中的goods_id的字段进行查询,数据类型的参数需要转换
-        criteria.andIn("goodsId",Arrays.asList(ids));
+        criteria.andIn("goodsId", Arrays.asList(ids));
 
         //判断此商品的安全状态是否可以上架，业务需要
-        criteria.andEqualTo("status",1);
+        criteria.andEqualTo("status", 1);
 
 
         return itemMapper.selectByExample(example);
@@ -401,9 +404,37 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     }
 
     /**
+     * 修改上下架状态，
+     *
+     * @param ids
+     * @param status
+     */
+    @Override
+    public void changeIsMarketable(Long[] ids, Integer status) {
+
+
+            for (Long goodsId : ids) {
+
+                TbGoods tbGoods = goodsMapper.selectByPrimaryKey(goodsId);
+                if (!"1".equals(tbGoods.getAuditStatus())){
+                    throw new RuntimeException("请先将"+tbGoods.getGoodsName()+"进行审核！");
+                }
+
+                TbGoods condition = new TbGoods();
+                condition.setId(goodsId);
+                condition.setIsMarketable(String.valueOf(status));
+                goodsMapper.updateByPrimaryKeySelective(condition);
+
+            }
+
+
+    }
+
+    /**
      * 根据主键ID删除对应的pojo对象
-     *批量删除，逻辑删除
+     * 批量删除，逻辑删除
      * 逻辑删除的点击按钮，逻辑删除，数据不能根本地删除某个字段的值，只能修改某个字段的状态
+     *
      * @param ids
      */
     @Override
@@ -414,14 +445,14 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
         //根据传入的这些id作为条件去删除，修改字段的状态
         Example exmaple = new Example(TbGoods.class);
-        exmaple.createCriteria().andIn("id",Arrays.asList(ids));
+        exmaple.createCriteria().andIn("id", Arrays.asList(ids));
 
         //更新后的值
         TbGoods tbGoods = new TbGoods();
         //修改是否删除字段的状态  ,true代表删除
         tbGoods.setIsDelete(true);
 
-        goodsMapper.updateByExampleSelective(tbGoods,exmaple);
+        goodsMapper.updateByExampleSelective(tbGoods, exmaple);
 
     }
 }

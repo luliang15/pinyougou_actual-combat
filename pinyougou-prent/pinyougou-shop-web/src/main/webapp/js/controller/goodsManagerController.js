@@ -7,6 +7,7 @@
         entity: {},
         //定义一个变量，通过这个变量来确定此状态是否审核
         status: ['未审核', '已审核', '审核不通过', '驳回审核'],
+        isMarketable:['下架','上架'],
         //定义一个变量来接受根据分类id查询到的数据
         itemCatList: [],
         ids: [],
@@ -118,6 +119,31 @@
                     app.$mount("#app");
                 }
             )
+        },
+
+
+        },
+        //修改上下架状态 修改1为上架 0为下架
+        changeIsMarketable:function (status) {
+
+
+            if (status == 1) {
+                var url = "/goods/marketable.shtml"
+            }else {
+                var url = "/goods/unmarketable.shtml"
+            }
+            axios.post(url,this.ids).then(function (response) {
+
+                console.log(response.data)
+
+                if (response.data.success) {
+                    alert(response.data.message)
+                }else {
+                    alert(response.data.message)
+                }
+
+                app.$mount("#app");
+            })
         }
 
 

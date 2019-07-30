@@ -10,7 +10,7 @@
         <!--者组-->
         <property name="consumerGroup" value="consumer_search_group"></property>
         <!--默认集群模式-->
-        <property name="messageModel" value="CLUSTERING"></property>
+        <property name="messageModel" value="BROADCASTING"></property>
         <!--设置主题，根据主题名称获取值-->
         <property name="subscription">
             <map>
