@@ -11,6 +11,8 @@ var app = new Vue({
         searchEntity:{},   //搜索条件对象
         jsonList:[],
         message:"暂无数据请先导入数据",
+        fileName:"",
+        fileNameErr:"",
 
     },
     methods:{
@@ -139,14 +141,19 @@ var app = new Vue({
         },
 
         uploadBefore:function(){
+
             var formData = new FormData() // 声明一个FormData对象
             this.formData = new window.FormData() // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
             this.formData.append('file', document.querySelector('input[type=file]').files[0]) // 'userfile' 这个名字要和后台获取文件的名字一样;
             let file = document.querySelector('input[type=file]').files[0]
             let fileName = file.name.substring(file.name.lastIndexOf(".")+1,file.name.length)
             const fileType = fileName == 'xls';
+            this.fileName="";
+                this.fileNameErr="";
             if (!fileType) {
-                alert('上传文件格式为xls，请检查文件格式');
+                this.fileNameErr="文件格式为xls,请检查文件格式";
+            }else {
+                this.fileName = file.name
             }
         },
 
@@ -180,14 +187,14 @@ var app = new Vue({
 
                 } else {
                     //上传失败
-                    alert(response.data.message);
+                    this.fileNameErr="不要作死，请先上传数据文件";
                 }
             })
         },
         //poi数据导入
         daoRu:function () {
             if (this.jsonList==''){
-                alert("不要作死，请先上传数据文件")
+                this.fileNameErr="不要作死，请先上传数据文件";
                 return false
             } else {
                 axios.post("/brand/into.shtml",this.jsonList).then((resp)=>{

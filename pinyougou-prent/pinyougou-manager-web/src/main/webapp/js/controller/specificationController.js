@@ -11,6 +11,8 @@
         searchEntity: {},
         jsonList:[],
         message:"暂无数据请先导入数据",
+        fileName:"",
+        fileNameErr:"",
     },
     methods: {
 
@@ -173,6 +175,23 @@
                     alert(response.data.message);
                 }
             })
+        },
+        //格式校验
+        uploadBefore:function(){
+
+            var formData = new FormData() // 声明一个FormData对象
+            this.formData = new window.FormData() // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
+            this.formData.append('file', document.querySelector('input[type=file]').files[0]) // 'userfile' 这个名字要和后台获取文件的名字一样;
+            let file = document.querySelector('input[type=file]').files[0]
+            let fileName = file.name.substring(file.name.lastIndexOf(".")+1,file.name.length)
+            const fileType = fileName == 'xls';
+            this.fileName="";
+            this.fileNameErr="";
+            if (!fileType) {
+                this.fileNameErr="文件格式为xls,请检查文件格式";
+            }else {
+                this.fileName = file.name
+            }
         },
 
         //poi数据导入

@@ -9,7 +9,9 @@
         grade:1,   //表示面包屑的等级，一开始等级默认为1 ，总共分3级，这是一种面包屑导航模式
         entity_1:{},//变量1，这是点击第2级时，为此等级赋值，接收值的变量1
         entity_2:{},//变量2 ，这是点击第3级时，为此等级赋值，接收值得变量2
-        searchEntity:{}
+        searchEntity:{},
+        fileName:"",
+        fileNameErr:"",
     },
     methods: {
         //审核状态
@@ -149,6 +151,24 @@
             //每次点击等级查询时，页面都会进行刷新，刷新每一等级的变量信息内容
             this.findByParentId(p_entity.id);
 
+        },
+
+        //格式校验
+        uploadBefore:function(){
+
+            var formData = new FormData() // 声明一个FormData对象
+            this.formData = new window.FormData() // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
+            this.formData.append('file', document.querySelector('input[type=file]').files[0]) // 'userfile' 这个名字要和后台获取文件的名字一样;
+            let file = document.querySelector('input[type=file]').files[0]
+            let fileName = file.name.substring(file.name.lastIndexOf(".")+1,file.name.length)
+            const fileType = fileName == 'xls';
+            this.fileName="";
+            this.fileNameErr="";
+            if (!fileType) {
+                this.fileNameErr="文件格式为xls,请检查文件格式";
+            }else {
+                this.fileName = file.name
+            }
         },
 
 

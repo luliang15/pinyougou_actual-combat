@@ -11,7 +11,10 @@
         //页面加载的时候，发送请求，获取所有的规格列表的数据，组合成{'id':1,text:'颜色'}的格式，赋值给该变量
         specOptions:[],
         ids:[],
-        searchEntity:{}
+        searchEntity:{},
+        fileName:"",
+        fileNameErr:"",
+
     },
     methods: {
 
@@ -121,7 +124,6 @@
 
         //定义一个查询所有品牌对象的函数
         findAllBrandOptions:function () {
-            alert(66666);
 
             axios.get('/brand/findAll.shtml').then(function (response) {
           //下拉框想要获取到的对象格式[{'id':1,text:'联想'},{'id':2,text:'华为'}]
@@ -195,6 +197,24 @@
             return str;
         },
 
+        //格式校验
+        uploadBefore:function(){
+
+            var formData = new FormData() // 声明一个FormData对象
+            this.formData = new window.FormData() // vue 中使用 window.FormData(),否则会报 'FormData isn't definded'
+            this.formData.append('file', document.querySelector('input[type=file]').files[0]) // 'userfile' 这个名字要和后台获取文件的名字一样;
+            let file = document.querySelector('input[type=file]').files[0]
+            let fileName = file.name.substring(file.name.lastIndexOf(".")+1,file.name.length)
+            const fileType = fileName == 'xls';
+            this.fileName="";
+            this.fileNameErr="";
+            if (!fileType) {
+                this.fileNameErr="文件格式为xls,请检查文件格式";
+            }else {
+                this.fileName = file.name
+            }
+        },
+
         //poi文件上传
         //模板模板下载
         uploadTemplate:function(){
@@ -227,6 +247,7 @@
                 if (response.data.success) {
                     //上传成功，会打印出上传的路径
                     alert("上传成功")
+                    location.reload()
                 } else {
                     //上传失败
                     alert(response.data.message);
