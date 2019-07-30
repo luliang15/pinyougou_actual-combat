@@ -140,15 +140,29 @@ public class GoodsController {
     @Autowired
     private DefaultMQProducer producer;
 
+
+    @RequestMapping("/marketable")
+    public Result marketableGoods(@RequestBody Long[] ids){
+        return changeIsMarketable(ids, 1);
+    }
+
+    @RequestMapping("/unmarketable")
+    public Result unmarketableGoods(@RequestBody Long[] ids){
+        return changeIsMarketable(ids,0 );
+    }
+
+
     /**
-     * 批量上架/下架
+     * 批量上\下架   并发送消息
+     *       如果为上架 生成静态页面 增加索引库
+     *       如果为下架 删除静态页面 删除索引库
      *
      * @param ids
      * @param status
      * @return
      */
-    @RequestMapping("/changeIsMarketable")
-    public Result changeIsMarketable(@RequestBody Long[] ids, Integer status) {
+
+    public Result changeIsMarketable( Long[] ids, Integer status) {
 
         try {
 
@@ -156,11 +170,14 @@ public class GoodsController {
                 throw new RuntimeException("请先勾选您需要上架的商品!");
             }
 
+
             goodsService.changeIsMarketable(ids, status);
 
             MessageInfo info;
 
-            if ("0".equals(status)) {
+            String mag;
+
+            if (status.intValue() == 0) {
 
                 //设置删除的消息的主题、标签、keys、body(消息体、商品数据)
                 info = new MessageInfo(
@@ -169,6 +186,8 @@ public class GoodsController {
                         "unmarketable", //消息的唯一标识
                         ids,   //body，消息体，根插此id查询到要删除的数据
                         MessageInfo.METHOD_DELETE);  //消息发送的类型，属于修改更新
+
+                mag = "下架成功！";
 
             } else {
 
@@ -183,6 +202,7 @@ public class GoodsController {
                         "marketable", //消息的唯一标识
                         itemList,   //body，消息体，查询到的商品数据
                         MessageInfo.METHOD_UPDATE);  //消息发送的类型，属于修改更新
+                mag = "上架成功！";
             }
 
             //转JSON
@@ -200,7 +220,7 @@ public class GoodsController {
             //将获取到要删除的消息进行打印
             System.out.println("Delete:" + send);
 
-            return new Result(true, "成功！");
+            return new Result(true, mag);
         } catch (Exception e) {
             e.printStackTrace();
             return new Result(false, e.getMessage());

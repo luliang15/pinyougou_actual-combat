@@ -123,6 +123,24 @@
         //修改上下架状态 修改1为上架 0为下架
         changeIsMarketable:function (status) {
 
+
+            if (status == 1) {
+                var url = "/goods/marketable.shtml"
+            }else {
+                var url = "/goods/unmarketable.shtml"
+            }
+            axios.post(url,this.ids).then(function (response) {
+
+                console.log(response.data)
+
+                if (response.data.success) {
+                    alert(response.data.message)
+                }else {
+                    alert(response.data.message)
+                }
+
+                app.$mount("#app");
+            })
         }
 
 

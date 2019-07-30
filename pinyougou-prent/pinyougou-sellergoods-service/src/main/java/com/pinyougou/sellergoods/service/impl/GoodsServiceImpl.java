@@ -404,9 +404,7 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     }
 
     /**
-     * 修改上下架状态，并发送消息
-     * 如果为上架 生成静态页面 增加索引库
-     * 如果为下架 删除静态页面 删除索引库
+     * 修改上下架状态，
      *
      * @param ids
      * @param status
@@ -415,8 +413,6 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
     public void changeIsMarketable(Long[] ids, Integer status) {
 
 
-        if (status.intValue() == 1) {
-            //如果需要上架
             for (Long goodsId : ids) {
 
                 TbGoods tbGoods = goodsMapper.selectByPrimaryKey(goodsId);
@@ -426,15 +422,10 @@ public class GoodsServiceImpl extends CoreServiceImpl<TbGoods> implements GoodsS
 
                 TbGoods condition = new TbGoods();
                 condition.setId(goodsId);
-                condition.setIsMarketable("1");
+                condition.setIsMarketable(String.valueOf(status));
                 goodsMapper.updateByPrimaryKeySelective(condition);
 
             }
-
-        } else {
-            //如果需要下架
-
-        }
 
 
     }
