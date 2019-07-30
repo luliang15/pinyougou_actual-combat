@@ -50,13 +50,6 @@ public interface OrderService {
     Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
                                        Integer pageSize);
 
-    List<OrderList> findAllOrder();
-
-
-
-    Map<String,Object> findUserIdOrder(String userId, Integer pageNo,
-                                       Integer pageSize);
-
     Map<String, Object> findCategorySell(Long catNo1, Long catNo2, String startTime, String endTime);
 
     List<OrderList> findAllOrder();
