@@ -191,7 +191,7 @@ var app = new Vue({
                 return false
             } else {
                 axios.post("/brand/into.shtml",this.jsonList).then((resp)=>{
-                    if (resp.data.message){
+                    if (resp.data.success){
                         alert("导入成功")
                         location.reload()
                     } else {

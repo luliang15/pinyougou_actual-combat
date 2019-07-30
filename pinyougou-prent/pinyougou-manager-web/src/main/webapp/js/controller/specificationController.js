@@ -167,6 +167,7 @@
             }).then(function (response) {
                 if (response.data.success) {
                     app.jsonList =JSON.parse(response.data.message)
+
                 } else {
                     //上传失败
                     alert(response.data.message);
@@ -181,11 +182,12 @@
                 return false
             } else {
                 axios.post("/specification/into.shtml",this.jsonList).then((resp)=>{
-                    if (resp.data.message){
+                    if (resp.data.success){
                         alert("导入成功")
                         location.reload()
                     } else {
                         alert("导入失败")
+                        location.reload()
                     }
                 })
             }

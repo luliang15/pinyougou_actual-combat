@@ -3,9 +3,9 @@ package com.pinyougou.manager.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
-import com.pinyougou.common.utils.POIUtils;
 import com.pinyougou.manager.utils.IncreasePOIUtils;
 import com.pinyougou.pojo.TbSpecification;
+import com.pinyougou.pojo.TbSpecificationOption;
 import com.pinyougou.sellergoods.service.SpecificationService;
 import entity.Result;
 import entity.Specification;
@@ -120,56 +120,11 @@ public class SpecificationController {
     @RequestMapping("/upload")
     public Result uploadFile(@RequestParam MultipartFile file) throws Exception {
         try {
-		/*	List<String[]> rowList = POIUtils.readExcel(file);
-			List<TbSpecification> specifications = new ArrayList<>();
-			for (int i = 0; i < rowList.size(); i++) {
-				String[] row = rowList.get(i);
-				TbSpecification specification = new TbSpecification();
-				specification.setSpecName(row[0]);
-				//默认为未审核
-				specification.setSpecStatus("0");
-			*//*	specificationService.add(specification);*//*
-				specifications.add(specification);
 
-			}*/
-            //获取sheet1 sheet2对象,每遍历换一个list就得到每页sheet的数据，每比那里一个map得到每行的数据
             List<Map<String, String[]>> mapList = IncreasePOIUtils.readExcel(file);
-            //遍历每页，得到每页对象
-
-            Map<String,Object> mapList1 = new HashMap<>();
-            //遍历每页，得到每页对象
-            for (int i = 0; i < mapList.size(); i++) {
-                //获取每页对象
-                Map<String, String[]> map = mapList.get(i);
-                //获取每页对应多行对象
-                Collection<String[]> rowList = map.values();
-                //获取一页一行的对象
-                for (String[] strings : rowList) {
-                    //遍历一行每列数据得到对应数据
-                    for (String string : strings) {
-                        //第一页数据
-                        if (i == 0) {
-                            TbSpecification specification = new TbSpecification();
-                            specification.setSpecName(string);
-                            //默认为未审核
-                            specification.setSpecStatus("0");
-
-                            //第二页数据
-                        } else if (i == 1) {
-
-
-                        }
-                    }
-
-                }
-
-
-            }
-
-
-         /*   String jsonString = JSON.toJSONString(specifications);*/
-          /*  return new Result(true, jsonString);*/
-            return null;
+            List<Map<String, Object>> AllList = getMaps(mapList);
+            String jsonString = JSON.toJSONString(AllList);
+            return new Result(true, jsonString);
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -178,16 +133,13 @@ public class SpecificationController {
 
     }
 
+
     //poi导入数据
     @RequestMapping("/into")
-    public Result into(@RequestBody List<TbSpecification> tbSpecifications) throws Exception {
+    public Result into(@RequestBody List<Map<String, Object>> mapList) throws Exception {
         try {
-            if (tbSpecifications != null) {
-                for (TbSpecification tbBrand : tbSpecifications) {
+            specificationService.insertSpecification(mapList);
 
-                    specificationService.add(tbBrand);
-                }
-            }
             return new Result(true, "导入数据成功");
         } catch (Exception e) {
 
@@ -210,6 +162,99 @@ public class SpecificationController {
         }
 
 
+    }
+
+
+    //poi一对多excle抽取
+    private List<Map<String, Object>> getMaps(List<Map<String, String[]>> mapList) {
+        //容器
+        List<Map<String, Object>> allList = new ArrayList();
+        //遍历每页，得到每页对象
+        for (int i = 0; i < mapList.size(); i++) {
+            //获取每页对象
+            Map<String, String[]> map = mapList.get(i);
+            //获取每页对应多行对象
+            Collection<String[]> rowList = map.values();
+            //获取一页一行的对象
+            for (String[] strings : rowList) {
+                Map allMap = new HashMap();
+                //遍历一行每列数据得到对应数据
+                for (int j = 0; j < strings.length; j++) {
+                    //第一页数据
+                    if (i == 0) {    // [ {specName:'炸弹手机 ',spName:[{optionName：'手机11'，pName:'炸弹手机'}]},
+                        //               {specName:'蔡徐坤篮球',spName:[{optionName：'手机11'，pName:'炸弹手机'}]}  ]
+                        System.out.print(strings[j] + " ");
+                        allMap.put("specName", strings[0]);
+                        //第二页数据
+                    } else if (i == 1) {
+                        System.out.print(strings[j] + " ");
+                        allMap.put("optionName", strings[0]);
+                        allMap.put("pName", strings[1]);
+                        allMap.put("sOrder", Integer.valueOf(strings[2]));
+                    }
+                }
+                System.out.println();
+
+                allList.add(allMap);
+            }
+        }
+        for (Map<String, Object> stringObjectMap : allList) {
+            System.out.println(stringObjectMap.toString());
+        }
+        /**
+         * {specName=炸弹手机}
+         * {specName=蔡徐坤篮球}
+         * {pName=炸弹手机, optionName=手机11}
+         * {pName=炸弹手机, optionName=手机22}
+         */
+
+        /**
+         * 蔡徐坤篮球
+         * 炸弹手机
+         */
+        //遍历重新封装 存放规格名称(父类)
+        Set<String> fuList = new HashSet();
+        //存放子类对象
+        List<Map<String, Object>> ziList = new ArrayList<>();
+        for (Map<String, Object> listMap : allList) {
+            String specName = (String) listMap.get("specName");
+            //判断从当前对象取值，如果有则当前对象就是规格选项(子类)的map
+            String pName = (String) listMap.get("pName");
+            if (specName != null) {
+                fuList.add(specName);
+            }
+            if (pName != null) {
+                ziList.add(listMap);
+            }
+        }
+
+        List<Map<String, Object>> AllList = new ArrayList<>();
+        if (fuList != null) {
+            //遍历父类名称
+            for (String fatherName : fuList) {
+                Map mapA = new HashMap();
+                if (ziList != null) {
+                    //遍历子类
+                    List<Map> mapArrayList = new ArrayList<>();
+                    for (Map<String, Object> map : ziList) {
+                        String pName = (String) map.get("pName");
+                        if (fatherName.equals(pName)) {
+                            mapArrayList.add(map);
+                        }
+
+                    }
+                    mapA.put("spName", mapArrayList);
+                    mapA.put("specName", fatherName);
+                }
+                AllList.add(mapA);
+            }
+
+        }
+
+        for (Map<String, Object> map : AllList) {
+            System.out.println(map.toString());
+        }
+        return AllList;
     }
 
 }

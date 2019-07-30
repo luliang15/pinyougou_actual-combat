@@ -304,13 +304,13 @@ public class OrderServiceImpl implements OrderService {
 
 
         //对应寻找出日期中每天的销量
-        if (dateList != null && dateList.size() > 0) {
+        if (dateList != null && dateList.size()>0) {
             for (Date date : dateList) {
                 String everyDateStr = dateFormat.format(date);
 
-                if (tbOrderList != null && tbOrderList.size() > 0) {
+                if (tbOrderList != null && tbOrderList.size()>0) {
 
-                    Double totalMoney = 0.0;
+                    Double totalMoney=0.0;
                     for (TbOrder tbOrder : tbOrderList) {
                         //如果时间一致
                         Date paymentTime = tbOrder.getPaymentTime();
@@ -410,7 +410,7 @@ public class OrderServiceImpl implements OrderService {
                 orderItem.setGoodsId(tbGoods.getId());
                 List<TbOrderItem> tbOrderItemList = orderItemMapper.select(orderItem);
                 Double totalMoney = 0.0;
-                if (tbOrderItemList != null && tbOrderItemList.size() > 0) {
+                if (tbOrderItemList != null && tbOrderItemList.size()>0) {
                     Set<Long> tbOrderIdSet = new HashSet<>();
                     for (TbOrderItem tbOrderItem : tbOrderItemList) {
                         tbOrderIdSet.add(tbOrderItem.getOrderId());
