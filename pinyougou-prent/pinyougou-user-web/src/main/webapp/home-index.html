@@ -226,8 +226,9 @@ $(function(){
 
                                 <table class="sui-table table-bordered order-datatable">
                                     <tbody>
-                                        <tr v-for="Array in list.tbOrderItems" >
-                                            <td width="35%">{{list.spec}}
+
+                                        <tr v-for="(Array,index) in list.tbOrderItems" >
+                                            <td width="35%">
                                                 <div class="typographic"><img height="120px" width="120px" :src="Array.picPath" />
 
                                                     <!--<a v-for="(value,key) in list.spec">{{key}}&nbsp;{{value}}-->
@@ -256,20 +257,21 @@ $(function(){
                                             <td width="8%" class="center">
                                                
                                             </td>
-                                            <td width="10%" class="center" >
+
+                                            <td width="10%" class="center" :rowspan="list.tbOrderItems.length" v-if="index == 0">
                                                 <ul class="unstyled">
                                                     <li>¥299.00</li>
                                                     <li>（含运费：￥0.00）</li>
                                                 </ul>
                                             </td>
-                                            <td width="10%" class="center">
+                                            <td width="10%" class="center" :rowspan="list.tbOrderItems.length" v-if="index == 0">
                                                 <ul class="unstyled">
                                                     <li v-if="list.order.status == '1'">未付款</li>
                                                     <li v-if="list.order.status == '2'">已付款</li>
                                                     <li><a href="orderDetail.html" class="btn">订单详情 </a></li>
                                                 </ul>
                                             </td>
-                                            <td width="10%" class="center">
+                                            <td width="10%" class="center" :rowspan="list.tbOrderItems.length" v-if="index==0">
                                                 <ul class="unstyled">
 													<li><a href="#" class="sui-btn btn-info">立即付款</a></li>
                                                     <li>取消订单</li>

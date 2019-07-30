@@ -16,9 +16,10 @@
         orderList:[],
 
         //我的收藏的数据变量
-        myFavorite:[]
+        myFavorite:[],
 
-
+       //我的足迹的数据变量
+        FootList:[]
 
     },
     methods: {
@@ -146,16 +147,38 @@
 
                 for (var i = 0; i <specList.length ; i++) {
 
+                    //解析规格形式
                     specList[i].spec = JSON.parse(specList[i].spec);
                 }
 
-
                 console.log(app.myFavorite)
             })
-        }
+        },
 
+        //当用户点击我的足迹时从redis中取出用户浏览商品的信息，页面一加载就展示
+        findMyFootprint:function () {
 
-        ,
+            axios.get('/user/findFootprint.shtml',{
+                //跨域发送请求时携带参数
+                withCredentials:true
+            }).then(function (response) {
+
+                //从后台获取到redis中我的足迹的商品信息List<Map>
+                app.FootList = response.data;
+
+                alert(JSON.stringify(app.FootList));
+
+                var specList = response.data;
+
+                for (var i = 0; i < specList.length; i++) {
+
+                    //解析规格形式
+                    specList[i].spec = JSON.parse(specList[i].spec);
+                }
+
+            })
+        },
+
         getGoodsHref:function () {
             window.location.href='home-setting-info.html';
         }
@@ -173,6 +196,9 @@
 
         //页面一加载的时候便显示
         this.findMyFavorite();
+
+        //页面加载展示
+        this.findMyFootprint();
 
     }
 

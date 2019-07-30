@@ -39,6 +39,7 @@
                                         <button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 提交审核</button>
                                         <button type="button" class="btn btn-default" title="上架" @click="changeIsMarketable(1)"><i class="fa fa-check"></i>上架</button>
                                         <button type="button" class="btn btn-default" title="下架" @click="changeIsMarketable(0)"><i class="fa fa-check"></i>下架</button>
+                                        <!--<button type="button" class="btn btn-default" title="提交审核" ><i class="fa fa-check"></i> 是否上架</button>-->
                                         <button type="button" class="btn btn-default" title="屏蔽" onclick='confirm("你确认要屏蔽吗？")'><i class="fa fa-ban"></i> 屏蔽</button>
                                         <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                     </div>
@@ -61,6 +62,8 @@
                             </div>
                             <!--工具栏/-->
 
+			                  <!--数据列表-->
+			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable" >
 			                  <!--数据列表-->{{ids}}
 			                  <table id="dataList" class="table table-bordered table-striped table-hover dataTable">
 			                      <thead>

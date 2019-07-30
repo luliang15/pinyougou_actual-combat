@@ -60,5 +60,21 @@ public interface UserService extends CoreService<TbUser> {
      */
     List<Map<String, Object>> findMyFavorite();
 
+    /**
+     * 商品详情页面加载生成传递goodsId
+     * 记录所有用户浏览过的商品详细信息到我的足迹中
+     * 足迹所要获取到的数据与我的收藏相似
+     * @return
+     */
+    void findMyFootprint(Long goodsId, String userId);
+
+    /**
+     * 从redis中获取用户浏览的商品详细信息
+     * 商品详细信息从左到右压入队列，取从右取，当商品为空时，则从redis中删除此商品
+     * @return
+     * @param userId
+     */
+    List<Map<String,Object>> findAllFootprint(String userId);
+
 	List<User> userClassification();
 }

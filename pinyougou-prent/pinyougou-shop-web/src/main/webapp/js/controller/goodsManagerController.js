@@ -120,6 +120,9 @@
                 }
             )
         },
+
+
+        },
         //修改上下架状态 修改1为上架 0为下架
         changeIsMarketable:function (status) {
 
