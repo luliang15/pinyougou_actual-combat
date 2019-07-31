@@ -61,4 +61,6 @@ public interface UserService extends CoreService<TbUser> {
     List<Map<String, Object>> findMyFavorite();
 
 	List<User> userClassification();
+
+    void updateUserLoginDateByUsername(String username);
 }

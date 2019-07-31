@@ -63,6 +63,30 @@
     <!--延时调用-->
     <dubbo:consumer timeout="100000"></dubbo:consumer>
 
+
+
+    <!--拦截器配置-->
+    <mvc:interceptors>
+        <!--权限加载拦截器-->
+        <mvc:interceptor>
+            <!--拦截所有请求-->
+            <mvc:mapping path="/**"/>
+            <!--拦截到的请求，给如下拦截器处理-->
+            <bean class="com.pinyougou.user.interceptor.LoadPermissionInterceptor" />
+        </mvc:interceptor>
+
+        <!--url过滤拦截-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--登录操作要排除-->
+            <mvc:exclude-mapping path="/login"></mvc:exclude-mapping>
+            <!--首页要排除-->
+            <mvc:exclude-mapping path="/page/main"></mvc:exclude-mapping>
+            <bean class="com.pinyougou.user.interceptor.UrlInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+
     <!--引入安全框架的spring-security的xml文件配置-->
     <import resource="spring-security.xml"></import>
 

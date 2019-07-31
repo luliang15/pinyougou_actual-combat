@@ -376,4 +376,20 @@ public class UserServiceImpl extends CoreServiceImpl<TbUser> implements UserServ
         users.add(userWoman);
         return users;
     }
+
+    /**
+     * 更新用户登录时间
+     * @param username
+     */
+    @Override
+    public void updateUserLoginDateByUsername(String username) {
+
+
+        Example example = new Example(TbUser.class);
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("username", username);
+        TbUser condition = new TbUser();
+        condition.setLastLoginTime(new Date());
+        userMapper.updateByExampleSelective(condition,example );
+    }
 }
