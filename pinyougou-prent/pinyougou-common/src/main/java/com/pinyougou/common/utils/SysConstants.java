@@ -35,4 +35,8 @@ public class SysConstants {
 
     //我的收藏的商品Favorite
     public static final String MY_FAVORITE = "My_Favorite";
+
+    //我的足迹的商品详细信息的Footprint
+    public static final String MY_FOOTPRINT = "My_Footprint";
+
 }

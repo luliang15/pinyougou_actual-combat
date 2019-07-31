@@ -88,14 +88,41 @@ var app = new Vue({
                     alert(response.data.message)
                 }
             })
+        },
+
+        //静态页面生成的加载显示发送此商品的id给后台做我的足迹记录的函数
+        findMyFootprint:function (goodsId) {
+            //发送跨域请求到user查询用户中心的我的足迹列表信息
+            axios.get('/user/myFootprint.shtml',{
+                params:{
+                    goodsId:goodsId
+                },
+                //客户端在ajax的时候也要携带cookie到服务器
+                withCredentials:true
+            }).then(
+                function (response) {
+                    //页面加载成功，判断浏览是否成功加入redis中
+                    if(response.data.success){
+                        //如果成功
+                        response.data.message;
+                    }else {
+                        //如果失败
+                        response.data.message;
+                    }
+                }
+            )
         }
-
-
     },
 
     //4.钩子函数，一些显示数据可初始化的地方
     created: function () {
+       //页面加载的时候向后台发送itemId(生成的所有静态页面)的参数
+        var urlParam = this.getUrlParam();
 
+        var goodsId = urlParam.goodsId;
+
+        //页面加载调用此方法
+        this.findMyFootprint(goodsId);
     }
 
 

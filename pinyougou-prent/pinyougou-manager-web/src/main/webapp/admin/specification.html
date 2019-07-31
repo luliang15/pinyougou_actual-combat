@@ -15,6 +15,16 @@
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 
 </head>
+<style>
+    #lab_file, #lab_file1{
+        font-size: 13px;
+        padding: 9px 25px;
+        background:#00ca6d;
+        color: #FFF;
+        border: none;
+        border-radius: 2px;
+    }
+</style>
 
 <body class="hold-transition skin-red sidebar-mini">
 <!-- .box-body -->
@@ -49,11 +59,15 @@
                         </button>
                         <button type="button" class="btn btn-default" title="模板下载" @click="uploadTemplate()"><i
                                 class="fa fa-refresh"></i><span style="color: red">请下载模板</span></button>
-                        <input type="file" id="file"/>
-                        <button class="btn btn-primary" type="button" @click="uploadFile()" data-toggle="modal"
-                                data-target="#editModal2">
-                            上传规格excle
+                        <label for="file" id="lab_file">选择文件</label>
+                        <input type="file" style="display: none" id="file" name="file" @change="uploadBefore()"/>
+
+                        <label for="bt1" id="lab_file1">上传规格</label>
+                        <button id="bt1" class="btn btn-default" style="display: none"  type="button" @click="uploadFile()" data-toggle="modal" data-target="#editModal2">
                         </button>
+                        <span style="color:red;">{{fileNameErr}}</span>
+                        <span>{{fileName}}</span>
+
                     </div>
                 </div>
             </div>

@@ -171,7 +171,7 @@ public class SeckillOrderServiceImpl extends CoreServiceImpl<TbSeckillOrder> imp
         }
 
 
-        //如果没有为支付的订单再弹出一个库存
+        //如果没有未支付的订单再弹出一个库存
         //现在商品被压成队列，从redis中弹出队列元素（也就是商品）如果元素为null 说明已经卖完了
         //之前商品从左边推送存，现在从右边取出元素
         Object seckillGoodsId = redisTemplate.boundListOps(SysConstants.SEC_KILL_GOODS_PREFIX + id).rightPop();

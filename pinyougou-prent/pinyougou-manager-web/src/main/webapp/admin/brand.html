@@ -12,8 +12,17 @@
 	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
     <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 
-    
 </head>
+<style>
+    #lab_file, #lab_file1{
+        font-size: 13px;
+        padding: 9px 25px;
+        background:#00ca6d;
+        color: #FFF;
+        border: none;
+        border-radius: 2px;
+    }
+</style>
 
 
 <body class="hold-transition skin-red sidebar-mini">
@@ -35,14 +44,17 @@
                                         <button type="button" class="btn btn-default" title="新建" @click="entity={}" data-toggle="modal" data-target="#editModal" ><i class="fa fa-file-o"></i> 新建</button>
                                                             <!--绑定删除的点击事件-->
                                         <button type="button" class="btn btn-default" title="删除" @click="dele()" ><i class="fa fa-trash-o"></i> 删除</button>
-                                        <button type="button" class="btn btn-default" title="刷新" onclick="window.location.reload();"><i class="fa fa-refresh"></i> 刷新</button>
                                         <button type="button" class="btn btn-default" title="驳回" @click="updateStatus(ids,2)"><i class="fa fa-refresh"></i> 驳回</button>
                                         <button type="button" class="btn btn-default" title="审核通过" @click="updateStatus(ids,1)"><i class="fa fa-refresh"></i> 审核通过</button>
                                         <button type="button" class="btn btn-default" title="上传模板下载" @click="uploadTemplate()"><i class="fa fa-refresh"></i><span style="color: red">请下载模板</span></button>
-                                        <input type="file" id="file" name="file" @change="uploadBefore()"/>
-                                        <button class="btn btn-primary" type="button" @click="uploadFile()" data-toggle="modal" data-target="#editModal2">
-                                            上传品牌excle
+                                        <label for="file" id="lab_file">选择文件</label>
+                                        <input type="file" style="display: none" id="file" name="file" @change="uploadBefore()"/>
+
+                                        <label for="bt1" id="lab_file1">上传品牌</label>
+                                        <button id="bt1" class="btn btn-default" style="display: none"  type="button" @click="uploadFile()" data-toggle="modal" data-target="#editModal2">
                                         </button>
+                                        <span style="color:red;">{{fileNameErr}}</span>
+                                        <span>{{fileName}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -65,17 +77,15 @@
 			                          <tr>
 			                              <th class="" style="padding-right:0px">
 			                                  <input id="selall" type="checkbox" class="icheckbox_square-blue">
-			                              </th> 
+			                              </th>
 										  <th class="sorting_asc">品牌ID</th>
-									      <th class="sorting">品牌名称</th>									      
-									      <th class="sorting">品牌首字母</th>									     				
+									      <th class="sorting">品牌名称</th>
+									      <th class="sorting">品牌首字母</th>
 									      <th class="sorting">审核状态</th>
 					                      <th class="text-center">操作</th>
 			                          </tr>
 			                      </thead>
 			                      <tbody>
-
-                                  {{ids}}
                                   <tr v-for="entity in list">
                                       <!--这里是一个复选框，当点击勾选框时选中此id-->
                                       <!--v-model="ids"为绑定复选框的id数组列表参数，:value="entity.id"为id赋值，可写为v-bind-->
@@ -96,7 +106,7 @@
 			                  <!--数据列表/-->
                             <!--传递：pages:指定总页数  pageNo:当前页码 searchList:定义的函数 用于在点击下一页的调用-->
                             <navigation :pages="pages" :current.sync="pageNo"  @navpage="searchList"></navigation>
-							 
+
                         </div>
                         <!-- 数据表格 /-->
 
@@ -113,17 +123,17 @@
 			<h3 id="myModalLabel">品牌编辑</h3>
             {{entity}}
 		</div>
-		<div class="modal-body">		
+		<div class="modal-body">
 			<table class="table table-bordered table-striped"  width="800px">
 		      	<tr>
 		      		<td>品牌名称</td>    <!--v-model绑定服务器响应的属性数据-->
 		      		<td><input  class="form-control" placeholder="品牌名称" v-model="entity.name"  >  </td>
-		      	</tr>		      	
+		      	</tr>
 		      	<tr>
 		      		<td>首字母</td>
 		      		<td><input  class="form-control" placeholder="首字母" v-model="entity.firstChar">  </td>
-		      	</tr>		      	
-			 </table>				
+		      	</tr>
+			 </table>
 		</div>
 		<div class="modal-footer">		<!--添加点击保存成的点击事件-->
 			<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" @click="save()">保存</button>
